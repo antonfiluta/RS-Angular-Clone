@@ -1,0 +1,2 @@
+# RS-Angular-Clone
+Build a production-quality Angular app in a team of 3. You may create a focused clone of any well-known web app or game you know (e.g., Trello/Notion/Twitter(X)/Spotify/Duolingo/Airbnb/GitHub Issues) — or build an original app with similar complexity.
