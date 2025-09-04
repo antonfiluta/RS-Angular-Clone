@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../public/assets/fonts/geograph/geograph.css';
+@import '../public/assets/fonts/Test Martina Plantijn/martina-plantijn.css';
+@import '../public/assets/fonts/bebasneue/bebasneue.css';
+@import 'primeicons/primeicons.css';
+
+:root {
+  --color-brand-red: #ff385c;
+  --color-brand-dark: #222222;
+  --color-brand-light-gray: #f2f2f2;
+  --color-brand-gray: #6a6a6a;
+  --color-brand-bg: #f8f8f8;
+
+  --font-brand-primary: 'Geograph', sans-serif;
+  --font-brand-secondary: 'Martina Plantijn', serif;
+  --font-brand-tertiary: 'Bebas Neue', sans-serif;
+}
+
+body {
+  font-family: var(--font-brand-primary);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-brand-dark);
+}
+
+* {
+  box-sizing: border-box;
+}
