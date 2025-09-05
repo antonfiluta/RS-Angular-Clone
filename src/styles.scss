@@ -1,3 +1,7 @@
+@plugin "daisyui" {
+  themes: light --default;
+}
+
 @import '../public/assets/fonts/geograph/geograph.css';
 @import '../public/assets/fonts/Test Martina Plantijn/martina-plantijn.css';
 @import '../public/assets/fonts/bebasneue/bebasneue.css';
@@ -23,10 +27,4 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-brand-dark);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
