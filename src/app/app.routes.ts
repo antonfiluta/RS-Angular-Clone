@@ -24,6 +24,13 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'personal-info',
+    title: 'Personal Information',
+    loadComponent: () =>
+      import('./core/pages/personal-info/personal-info').then((c) => c.PersonalInfo),
+  },
+
+  {
     path: 'profile',
     title: 'Profile',
     loadComponent: () => import('./core/pages/profile/profile').then((c) => c.Profile),

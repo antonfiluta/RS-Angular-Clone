@@ -1,0 +1,10 @@
+<label class="block">
+  <span class="font-medium text-sm mb-1">{{ label }}</span>
+  <input
+    [type]="type"
+    [value]="value"
+    (input)="onInput($event)"
+    [placeholder]="placeholder"
+    class="input input-bordered w-full"
+  />
+</label>

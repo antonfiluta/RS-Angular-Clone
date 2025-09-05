@@ -1,0 +1,11 @@
+<label class="block">
+  <span class="font-medium text-sm mb-1">{{ label }}</span>
+  <input
+    type="file"
+    (change)="onFileChange($event)"
+    class="file-input file-input-bordered w-full"
+  />
+  <div *ngIf="preview" class="mt-2">
+    <img [src]="preview" alt="Preview" class="w-20 h-20 rounded-full object-cover" />
+  </div>
+</label>
