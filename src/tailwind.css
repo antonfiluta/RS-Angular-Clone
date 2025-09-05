@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-red: #ff385c;
+  --color-brand-dark: #222222;
+  --color-brand-light-gray: #f2f2f2;
+  --color-brand-gray: #6a6a6a;
+  --color-brand-bg: #f8f8f8;
+
+  --font-brand-primary: 'Geograph', sans-serif;
+  --font-brand-secondary: 'Martina Plantijn', serif;
+  --font-brand-tertiary: 'Bebas Neue', sans-serif;
+}
