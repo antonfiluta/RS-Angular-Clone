@@ -1,113 +1,34 @@
-<div class="grid gap-6 max-w-md p-4 bg-white rounded-lg shadow">
-  <!-- Avatar -->
-  <div class="flex items-center gap-4">
-    <img src="https://placehold.co/80x80" class="rounded-full w-20 h-20" alt="Avatar" />
-    <button class="btn btn-link btn-sm">Change</button>
+<form [formGroup]="form" class="block">
+  <div class="p-0 m-0 bg-white rounded-xl max-w-full shadow-lg">
+    <!-- Avatar row -->
+    <div class="flex items-center gap-4 px-6 py-5 border-b border-gray-200">
+      <img
+        src="assets/images/avatar-placeholder.svg"
+        alt="Avatar"
+        class="w-20 h-20 rounded-full object-cover bg-gray-100"
+      />
+      <button
+        type="button"
+        class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
+        aria-label="Change avatar"
+      >
+        Change
+      </button>
+    </div>
+    <app-profile-row
+      *ngFor="let field of formFields"
+      [title]="field.title"
+      [fieldKey]="field.key"
+      [control]="getControl(field.key)"
+      [empty]="isEmpty(field.key)"
+      [actionLabel]="getActionLabel(field.key)"
+      [isEditing]="editFieldName === field.key"
+      [sub]="field.sub"
+      [type]="field.type || 'text'"
+      [options]="field.options || []"
+      (editField)="editField($event)"
+      (saveField)="saveField($event)"
+      (cancelEdit)="cancelEdit($event)"
+    ></app-profile-row>
   </div>
-
-  <!-- First Name -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'firstName'; else editFirstName">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">First Name: {{ firstName }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('firstName')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editFirstName>
-      <app-input [(ngModel)]="firstName" label="First Name"></app-input>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-
-  <!-- Last Name -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'lastName'; else editLastName">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">Last Name: {{ lastName }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('lastName')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editLastName>
-      <app-input [(ngModel)]="lastName" label="Last Name"></app-input>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-
-  <!-- Email -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'email'; else editEmail">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">Email: {{ email }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('email')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editEmail>
-      <app-input [(ngModel)]="email" label="Email" type="email"></app-input>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-
-  <!-- Phone -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'phone'; else editPhone">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">Phone: {{ phone }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('phone')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editPhone>
-      <app-input [(ngModel)]="phone" label="Phone"></app-input>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-
-  <!-- Date of Birth -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'dob'; else editDob">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">Date of Birth: {{ dob }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('dob')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editDob>
-      <app-input [(ngModel)]="dob" label="Date of Birth" type="date"></app-input>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-
-  <!-- Gender -->
-  <div>
-    <ng-container *ngIf="editFieldName !== 'gender'; else editGender">
-      <div class="flex justify-between items-center">
-        <span class="font-medium">Gender: {{ gender }}</span>
-        <button class="btn btn-link btn-sm" (click)="editField('gender')">Edit</button>
-      </div>
-    </ng-container>
-    <ng-template #editGender>
-      <app-select
-        [(ngModel)]="gender"
-        label="Gender"
-        [options]="['Male', 'Female', 'Other']"
-      ></app-select>
-      <div class="flex gap-2 mt-2">
-        <app-button variant="secondary" (click)="cancelEdit()">Cancel</app-button>
-        <app-button variant="primary" (click)="saveField()">Save</app-button>
-      </div>
-    </ng-template>
-  </div>
-</div>
+</form>

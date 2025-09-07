@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Select } from './select';
+import { ProfileRowComponent } from './profile-row';
 
-describe('Select', () => {
-  let component: Select;
-  let fixture: ComponentFixture<Select>;
+describe('ProfileRowComponent', () => {
+  let component: ProfileRowComponent;
+  let fixture: ComponentFixture<ProfileRowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Select],
+      imports: [ProfileRowComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Select);
+    fixture = TestBed.createComponent(ProfileRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
