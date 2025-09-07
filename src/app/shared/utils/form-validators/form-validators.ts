@@ -19,3 +19,14 @@ export function passwordStrengthValidator(): ValidatorFn {
     return Object.keys(errors).length > 0 ? errors : null;
   };
 }
+
+export function forbiddenWordsValidator(forbiddenWords: string[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
+
+    const value = control.value.toLowerCase();
+    const foundWord = forbiddenWords.find((word) => value.includes(word.toLowerCase()));
+
+    return foundWord ? { forbiddenWord: { value: foundWord } } : null;
+  };
+}

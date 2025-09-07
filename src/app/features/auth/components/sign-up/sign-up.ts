@@ -1,7 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidationService } from '../../../../shared/services/form-validation-servic/form-validation-service';
-import { passwordStrengthValidator } from '../../../../shared/utils/form-validators/form-validators';
+import {
+  forbiddenWordsValidator,
+  passwordStrengthValidator,
+} from '../../../../shared/utils/form-validators/form-validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,8 +17,14 @@ export class SignUp {
   private formValidationService = inject(FormValidationService);
 
   public signUpForm = this.fb.group({
-    lastname: ['', [Validators.required, Validators.maxLength(30)]],
-    firstname: ['', [Validators.required, Validators.maxLength(30)]],
+    lastname: [
+      '',
+      [Validators.required, Validators.maxLength(30), forbiddenWordsValidator(['admin', 'user'])],
+    ],
+    firstname: [
+      '',
+      [Validators.required, Validators.maxLength(30), forbiddenWordsValidator(['admin', 'user'])],
+    ],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), passwordStrengthValidator()]],
   });

@@ -7,4 +7,5 @@ export const errorMessages: Record<string, string> = {
   missingLowerCase: 'At least one lowercase letter required',
   missingNumber: 'At least one number required',
   missingSpecialChar: 'At least one special character required',
+  forbiddenWord: 'Contains forbidden word: {value}',
 };
