@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginSignUpSwitcher } from '../../../features/auth/components/login-sign-up-switcher/login-sign-up-switcher';
+// import { LoginSignUpSwitcher } from '../../../features/auth/components/login-sign-up-switcher/login-sign-up-switcher';
 
 @Component({
   selector: 'app-auth',
-  imports: [RouterOutlet, LoginSignUpSwitcher],
+  imports: [RouterOutlet],
   templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })

@@ -1,1 +1,68 @@
-<h2>Sign Up</h2>
+<h2 class="uppercase tracking-wider font-bold text-brand-red text-2xl">Sign Up</h2>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-1">
+    <div class="flex gap-5">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">What is your Lastname?</legend>
+        <label class="input w-40">
+          <i class="pi pi-user"></i>
+          <input type="text" class="grow" placeholder="New" formControlName="lastname" />
+        </label>
+        @if (formStatus.fieldsValid.isLastnameInvalid()) {
+          <p class="label text-brand-red">{{ formStatus.fieldsErrors.lastnameError() }}</p>
+        }
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">What is your Firstname?</legend>
+        <label class="input w-40">
+          <i class="pi pi-user"></i>
+          <input type="text" class="grow" placeholder="User" formControlName="firstname" />
+        </label>
+        @if (formStatus.fieldsValid.isFirstnameInvalid()) {
+          <p class="label text-brand-red">{{ formStatus.fieldsErrors.firstnameError() }}</p>
+        }
+      </fieldset>
+    </div>
+
+    <fieldset class="fieldset w-full relative">
+      <legend class="fieldset-legend">What is your Email?</legend>
+      <label class="input w-full">
+        <i class="pi pi-envelope"></i>
+        <input type="email" class="grow" placeholder="mail@gmail.com" formControlName="email" />
+      </label>
+      @if (formStatus.fieldsValid.isEmailInvalid()) {
+        <p class="label text-brand-red">
+          {{ formStatus.fieldsErrors.emailError() }}
+        </p>
+      }
+    </fieldset>
+
+    <fieldset class="fieldset w-full relative">
+      <legend class="fieldset-legend">What is your Password?</legend>
+      <label class="input w-full">
+        <i class="pi pi-lock"></i>
+        <input
+          type="password"
+          class="grow"
+          placeholder="Shhh... it's a secret"
+          formControlName="password"
+        />
+      </label>
+      @if (formStatus.fieldsValid.isPasswordInvalid()) {
+        <p class="label text-brand-red">{{ formStatus.fieldsErrors.passwordError() }}</p>
+      }
+    </fieldset>
+  </div>
+
+  <div class="flex justify-center gap-5 mt-5">
+    <button (click)="clearForm()" class="btn btn-outline btn-error">Clear</button>
+    <button
+      type="submit"
+      class="btn btn-outline btn-success"
+      [disabled]="formStatus.isFormInvalid()"
+    >
+      Submit
+    </button>
+  </div>
+</form>
