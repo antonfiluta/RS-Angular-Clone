@@ -39,6 +39,11 @@ export const routes: Routes = [
     loadComponent: () => import('./core/pages/hosting/hosting').then((c) => c.Hosting),
   },
   {
+    path: 'homes',
+    title: 'Homes',
+    loadComponent: () => import('./core/pages/homes/homes').then((c) => c.Homes),
+  },
+  {
     path: 'about',
     title: 'About',
     loadComponent: () => import('./core/pages/about/about').then((c) => c.About),
