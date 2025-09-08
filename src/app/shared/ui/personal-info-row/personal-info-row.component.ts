@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-profile-row',
+  selector: 'app-personal-info-row',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './profile-row.component.html',
-  styleUrl: './profile-row.component.scss',
+  templateUrl: './personal-info-row.component.html',
+  styleUrl: './personal-info-row.component.scss',
 })
-export class ProfileRowComponent {
+export class PersonalInfoRowComponent {
   @Input() title!: string;
   @Input() fieldKey!: string;
   @Input() control!: FormControl;

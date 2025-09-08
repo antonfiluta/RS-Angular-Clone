@@ -14,7 +14,7 @@
         Change
       </button>
     </div>
-    <app-profile-row
+    <app-personal-info-row
       *ngFor="let field of formFields; trackBy: trackByField"
       [title]="field.title"
       [fieldKey]="field.key"
@@ -30,6 +30,6 @@
       (editField)="editField($event)"
       (saveField)="saveField($event)"
       (cancelEdit)="cancelEdit($event)"
-    ></app-profile-row>
+    ></app-personal-info-row>
   </div>
 </form>

@@ -7,7 +7,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ProfileRowComponent } from '../../../../shared/ui/profile-row/profile-row.component';
+import { PersonalInfoRowComponent } from '../../../../shared/ui/personal-info-row/personal-info-row.component';
 import { FormValidationService } from '../../../../shared/services/form-validation-service/form-validation-service';
 import {
   nameValidator,
@@ -30,7 +30,7 @@ interface FormField {
 @Component({
   selector: 'app-personal-info-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ProfileRowComponent],
+  imports: [CommonModule, ReactiveFormsModule, PersonalInfoRowComponent],
   templateUrl: './personal-info-form.html',
   styleUrl: './personal-info-form.scss',
 })
