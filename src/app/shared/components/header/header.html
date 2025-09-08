@@ -1,4 +1,11 @@
-<h1 class="header__title">
+<h1
+  class="header__title"
+  role="button"
+  tabindex="0"
+  (click)="navigateTo('/')"
+  (keyup.enter)="navigateTo('/')"
+  (keyup.space)="navigateTo('/')"
+>
   <img src="assets/images/logo-icon.png" alt="airbnb icon" class="header__title__icon" />
   <span>airbnb</span>
 </h1>
@@ -7,7 +14,18 @@
   <button class="header__button">
     <i class="pi pi-user header__button__icon"></i>
   </button>
-  <button class="header__button">
-    <i class="pi pi-bars header__button__icon"></i>
-  </button>
+
+  <div class="dropdown">
+    <button class="header__button" (click)="toggleMenu()">
+      <i class="pi pi-bars header__button__icon"></i>
+    </button>
+
+    <ul class="dropdown__menu" *ngIf="menuOpen">
+      <li>
+        <button class="dropdown__link" (click)="navigateTo('/personal-info')">
+          Personal Information
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>
