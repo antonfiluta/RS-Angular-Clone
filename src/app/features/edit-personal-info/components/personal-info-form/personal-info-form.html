@@ -1,6 +1,5 @@
 <form [formGroup]="form" class="block">
   <div class="p-0 m-0 bg-white rounded-xl max-w-full shadow-lg">
-    <!-- Avatar row -->
     <div class="flex items-center gap-4 px-6 py-5 border-b border-gray-200">
       <img
         src="assets/images/avatar-placeholder.svg"
@@ -16,7 +15,7 @@
       </button>
     </div>
     <app-profile-row
-      *ngFor="let field of formFields"
+      *ngFor="let field of formFields; trackBy: trackByField"
       [title]="field.title"
       [fieldKey]="field.key"
       [control]="getControl(field.key)"
@@ -26,6 +25,8 @@
       [sub]="field.sub"
       [type]="field.type || 'text'"
       [options]="field.options || []"
+      [isFieldInvalid]="isFieldInvalid(field.key)"
+      [errorMessage]="getFieldError(field.key)"
       (editField)="editField($event)"
       (saveField)="saveField($event)"
       (cancelEdit)="cancelEdit($event)"

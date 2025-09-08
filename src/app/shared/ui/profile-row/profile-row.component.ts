@@ -19,6 +19,8 @@ export class ProfileRowComponent {
   @Input() sub?: string;
   @Input() type: 'text' | 'email' | 'date' | 'select' = 'text';
   @Input() options: string[] = [];
+  @Input() isFieldInvalid = false;
+  @Input() errorMessage = '';
 
   @Output() editField = new EventEmitter<string>();
   @Output() saveField = new EventEmitter<string>();
