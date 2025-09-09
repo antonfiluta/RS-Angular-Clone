@@ -28,6 +28,8 @@
 .header__buttons {
   display: flex;
   gap: 10px;
+  align-items: center;
+  position: relative;
 }
 
 .header__button {
@@ -38,9 +40,43 @@
   align-items: center;
   border-radius: 100%;
   border: none;
+  cursor: pointer;
   background: var(--color-brand-light-gray);
 }
 
 .header__button__icon {
-  font-size: 16px;
+  font-size: 1rem;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  li {
+    padding: 0.5rem 1rem;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      width: 100%;
+    }
+
+    a:hover {
+      background-color: #f7f7f7;
+    }
+  }
 }
