@@ -1,0 +1,38 @@
+{
+  "PERSONAL_INFO": {
+    "FIRST_NAME": "Vorname",
+    "LAST_NAME": "Nachname",
+    "EMAIL": "E-Mail-Adresse",
+    "EMAIL_SUB": "Verwenden Sie eine Adresse, auf die Sie immer Zugriff haben.",
+    "PHONE": "Telefon",
+    "DOB": "Geburtsdatum",
+    "GENDER": "Geschlecht",
+    "GENDER_OPTIONS": {
+      "MALE": "Männlich",
+      "FEMALE": "Weiblich",
+      "OTHER": "Andere"
+    },
+    "ADD": "Hinzufügen",
+    "EDIT": "Bearbeiten",
+    "CHANGE_AVATAR": "Ändern"
+  },
+  "VALIDATION": {
+    "REQUIRED": "{{field}} ist erforderlich",
+    "INVALID_EMAIL": "Bitte geben Sie eine gültige E-Mail ein",
+    "INVALID_NAME": "Bitte geben Sie einen gültigen Namen ein",
+    "MIN_LENGTH": "{{field}} muss mindestens {{length}} Zeichen lang sein",
+    "MAX_LENGTH": "{{field}} darf höchstens {{length}} Zeichen lang sein",
+    "INVALID_PHONE": "Bitte geben Sie eine gültige Telefonnummer ein",
+    "INVALID_DATE": "Ungültiges Datum",
+    "MIN_AGE": "Sie müssen mindestens {{age}} Jahre alt sein"
+  },
+  "MENU": {
+    "PERSONAL_INFORMATION": "Persönliche Informationen"
+  },
+  "FORM": {
+    "NOT_PROVIDED": "Nicht angegeben",
+    "SELECT": "Auswählen",
+    "SAVE": "Speichern",
+    "CANCEL": "Abbrechen"
+  }
+}

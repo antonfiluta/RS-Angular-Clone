@@ -1,14 +1,16 @@
-import { Injectable, Signal } from '@angular/core';
+import { Injectable, Signal, inject } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, map, startWith } from 'rxjs';
 import { errorMessages } from '../../utils/data/error-messages';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormValidationService {
   private errorMessages = errorMessages;
+  private translate = inject(TranslateService);
 
   public isFieldInvalid(control: AbstractControl | null): Signal<boolean> {
     if (!control) throw new Error('Control not found');
@@ -34,22 +36,14 @@ export class FormValidationService {
 
           const errorCode = Object.keys(control.errors)[0];
           const errorConfig = control.errors[errorCode];
-
-          let message = this.errorMessages[errorCode] || 'Unknown error';
-
-          if (errorConfig && typeof errorConfig === 'object') {
-            Object.keys(errorConfig).forEach((key) => {
-              message = message.replace(`{${key}}`, errorConfig[key]);
-            });
-          }
-
-          return message;
+          const key = this.errorMessages[errorCode] || 'VALIDATION.UNKNOWN';
+          return this.translate.instant(key, errorConfig);
         }),
       ),
     );
   }
 
-  isFormInvalid(form: FormGroup) {
+  public isFormInvalid(form: FormGroup) {
     return toSignal(
       form.statusChanges.pipe(
         startWith(form.status),

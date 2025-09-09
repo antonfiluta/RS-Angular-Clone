@@ -1,0 +1,47 @@
+{
+  "PERSONAL_INFO": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "EMAIL": "Email address",
+    "EMAIL_SUB": "Use an address you'll always have access to.",
+    "PHONE": "Phone",
+    "DOB": "Date of birth",
+    "GENDER": "Gender",
+    "GENDER_OPTIONS": {
+      "MALE": "Male",
+      "FEMALE": "Female",
+      "OTHER": "Other"
+    },
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "CHANGE_AVATAR": "Change"
+  },
+  "VALIDATION": {
+    "REQUIRED": "{{field}} is required",
+    "INVALID_EMAIL": "Please enter a valid email address",
+    "INVALID_DOMAIN": "Email domain is not valid",
+    "MIN_LENGTH": "Minimum length is {{length}} characters",
+    "MAX_LENGTH": "Maximum length is {{length}} characters",
+    "MISSING_UPPERCASE": "At least one uppercase letter required",
+    "MISSING_LOWERCASE": "At least one lowercase letter required",
+    "MISSING_NUMBER": "At least one number required",
+    "MISSING_SPECIAL": "At least one special character required",
+    "FORBIDDEN_WORD": "Contains forbidden word: {{value}}",
+    "INVALID_PATTERN": "Invalid format",
+    "INVALID_NAME": "Name can only contain letters, spaces, and hyphens",
+    "INVALID_PHONE": "Please enter a valid phone number",
+    "MIN_AGE": "You must be at least {{age}} years old",
+    "FUTURE_DATE": "Date cannot be in the future",
+    "INVALID_GENDER": "Please select a valid gender option",
+    "UNKNOWN": "Unknown error"
+  },
+  "MENU": {
+    "PERSONAL_INFORMATION": "Personal Information"
+  },
+  "FORM": {
+    "NOT_PROVIDED": "Not provided",
+    "SELECT": "Select",
+    "SAVE": "Save",
+    "CANCEL": "Cancel"
+  }
+}

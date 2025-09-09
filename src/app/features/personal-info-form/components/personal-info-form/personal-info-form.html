@@ -11,20 +11,23 @@
         class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
         aria-label="Change avatar"
       >
-        Change
+        {{ 'PERSONAL_INFO.CHANGE_AVATAR' | translate }}
       </button>
     </div>
+
     <app-personal-info-row
       *ngFor="let field of formFields; trackBy: trackByField"
-      [title]="field.title"
+      [title]="field.title | translate"
       [fieldKey]="field.key"
       [control]="getControl(field.key)"
       [empty]="isEmpty(field.key)"
-      [actionLabel]="getActionLabel(field.key)"
+      [actionLabel]="
+        isEmpty(field.key) ? ('PERSONAL_INFO.ADD' | translate) : ('PERSONAL_INFO.EDIT' | translate)
+      "
       [isEditing]="editFieldName === field.key"
-      [sub]="field.sub"
+      [sub]="field.sub ? (field.sub | translate) : null"
       [type]="field.type || 'text'"
-      [options]="field.options || []"
+      [options]="getTranslatedOptions(field)"
       [isFieldInvalid]="isFieldInvalid(field.key)"
       [errorMessage]="getFieldError(field.key)"
       (editField)="editField($event)"
