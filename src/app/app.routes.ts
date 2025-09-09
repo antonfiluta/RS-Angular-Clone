@@ -39,20 +39,37 @@ export const routes: Routes = [
     loadComponent: () => import('./core/pages/hosting/hosting').then((c) => c.Hosting),
   },
   {
-    path: 'homes',
-    title: 'Homes',
-    loadComponent: () => import('./core/pages/homes/homes').then((c) => c.Homes),
+    path: 'offers',
+    title: 'Offers',
+    loadComponent: () =>
+      import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
+  },
+  {
+    path: 'offers',
+    title: 'Offers',
+    loadComponent: () =>
+      import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
+  },
+  {
+    path: 'offers/:cityId',
+    title: 'Offer',
+    loadComponent: () =>
+      import('./core/pages/specific-city-offers-overview/specific-city-offers-overview').then(
+        (c) => c.SpecificCityOffersOverview,
+      ),
+  },
+  {
+    path: 'offers/:cityId/:offerId',
+    title: 'Offer',
+    loadComponent: () =>
+      import('./core/pages/specific-offer-overview/specific-offer-overview').then(
+        (c) => c.SpecificOfferOverview,
+      ),
   },
   {
     path: 'about',
     title: 'About',
     loadComponent: () => import('./core/pages/about/about').then((c) => c.About),
-  },
-  {
-    path: '',
-    title: 'Home',
-    pathMatch: 'full',
-    loadComponent: () => import('./core/pages/homes/homes').then((c) => c.Homes),
   },
   {
     path: '**',
