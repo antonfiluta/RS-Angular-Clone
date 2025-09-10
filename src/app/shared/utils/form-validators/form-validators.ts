@@ -34,7 +34,7 @@ export function forbiddenWordsValidator(forbiddenWords: string[]): ValidatorFn {
 export function nameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) return null;
-    const nameRegex = /^[a-zA-ZÀ-ÿ\s'-]+$/;
+    const nameRegex = /^[a-zA-ZÀ-ÿ\u0400-\u04FF\s'-]+$/;
     return nameRegex.test(control.value) ? null : { invalidName: true };
   };
 }

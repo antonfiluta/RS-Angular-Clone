@@ -5,10 +5,11 @@ import {
   forbiddenWordsValidator,
   passwordStrengthValidator,
 } from '../../../../shared/utils/form-validators/form-validators';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })

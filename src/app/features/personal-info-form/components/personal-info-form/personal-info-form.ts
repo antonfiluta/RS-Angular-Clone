@@ -18,6 +18,7 @@ import {
   requiredFieldValidator,
 } from '../../../../shared/utils/form-validators/form-validators';
 import { ValidationSignal } from '../../../../shared/types/validation.types';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface FormField {
   key: string;
@@ -30,13 +31,14 @@ interface FormField {
 @Component({
   selector: 'app-personal-info-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, PersonalInfoRowComponent],
+  imports: [CommonModule, ReactiveFormsModule, PersonalInfoRowComponent, TranslateModule],
   templateUrl: './personal-info-form.html',
   styleUrl: './personal-info-form.scss',
 })
 export class PersonalInfoForm {
   private fb = inject(FormBuilder);
   public validationService = inject(FormValidationService);
+  private translate = inject(TranslateService);
 
   form: FormGroup = this.fb.group({
     firstName: [
@@ -71,21 +73,20 @@ export class PersonalInfoForm {
   private validationSignals: Record<string, ValidationSignal> = {};
 
   readonly formFields: FormField[] = [
-    { key: 'firstName', title: 'First name' },
-    { key: 'lastName', title: 'Last name' },
-    {
-      key: 'email',
-      title: 'Email address',
-      type: 'email',
-      sub: "Use an address you'll always have access to.",
-    },
-    { key: 'phone', title: 'Phone' },
-    { key: 'dob', title: 'Date of birth', type: 'date' },
+    { key: 'firstName', title: 'PERSONAL_INFO.FIRST_NAME' },
+    { key: 'lastName', title: 'PERSONAL_INFO.LAST_NAME' },
+    { key: 'email', title: 'PERSONAL_INFO.EMAIL', type: 'email', sub: 'PERSONAL_INFO.EMAIL_SUB' },
+    { key: 'phone', title: 'PERSONAL_INFO.PHONE' },
+    { key: 'dob', title: 'PERSONAL_INFO.DOB', type: 'date' },
     {
       key: 'gender',
-      title: 'Gender',
+      title: 'PERSONAL_INFO.GENDER',
       type: 'select',
-      options: ['Male', 'Female', 'Other'],
+      options: [
+        'PERSONAL_INFO.GENDER_OPTIONS.MALE',
+        'PERSONAL_INFO.GENDER_OPTIONS.FEMALE',
+        'PERSONAL_INFO.GENDER_OPTIONS.OTHER',
+      ],
     },
   ];
 
@@ -169,5 +170,9 @@ export class PersonalInfoForm {
 
   trackByField(index: number, field: FormField): string {
     return field.key;
+  }
+
+  getTranslatedOptions(field: FormField): string[] {
+    return field.options?.map((opt) => this.translate.instant(opt)) || [];
   }
 }

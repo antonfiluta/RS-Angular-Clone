@@ -5,7 +5,7 @@
 
     <!-- View mode -->
     <div *ngIf="!isEditing" class="text-gray-900 text-base mt-1.5" [class.text-gray-400]="empty">
-      {{ empty ? 'Not provided' : control.value }}
+      {{ empty ? ('FORM.NOT_PROVIDED' | translate) : control.value }}
     </div>
 
     <!-- Edit mode -->
@@ -27,7 +27,7 @@
           [class.border-red-500]="isFieldInvalid"
           [formControl]="control"
         >
-          <option value="">Select {{ title.toLowerCase() }}</option>
+          <option value="">{{ 'FORM.SELECT' | translate }} {{ title.toLowerCase() }}</option>
           <option *ngFor="let opt of options" [value]="opt">{{ opt }}</option>
         </select>
 
@@ -52,7 +52,7 @@
           [disabled]="isFieldInvalid || control.pristine"
           (click)="saveField.emit(fieldKey)"
         >
-          Save
+          {{ 'FORM.SAVE' | translate }}
         </button>
       </div>
     </div>
@@ -74,7 +74,7 @@
       class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
       (click)="cancelEdit.emit(fieldKey)"
     >
-      Cancel
+      {{ 'FORM.CANCEL' | translate }}
     </button>
   </div>
 </section>
