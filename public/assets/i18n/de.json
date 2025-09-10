@@ -1,4 +1,18 @@
 {
+  "AUTH": {
+    "LOGIN": "Anmelden",
+    "SIGNUP": "Registrieren",
+    "EMAIL_QUESTION": "Wie lautet Ihre E-Mail-Adresse?",
+    "PASSWORD_QUESTION": "Wie lautet Ihr Passwort?",
+    "FIRSTNAME_QUESTION": "Wie lautet Ihr Vorname?",
+    "LASTNAME_QUESTION": "Wie lautet Ihr Nachname?",
+    "EMAIL_PLACEHOLDER": "mail@gmail.com",
+    "PASSWORD_PLACEHOLDER": "Psst... das ist ein Geheimnis",
+    "FIRSTNAME_PLACEHOLDER": "Benutzer",
+    "LASTNAME_PLACEHOLDER": "Neu",
+    "CLEAR": "Löschen",
+    "SUBMIT": "Senden"
+  },
   "PERSONAL_INFO": {
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname",

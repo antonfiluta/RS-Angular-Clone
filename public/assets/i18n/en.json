@@ -1,4 +1,18 @@
 {
+  "AUTH": {
+    "LOGIN": "Login",
+    "SIGNUP": "Sign Up",
+    "EMAIL_QUESTION": "What is your Email?",
+    "PASSWORD_QUESTION": "What is your Password?",
+    "FIRSTNAME_QUESTION": "What is your Firstname?",
+    "LASTNAME_QUESTION": "What is your Lastname?",
+    "EMAIL_PLACEHOLDER": "mail@gmail.com",
+    "PASSWORD_PLACEHOLDER": "Shhh... it's a secret",
+    "FIRSTNAME_PLACEHOLDER": "User",
+    "LASTNAME_PLACEHOLDER": "New",
+    "CLEAR": "Clear",
+    "SUBMIT": "Submit"
+  },
   "PERSONAL_INFO": {
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name",

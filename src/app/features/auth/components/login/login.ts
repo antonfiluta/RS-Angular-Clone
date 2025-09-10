@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidationService } from '../../../../shared/services/form-validation-service/form-validation-service';
 import { passwordStrengthValidator } from '../../../../shared/utils/form-validators/form-validators';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

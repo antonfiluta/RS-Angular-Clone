@@ -1,4 +1,18 @@
 {
+  "AUTH": {
+    "LOGIN": "Увайсці",
+    "SIGNUP": "Зарэгістравацца",
+    "EMAIL_QUESTION": "Які ваш электронны адрас?",
+    "PASSWORD_QUESTION": "Які ваш пароль?",
+    "FIRSTNAME_QUESTION": "Як вас завуць?",
+    "LASTNAME_QUESTION": "Якое ваша прозвішча?",
+    "EMAIL_PLACEHOLDER": "mail@gmail.com",
+    "PASSWORD_PLACEHOLDER": "Цш-ш-ш... гэта сакрэт",
+    "FIRSTNAME_PLACEHOLDER": "Карыстальнік",
+    "LASTNAME_PLACEHOLDER": "Новы",
+    "CLEAR": "Ачысціць",
+    "SUBMIT": "Адправіць"
+  },
   "PERSONAL_INFO": {
     "FIRST_NAME": "Імя",
     "LAST_NAME": "Прозвішча",
