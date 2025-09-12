@@ -1,14 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormValidationService } from '../../../../shared/services/form-validation-servic/form-validation-service';
+import { FormValidationService } from '../../../../shared/services/form-validation-service/form-validation-service';
 import {
   forbiddenWordsValidator,
   passwordStrengthValidator,
 } from '../../../../shared/utils/form-validators/form-validators';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })

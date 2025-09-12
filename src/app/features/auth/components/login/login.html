@@ -1,1 +1,55 @@
-<p>login works!</p>
+<h2
+  class="uppercase tracking-wider font-bold text-brand-red mb-1 text-3xl text-shadow-[1px_1px_0_black]"
+>
+  {{ 'AUTH.LOGIN' | translate }}
+</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-1">
+    <fieldset class="fieldset w-80 relative">
+      <legend class="fieldset-legend">{{ 'AUTH.EMAIL_QUESTION' | translate }}</legend>
+      <label class="input w-full">
+        <i class="pi pi-envelope"></i>
+        <input
+          type="email"
+          class="grow"
+          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
+          formControlName="email"
+        />
+      </label>
+      @if (formStatus.fieldsValid.isEmailInvalid()) {
+        <p class="label text-brand-red">
+          {{ formStatus.fieldsErrors.emailError() }}
+        </p>
+      }
+    </fieldset>
+
+    <fieldset class="fieldset w-full relative">
+      <legend class="fieldset-legend">{{ 'AUTH.PASSWORD_QUESTION' | translate }}</legend>
+      <label class="input w-full">
+        <i class="pi pi-lock"></i>
+        <input
+          type="password"
+          class="grow"
+          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
+          formControlName="password"
+        />
+      </label>
+      @if (formStatus.fieldsValid.isPasswordInvalid()) {
+        <p class="label text-brand-red">{{ formStatus.fieldsErrors.passwordError() }}</p>
+      }
+    </fieldset>
+  </div>
+
+  <div class="flex justify-center gap-5 mt-7">
+    <button (click)="clearForm()" class="btn btn-outline btn-error">
+      {{ 'AUTH.CLEAR' | translate }}
+    </button>
+    <button
+      type="submit"
+      class="btn btn-outline btn-success"
+      [disabled]="formStatus.isFormInvalid()"
+    >
+      {{ 'AUTH.SUBMIT' | translate }}
+    </button>
+  </div>
+</form>

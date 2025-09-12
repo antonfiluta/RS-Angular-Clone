@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginSignUpSwitcher } from './login-sign-up-switcher';
+import { PersonalInfoForm } from './personal-info-form';
 
-describe('LoginSignUpSwitcher', () => {
-  let component: LoginSignUpSwitcher;
-  let fixture: ComponentFixture<LoginSignUpSwitcher>;
+describe('PersonalInfoForm', () => {
+  let component: PersonalInfoForm;
+  let fixture: ComponentFixture<PersonalInfoForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginSignUpSwitcher],
+      imports: [PersonalInfoForm],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginSignUpSwitcher);
+    fixture = TestBed.createComponent(PersonalInfoForm);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
