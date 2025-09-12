@@ -13,4 +13,12 @@ export interface OfferModel {
   img: string;
   cost: number;
   rate: number;
+  isLiked: boolean;
+  isFavorite: boolean;
+  location: string;
+  bedrooms: number;
+  guests: number;
+  description: string;
+  amenities: string[];
+  reviewsCount: number;
 }

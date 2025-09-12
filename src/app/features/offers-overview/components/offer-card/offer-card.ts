@@ -15,4 +15,6 @@ export class OfferCard {
   public readonly offerCost = computed(() => this.offer().cost);
   public readonly offerRate = computed(() => this.offer().rate);
   public readonly offerImg = computed(() => this.offer().img);
+  public readonly isFavorite = computed(() => this.offer().isFavorite);
+  public readonly isLiked = computed(() => this.offer().isLiked);
 }

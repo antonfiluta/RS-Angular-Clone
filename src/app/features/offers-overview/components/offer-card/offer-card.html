@@ -1,4 +1,4 @@
-<img src="{{ offerImg() }}" [alt]="offerName()" class="h-[15vw] object-cover rounded-xl" />
+<img src="{{ offerImg() }}" [alt]="offerName()" class="h-[15vw] object-cover rounded-2xl" />
 
 <div class="flex flex-col px-1">
   <h3 class="text-[13px] font-medium">{{ offerName() }}</h3>
@@ -10,4 +10,17 @@
       {{ offerRate() }}
     </span>
   </div>
+</div>
+
+@if (isFavorite()) {
+  <span class="absolute top-2 left-2 bg-brand-light-gray text-[12px] px-2 py-1 rounded-xl">
+    Guest favorite
+  </span>
+}
+
+<div
+  class="absolute top-2 right-4 drop-shadow-[1px_1px_3px_white,-1px_-1px_2px_white] hover:scale-110 duration-200"
+  [class.bg-brand-red]="isLiked()"
+>
+  <span class="mask mask-heart bg-black/65 w-5 h-5"></span>
 </div>
