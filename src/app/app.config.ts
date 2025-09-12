@@ -1,16 +1,14 @@
 import {
   ApplicationConfig,
   isDevMode,
-  provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
+  importProvidersFrom,
 } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore } from '@ngrx/router-store';
-
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
