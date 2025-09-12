@@ -1,7 +1,7 @@
-import { OffersOverview } from '../models/offers-overview.models';
+import { OffersOverviewModel } from '../models/offers-overview.models';
 
 export interface OffersOverviewState {
-  offers: OffersOverview | null;
+  offers: OffersOverviewModel | null;
 }
 
 export const initialOffersOverviewState: OffersOverviewState = {

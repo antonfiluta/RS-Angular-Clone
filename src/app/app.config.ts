@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  isDevMode,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -12,16 +13,18 @@ import { provideRouterStore } from '@ngrx/router-store';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { AppReducer } from './core/store';
+import { OffersOverviewEffects } from './features/offers-overview/store/offers-overview.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([])),
-    provideStore(),
-    provideEffects(),
-    provideStoreDevtools(),
+    provideStore({ ...AppReducer }),
+    provideEffects(OffersOverviewEffects),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),
+    provideHttpClient(withInterceptors([])),
   ],
 };

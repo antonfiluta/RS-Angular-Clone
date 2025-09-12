@@ -1,0 +1,13 @@
+<img src="{{ offerImg() }}" [alt]="offerName()" class="h-[15vw] object-cover rounded-xl" />
+
+<div class="flex flex-col px-1">
+  <h3 class="text-[13px] font-medium">{{ offerName() }}</h3>
+  <div class="text-brand-gray text-[12px] tracking-wide flex items-center gap-1">
+    <span>{{ offerCost() }}$ for 2 nights</span>
+    <span class="text-[9px]">•</span>
+    <span>
+      <i class="pi pi-star-fill" style="font-size: 12px"></i>
+      {{ offerRate() }}
+    </span>
+  </div>
+</div>

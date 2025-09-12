@@ -1,13 +1,13 @@
-export interface OffersOverview {
-  cities: City[];
+export interface OffersOverviewModel {
+  cities: CityModel[];
 }
 
-export interface City {
+export interface CityModel {
   name: string;
-  offers: Offer[];
+  offers: OfferModel[];
 }
 
-export interface Offer {
+export interface OfferModel {
   id: string;
   name: string;
   img: string;

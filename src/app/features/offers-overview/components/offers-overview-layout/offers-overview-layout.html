@@ -1,0 +1,16 @@
+@for (city of citiesOffers(); track city.name) {
+  <div>
+    <a [routerLink]="['/offers', city.name]">
+      <h2 class="font-medium text-xl tracking-wider mb-3 flex items-center">
+        <span> Popular homes in {{ city.name }} </span>
+        <i class="pi pi-angle-right pt-[3px]" style="font-size: 18px"></i>
+      </h2>
+    </a>
+    <app-offers-overview-list
+      [cityOffers]="city.offers"
+      [cityName]="city.name"
+    ></app-offers-overview-list>
+  </div>
+} @empty {
+  <h2>We don't have Offers at this Moment</h2>
+}

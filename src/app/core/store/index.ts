@@ -12,7 +12,7 @@ export interface AppState {
   router: RouterState;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const AppReducer: ActionReducerMap<AppState> = {
   [AuthFeature.name]: AuthFeature.reducer,
   [OffersOverviewFeature.name]: OffersOverviewFeature.reducer,
   router: routerReducer,
