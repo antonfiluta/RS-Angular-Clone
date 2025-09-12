@@ -79,6 +79,11 @@ export const routes: Routes = [
     loadComponent: () => import('./core/pages/about/about').then((c) => c.About),
   },
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'offers',
+  },
+  {
     path: '**',
     title: 'Not Found',
     loadComponent: () => import('./core/pages/not-found/not-found').then((c) => c.NotFound),
