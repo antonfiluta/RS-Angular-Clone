@@ -48,5 +48,11 @@
     "SELECT": "Auswählen",
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen"
+  },
+  "OFFERS_OVERVIEW": {
+    "EMPTY": "Keine Angebote verfügbar",
+    "POPULAR": "Beliebtehäuser in",
+    "TERM": "für 2 Tage",
+    "FAVORITE": "Gastfavorit"
   }
 }
