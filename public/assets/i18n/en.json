@@ -57,5 +57,11 @@
     "SELECT": "Select",
     "SAVE": "Save",
     "CANCEL": "Cancel"
+  },
+  "OFFERS_OVERVIEW": {
+    "EMPTY": "No offers available",
+    "POPULAR": "Popular homes in",
+    "TERM": "for 2 days",
+    "FAVORITE": "Guest favorite"
   }
 }

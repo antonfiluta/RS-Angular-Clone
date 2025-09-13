@@ -1,9 +1,10 @@
 import { Component, computed, input } from '@angular/core';
 import { OfferModel } from '../../models/offers-overview.models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-offer-card',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './offer-card.html',
   styleUrl: './offer-card.scss',
 })
