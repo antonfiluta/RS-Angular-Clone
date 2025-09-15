@@ -41,7 +41,8 @@
     "MIN_AGE": "Sie müssen mindestens {{age}} Jahre alt sein"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Persönliche Informationen"
+    "PERSONAL_INFORMATION": "Persönliche Informationen",
+    "AUTHENTICATION": "Einloggen oder registrieren"
   },
   "FORM": {
     "NOT_PROVIDED": "Nicht angegeben",

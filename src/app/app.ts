@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [Layout],
   templateUrl: './app.html',
   styleUrl: './app.scss',

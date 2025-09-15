@@ -41,7 +41,8 @@
     "MIN_AGE": "Вам должно быть минимум {{age}} лет"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Персональная информация"
+    "PERSONAL_INFORMATION": "Персональная информация",
+    "AUTHENTICATION": "Войти или зарегистрироваться"
   },
   "FORM": {
     "NOT_PROVIDED": "Не указано",

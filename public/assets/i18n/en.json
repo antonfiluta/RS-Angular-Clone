@@ -50,7 +50,8 @@
     "UNKNOWN": "Unknown error"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Personal Information"
+    "PERSONAL_INFORMATION": "Personal Information",
+    "AUTHENTICATION": "Login or sign up"
   },
   "FORM": {
     "NOT_PROVIDED": "Not provided",

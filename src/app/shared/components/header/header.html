@@ -49,6 +49,11 @@
           {{ 'MENU.PERSONAL_INFORMATION' | translate }}
         </button>
       </li>
+      <li class="dropdown__link hover:bg-gray-50">
+        <button (click)="navigateTo('/auth/login')">
+          {{ 'MENU.AUTHENTICATION' | translate }}
+        </button>
+      </li>
     </ul>
   </div>
 </div>

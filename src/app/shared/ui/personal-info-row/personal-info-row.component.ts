@@ -5,7 +5,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-personal-info-row',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './personal-info-row.component.html',
   styleUrl: './personal-info-row.component.scss',

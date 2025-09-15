@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="profile-form">
+  <h2>Profile</h2>
+
+  <!-- Name -->
+  <label>
+    Name *
+    <input type="text" formControlName="name" />
+  </label>
+  <div class="error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+    Name is required
+  </div>
+
+  <!-- Bio -->
+  <label>
+    Bio
+    <textarea formControlName="bio"></textarea>
+  </label>
+
+  <!-- Interests -->
+  <section formArrayName="interests">
+    <h3>Interests</h3>
+    <div *ngFor="let _ of interests.controls; let i = index" class="row">
+      <input [formControlName]="i" placeholder="Interest" />
+      <button type="button" (click)="removeControl(interests, i)">✕</button>
+    </div>
+    <button type="button" (click)="addControl(interests)">+ Add interest</button>
+  </section>
+
+  <!-- Languages -->
+  <section formArrayName="languages">
+    <h3>Languages</h3>
+    <div *ngFor="let _ of languages.controls; let i = index" class="row">
+      <input [formControlName]="i" placeholder="Language" />
+      <button type="button" (click)="removeControl(languages, i)">✕</button>
+    </div>
+    <button type="button" (click)="addControl(languages)">+ Add language</button>
+  </section>
+
+  <!-- Places Lived -->
+  <section formArrayName="placesLived">
+    <h3>Places Lived</h3>
+    <div *ngFor="let _ of placesLived.controls; let i = index" class="row">
+      <input [formControlName]="i" placeholder="City" />
+      <button type="button" (click)="removeControl(placesLived, i)">✕</button>
+    </div>
+    <button type="button" (click)="addControl(placesLived)">+ Add place</button>
+  </section>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>

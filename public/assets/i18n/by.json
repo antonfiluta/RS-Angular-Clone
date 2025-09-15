@@ -41,7 +41,8 @@
     "MIN_AGE": "Вам павінна быць мінімум {{age}} гадоў"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Асабістая інфармацыя"
+    "PERSONAL_INFORMATION": "Асабістая інфармацыя",
+    "AUTHENTICATION": "Увайсці або зарэгістравацца"
   },
   "FORM": {
     "NOT_PROVIDED": "Не пададзена",

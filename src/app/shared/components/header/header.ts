@@ -12,7 +12,6 @@ interface Language {
 @Component({
   selector: 'app-header',
   imports: [CommonModule, TranslateModule],
-  standalone: true,
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
