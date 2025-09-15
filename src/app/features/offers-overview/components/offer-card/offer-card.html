@@ -1,0 +1,25 @@
+<img src="{{ offerImg() }}" [alt]="offerName()" class="h-[15vw] object-cover rounded-2xl" />
+
+<div class="flex flex-col px-1">
+  <h3 class="text-[13px] font-medium">{{ offerName() }}</h3>
+  <div class="text-brand-gray text-[12px] tracking-wide flex items-center gap-1">
+    <span>{{ offerCost() }}$ {{ 'OFFERS_OVERVIEW.TERM' | translate }}</span>
+    <span class="text-[9px]">•</span>
+    <span>
+      <i class="pi pi-star-fill" style="font-size: 12px"></i>
+      {{ offerRate() }}
+    </span>
+  </div>
+</div>
+
+@if (isFavorite()) {
+  <span class="absolute top-2 left-2 bg-brand-light-gray text-[12px] px-2 py-1 rounded-xl">
+    {{ 'OFFERS_OVERVIEW.FAVORITE' | translate }}
+  </span>
+}
+
+<div
+  class="absolute top-2 right-4 drop-shadow-[1px_1px_3px_white,-1px_-1px_2px_white] hover:scale-110 duration-200"
+>
+  <span class="mask mask-heart bg-black/65 w-5 h-5" [class.bg-brand-red]="isLiked()"></span>
+</div>
