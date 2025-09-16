@@ -1,86 +1,88 @@
-import { Component, inject } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { ProfileRow } from '../../../../shared/ui/profile-row/profile-row';
+import {
+  INTEREST_OPTIONS,
+  LANGUAGE_OPTIONS,
+  COUNTRY_OPTIONS,
+} from '../../constants/profile-options';
+
+export interface ProfileData {
+  name: string;
+  bio: string;
+  interests: string[];
+  languages: string[];
+  countriesLived: string[];
+}
 
 @Component({
   selector: 'app-profile-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ProfileRow, TranslateModule],
   templateUrl: './profile-form.html',
   styleUrl: './profile-form.scss',
 })
-export class ProfileForm {
+export class ProfileForm implements OnInit {
+  @Input() initialData?: ProfileData;
+  @Output() profileSaved = new EventEmitter<ProfileData>();
+
   form: FormGroup;
+  isEditMode = false;
+  private originalData?: ProfileData;
   private fb = inject(FormBuilder);
+
+  interestOptions = INTEREST_OPTIONS;
+  languageOptions = LANGUAGE_OPTIONS;
+  countryOptions = COUNTRY_OPTIONS;
 
   constructor() {
     this.form = this.fb.group({
-      name: this.fb.control<string>('', { validators: Validators.required, nonNullable: true }),
-      bio: this.fb.control<string>('', { nonNullable: true }),
-      interests: this.fb.array<FormControl<string>>([]),
-      languages: this.fb.array<FormControl<string>>([]),
-      placesLived: this.fb.array<FormControl<string>>([]),
+      name: ['', { validators: [Validators.required], nonNullable: true }],
+      bio: ['', { nonNullable: true }],
+      interests: [[] as string[], { nonNullable: true }],
+      languages: [[] as string[], { nonNullable: true }],
+      countriesLived: [[] as string[], { nonNullable: true }],
     });
-
-    this.patchInitialData();
   }
 
-  // --- Getters with correct types ---
-  get interests(): FormArray<FormControl<string>> {
-    return this.form.get('interests') as FormArray<FormControl<string>>;
+  ngOnInit() {
+    this.loadInitialData();
   }
 
-  get languages(): FormArray<FormControl<string>> {
-    return this.form.get('languages') as FormArray<FormControl<string>>;
+  private loadInitialData(): void {
+    const mockData: ProfileData = {
+      name: 'Svitlana G.',
+      bio: 'Love hosting travellers and exploring new cultures!',
+      interests: ['cooking', 'hiking', 'photography', 'reading'],
+      languages: ['english', 'ukrainian', 'german'],
+      countriesLived: ['germany', 'france', 'thailand'],
+    };
+
+    this.originalData = { ...mockData };
+    this.form.patchValue(mockData);
   }
 
-  get placesLived(): FormArray<FormControl<string>> {
-    return this.form.get('placesLived') as FormArray<FormControl<string>>;
+  toggleEditMode(): void {
+    this.isEditMode = true;
   }
 
-  // --- Add & remove dynamic controls ---
-  addControl(array: FormArray<FormControl<string>>): void {
-    console.log(array);
-    // array.push(new FormControl<string>(''));
-  }
-
-  removeControl(array: FormArray<FormControl<string>>, index: number): void {
-    array.removeAt(index);
-  }
-
-  // --- Submit handler ---
-  submit(): void {
-    if (this.form.valid) {
-      console.log('Profile data', this.form.value);
-      // TODO: call ProfileService.save(...)
-    } else {
-      this.form.markAllAsTouched();
+  cancelEdit(): void {
+    this.isEditMode = false;
+    if (this.originalData) {
+      this.form.patchValue(this.originalData);
     }
   }
 
-  // --- Mock initial data for demo ---
-  private patchInitialData(): void {
-    const mock = {
-      name: 'Jane Doe',
-      bio: 'Love hosting travellers!',
-      interests: ['Cooking', 'Hiking'],
-      languages: ['English', 'Spanish'],
-      placesLived: ['Berlin', 'Lisbon'],
-    };
-
-    this.form.patchValue({
-      name: mock.name,
-      bio: mock.bio,
-    });
-
-    // mock.interests.forEach((i) => this.interests.push(this.fb.control<string>(i)));
-    // mock.languages.forEach((l) => this.languages.push(this.fb.control<string>(l)));
-    // mock.placesLived.forEach((p) => this.placesLived.push(this.fb.control<string>(p)));
+  saveProfile(): void {
+    if (this.form.valid) {
+      const profileData = this.form.value as ProfileData;
+      this.originalData = { ...profileData };
+      this.profileSaved.emit(profileData);
+      this.isEditMode = false;
+      console.log('Profile saved:', profileData);
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 }
