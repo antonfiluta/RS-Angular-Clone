@@ -49,10 +49,14 @@
     "SAVE": "Захаваць",
     "CANCEL": "Скасаваць"
   },
-  "OFFERS_OVERVIEW": {
+  "OFFERS": {
     "EMPTY": "Няма доступных дамоу",
     "POPULAR": "Популярныя дамы у",
     "TERM": "за 2 дні",
     "FAVORITE": "Гасцям спадабаецца"
+  },
+  "SPECIFIC_CITY_OFFERS": {
+    "CITY_AMOUNT": "У {city} {count} дамоу",
+    "FEES": "Цены ўключаюць ўсе зборы"
   }
 }

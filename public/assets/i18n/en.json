@@ -58,10 +58,14 @@
     "SAVE": "Save",
     "CANCEL": "Cancel"
   },
-  "OFFERS_OVERVIEW": {
+  "OFFERS": {
     "EMPTY": "No offers available",
     "POPULAR": "Popular homes in",
     "TERM": "for 2 days",
     "FAVORITE": "Guest favorite"
+  },
+  "SPECIFIC_CITY_OFFERS": {
+    "CITY_AMOUNT": "{city} has {count} offers for you",
+    "FEES": "Prices include all fees"
   }
 }

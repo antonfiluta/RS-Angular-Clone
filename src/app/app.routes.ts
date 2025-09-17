@@ -52,12 +52,6 @@ export const routes: Routes = [
       import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
   },
   {
-    path: 'offers',
-    title: 'Offers',
-    loadComponent: () =>
-      import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
-  },
-  {
     path: 'offers/:cityId',
     title: 'Offer',
     loadComponent: () =>
