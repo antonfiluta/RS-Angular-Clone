@@ -15,24 +15,27 @@
       </button>
     </div>
 
-    <app-personal-info-row
-      *ngFor="let field of formFields; trackBy: trackByField"
-      [title]="field.title | translate"
-      [fieldKey]="field.key"
-      [control]="getControl(field.key)"
-      [empty]="isEmpty(field.key)"
-      [actionLabel]="
-        isEmpty(field.key) ? ('PERSONAL_INFO.ADD' | translate) : ('PERSONAL_INFO.EDIT' | translate)
-      "
-      [isEditing]="editFieldName === field.key"
-      [sub]="field.sub ? (field.sub | translate) : null"
-      [type]="field.type || 'text'"
-      [options]="getTranslatedOptions(field)"
-      [isFieldInvalid]="isFieldInvalid(field.key)"
-      [errorMessage]="getFieldError(field.key)"
-      (editField)="editField($event)"
-      (saveField)="saveField($event)"
-      (cancelEdit)="cancelEdit($event)"
-    ></app-personal-info-row>
+    @for (field of formFields; track field) {
+      <app-personal-info-row
+        [title]="field.title | translate"
+        [fieldKey]="field.key"
+        [control]="getControl(field.key)"
+        [empty]="isEmpty(field.key)"
+        [actionLabel]="
+          isEmpty(field.key)
+            ? ('PERSONAL_INFO.ADD' | translate)
+            : ('PERSONAL_INFO.EDIT' | translate)
+        "
+        [isEditing]="editFieldName === field.key"
+        [sub]="field.sub ? (field.sub | translate) : null"
+        [type]="field.type || 'text'"
+        [options]="getTranslatedOptions(field)"
+        [isFieldInvalid]="isFieldInvalid(field.key)"
+        [errorMessage]="getFieldError(field.key)"
+        (editField)="editField($event)"
+        (saveField)="saveField($event)"
+        (cancelEdit)="cancelEdit($event)"
+      ></app-personal-info-row>
+    }
   </div>
 </form>

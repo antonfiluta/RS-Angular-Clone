@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface Language {
@@ -11,7 +11,7 @@ interface Language {
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
@@ -20,7 +20,6 @@ export class Header {
   languageMenuOpen = false;
   currentLanguage = 'en';
 
-  private router = inject(Router);
   private translate = inject(TranslateService);
 
   languages: Language[] = [
@@ -49,14 +48,6 @@ export class Header {
     }
   }
 
-  closeMenu() {
-    this.menuOpen = false;
-  }
-
-  closeLanguageMenu() {
-    this.languageMenuOpen = false;
-  }
-
   closeAllMenus() {
     this.menuOpen = false;
     this.languageMenuOpen = false;
@@ -66,10 +57,5 @@ export class Header {
     this.currentLanguage = langCode;
     this.translate.use(langCode);
     this.closeAllMenus();
-  }
-
-  navigateTo(path: string) {
-    this.router.navigate([path]);
-    this.closeMenu();
   }
 }
