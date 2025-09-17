@@ -1,13 +1,8 @@
-<h1
-  class="header__title"
-  role="button"
-  tabindex="0"
-  (click)="navigateTo('/')"
-  (keyup.enter)="navigateTo('/')"
-  (keyup.space)="navigateTo('/')"
->
-  <img src="assets/images/logo-icon.png" alt="airbnb icon" class="header__title__icon" />
-  <span>airbnb</span>
+<h1 class="header__title">
+  <a routerLink="/" class="header__title__link">
+    <img src="assets/images/logo-icon.png" alt="airbnb icon" class="header__title__icon" />
+    <span>airbnb</span>
+  </a>
 </h1>
 
 <div class="header__buttons">
@@ -17,25 +12,29 @@
       <i class="pi pi-globe header__button__icon"></i>
     </button>
 
-    <ul class="dropdown__menu" *ngIf="languageMenuOpen">
-      <li
-        [class]="
-          'dropdown__link ' + (currentLanguage === lang.code ? 'bg-blue-50' : 'hover:bg-gray-50')
-        "
-        *ngFor="let lang of languages"
-      >
-        <button (click)="selectLanguage(lang.code)">
-          <span class="language-flag-emoji">{{ lang.flag }}</span>
-          {{ lang.name }}
-        </button>
-      </li>
-    </ul>
+    @if (languageMenuOpen) {
+      <ul class="dropdown__menu">
+        @for (lang of languages; track lang.code) {
+          <li
+            [class]="
+              'dropdown__link ' +
+              (currentLanguage === lang.code ? 'bg-blue-50' : 'hover:bg-gray-50')
+            "
+          >
+            <button (click)="selectLanguage(lang.code)">
+              <span class="language-flag-emoji">{{ lang.flag }}</span>
+              {{ lang.name }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
   </div>
 
   <!-- User Button -->
-  <button class="header__button">
+  <a routerLink="/profile" class="header__button header__button--link" (click)="closeAllMenus()">
     <i class="pi pi-user header__button__icon"></i>
-  </button>
+  </a>
 
   <!-- Menu Dropdown -->
   <div class="dropdown">
@@ -43,13 +42,20 @@
       <i class="pi pi-bars header__button__icon"></i>
     </button>
 
-    <ul class="dropdown__menu" *ngIf="menuOpen">
-      <li class="dropdown__link hover:bg-gray-50">
-        <button (click)="navigateTo('/personal-info')">
-          {{ 'MENU.PERSONAL_INFORMATION' | translate }}
-        </button>
-      </li>
-    </ul>
+    @if (menuOpen) {
+      <ul class="dropdown__menu">
+        <li class="dropdown__link hover:bg-gray-50">
+          <a routerLink="/personal-info" (click)="closeAllMenus()">
+            {{ 'MENU.PERSONAL_INFORMATION' | translate }}
+          </a>
+        </li>
+        <li class="dropdown__link hover:bg-gray-50">
+          <a routerLink="/auth/login" (click)="closeAllMenus()">
+            {{ 'MENU.AUTHENTICATION' | translate }}
+          </a>
+        </li>
+      </ul>
+    }
   </div>
 </div>
 

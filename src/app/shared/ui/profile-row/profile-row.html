@@ -1,0 +1,84 @@
+<div class="card bg-base-100 shadow-sm mb-6">
+  <div class="card-body">
+    <!-- View Mode -->
+    @if (!isEditMode) {
+      <div class="view-mode">
+        <div class="flex items-center gap-2 mb-4">
+          <i [class]="iconClass" class="text-lg text-base-content/70"></i>
+          <h3 class="text-lg font-medium">{{ title | translate }}</h3>
+        </div>
+
+        @if (displayItems.length === 0) {
+          <div class="text-base-content/60 italic">
+            {{ emptyMessage | translate }}
+          </div>
+        }
+
+        @if (displayItems.length > 0) {
+          <div class="flex flex-wrap gap-2">
+            @for (item of displayItems; track item) {
+              <div class="badge badge-outline badge-lg gap-2">
+                <i [class]="iconClass" class="text-sm"></i>
+                {{ getOptionLabel(item) | translate }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Edit Mode -->
+    @if (isEditMode) {
+      <div class="edit-mode">
+        <div class="flex items-center gap-2 mb-4">
+          <i [class]="iconClass" class="text-lg text-primary"></i>
+          <h3 class="text-lg font-medium">{{ title | translate }}</h3>
+        </div>
+
+        <!-- Existing Items -->
+        @for (control of formArray.controls; let i = $index; track i) {
+          <div class="flex gap-2 mb-3">
+            <div class="flex-1">
+              <select [formControl]="control" class="select select-bordered w-full">
+                <option value="">{{ placeholder | translate }}</option>
+                @for (option of options; track option.value) {
+                  <option [value]="option.value">
+                    {{ option.label | translate }}
+                  </option>
+                }
+              </select>
+            </div>
+            <button
+              type="button"
+              (click)="removeItem(i)"
+              class="btn btn-error btn-sm btn-square"
+              [attr.aria-label]="'PROFILE.REMOVE_ITEM' | translate"
+            >
+              <i class="pi pi-times"></i>
+            </button>
+          </div>
+        }
+
+        <!-- Add New Item -->
+        <button
+          type="button"
+          (click)="addItem()"
+          class="btn btn-outline btn-primary w-full"
+          [disabled]="formArray.length >= maxItems"
+        >
+          <i class="pi pi-plus mr-2"></i>
+          {{ addButtonText | translate }}
+        </button>
+
+        @if (formArray.length >= maxItems) {
+          <div class="alert alert-warning mt-2">
+            <i class="pi pi-exclamation-triangle"></i>
+            <span>
+              {{ 'PROFILE.MAX_ITEMS_REACHED' | translate: { max: maxItems } }}
+            </span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

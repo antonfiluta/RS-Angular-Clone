@@ -1,0 +1,159 @@
+<div class="max-w-4xl mx-auto px-0 py-6">
+  <!-- Header with Edit/Save Button -->
+  <div class="flex justify-between items-center mb-8 pb-4 border-b border-base-300">
+    <div class="flex items-center gap-3">
+      <h2 class="text-2xl font-bold">{{ 'PROFILE.ABOUT' | translate }}</h2>
+    </div>
+
+    <div class="flex gap-2">
+      @if (!isEditMode) {
+        <button
+          type="button"
+          (click)="toggleEditMode()"
+          class="bg-gray-900 text-white rounded-lg px-4 py-2.5 border-0 cursor-pointer flex items-center gap-2"
+        >
+          <i class="pi pi-pencil"></i>
+          {{ 'PROFILE.EDIT' | translate }}
+        </button>
+      }
+
+      @if (isEditMode) {
+        <div class="flex gap-2">
+          <button
+            type="button"
+            (click)="cancelEdit()"
+            class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal flex items-center gap-2"
+          >
+            <i class="pi pi-times"></i>
+            {{ 'PROFILE.CANCEL' | translate }}
+          </button>
+          <button
+            type="button"
+            (click)="saveProfile()"
+            [disabled]="form.invalid"
+            class="bg-gray-900 text-white rounded-lg px-4 py-2.5 border-0 cursor-pointer flex items-center gap-2"
+          >
+            <i class="pi pi-check"></i>
+            {{ 'PROFILE.SAVE' | translate }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+
+  <form [formGroup]="form" class="space-y-6">
+    <!-- Name Section -->
+    <div class="card bg-base-100 shadow-sm">
+      <div class="card-body">
+        @if (!isEditMode) {
+          <div class="view-field">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="pi pi-user text-lg text-base-content/70"></i>
+              <h3 class="text-lg font-medium">{{ 'PROFILE.NAME' | translate }}</h3>
+            </div>
+            <p class="text-base-content/80 text-lg">
+              {{ form.get('name')?.value || ('PROFILE.NOT_PROVIDED' | translate) }}
+            </p>
+          </div>
+        }
+
+        @if (isEditMode) {
+          <div class="edit-field">
+            <div class="flex items-start gap-2 mb-3">
+              <i class="pi pi-user text-lg text-primary mt-2"></i>
+              <div class="flex-1">
+                <label class="text-lg font-medium block">
+                  {{ 'PROFILE.NAME' | translate }} *
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="input input-bordered w-full mt-1"
+                    [placeholder]="'PROFILE.NAME_PLACEHOLDER' | translate"
+                  />
+                </label>
+
+                @if (form.get('name')?.invalid && form.get('name')?.touched) {
+                  <span class="label-text-alt text-error">
+                    {{ 'VALIDATION.REQUIRED' | translate: { field: ('PROFILE.NAME' | translate) } }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Bio Section -->
+    <div class="card bg-base-100 shadow-sm">
+      <div class="card-body">
+        @if (!isEditMode) {
+          <div class="view-field">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="pi pi-file-edit text-lg text-base-content/70"></i>
+              <h3 class="text-lg font-medium">{{ 'PROFILE.BIO' | translate }}</h3>
+            </div>
+            <p class="text-base-content/80 leading-relaxed">
+              {{ form.get('bio')?.value || ('PROFILE.NO_BIO' | translate) }}
+            </p>
+          </div>
+        }
+
+        @if (isEditMode) {
+          <div class="edit-field">
+            <div class="flex items-start gap-2 mb-3">
+              <i class="pi pi-file-edit text-lg text-primary mt-2"></i>
+              <div class="flex-1">
+                <label class="text-lg font-medium block">
+                  {{ 'PROFILE.BIO' | translate }}
+                  <textarea
+                    formControlName="bio"
+                    class="textarea textarea-bordered w-full h-24 mt-1"
+                    [placeholder]="'PROFILE.BIO_PLACEHOLDER' | translate"
+                  ></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Dynamic Sections using ProfileRow -->
+    <app-profile-row
+      formControlName="interests"
+      [title]="'PROFILE.INTERESTS'"
+      [placeholder]="'PROFILE.SELECT_INTEREST'"
+      [addButtonText]="'PROFILE.ADD_INTEREST'"
+      [emptyMessage]="'PROFILE.NO_INTERESTS'"
+      [isEditMode]="isEditMode"
+      [maxItems]="8"
+      [iconClass]="'pi pi-heart'"
+      [options]="interestOptions"
+    ></app-profile-row>
+
+    <app-profile-row
+      formControlName="languages"
+      [title]="'PROFILE.LANGUAGES'"
+      [placeholder]="'PROFILE.SELECT_LANGUAGE'"
+      [addButtonText]="'PROFILE.ADD_LANGUAGE'"
+      [emptyMessage]="'PROFILE.NO_LANGUAGES'"
+      [isEditMode]="isEditMode"
+      [maxItems]="6"
+      [iconClass]="'pi pi-globe'"
+      [options]="languageOptions"
+    ></app-profile-row>
+
+    <app-profile-row
+      formControlName="countriesLived"
+      [title]="'PROFILE.COUNTRIES_LIVED'"
+      [placeholder]="'PROFILE.SELECT_COUNTRY'"
+      [addButtonText]="'PROFILE.ADD_COUNTRY'"
+      [emptyMessage]="'PROFILE.NO_COUNTRIES'"
+      [isEditMode]="isEditMode"
+      [maxItems]="10"
+      [iconClass]="'pi pi-map-marker'"
+      [options]="countryOptions"
+    ></app-profile-row>
+  </form>
+</div>

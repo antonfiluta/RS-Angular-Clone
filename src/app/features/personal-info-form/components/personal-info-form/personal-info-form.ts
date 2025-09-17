@@ -30,7 +30,6 @@ interface FormField {
 
 @Component({
   selector: 'app-personal-info-form',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, PersonalInfoRowComponent, TranslateModule],
   templateUrl: './personal-info-form.html',
   styleUrl: './personal-info-form.scss',
