@@ -52,26 +52,18 @@ export const routes: Routes = [
       import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
   },
   {
-    path: 'offers',
-    title: 'Offers',
-    loadComponent: () =>
-      import('./core/pages/offers-overview/offers-overview').then((c) => c.OffersOverview),
-  },
-  {
     path: 'offers/:cityId',
     title: 'Offer',
     loadComponent: () =>
-      import('./core/pages/specific-city-offers-overview/specific-city-offers-overview').then(
-        (c) => c.SpecificCityOffersOverview,
+      import('./core/pages/specific-city-offers/specific-city-offers').then(
+        (c) => c.SpecificCityOffers,
       ),
   },
   {
     path: 'offers/:cityId/:offerId',
     title: 'Offer',
     loadComponent: () =>
-      import('./core/pages/specific-offer-overview/specific-offer-overview').then(
-        (c) => c.SpecificOfferOverview,
-      ),
+      import('./core/pages/specific-offer/specific-offer').then((c) => c.SpecificOffer),
   },
   {
     path: 'about',

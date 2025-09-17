@@ -59,11 +59,15 @@
     "SAVE": "Захаваць",
     "CANCEL": "Скасаваць"
   },
-  "OFFERS_OVERVIEW": {
-    "EMPTY": "Няма даступных прапаноў",
-    "POPULAR": "Папулярныя дамы ў",
-    "TERM": "на 2 дні",
-    "FAVORITE": "Гасцям падабаецца"
+  "OFFERS": {
+    "EMPTY": "Няма доступных дамоу",
+    "POPULAR": "Популярныя дамы у",
+    "TERM": "за 2 дні",
+    "FAVORITE": "Гасцям спадабаецца"
+  },
+  "SPECIFIC_CITY_OFFERS": {
+    "CITY_AMOUNT": "У {city} {count} дамоу",
+    "FEES": "Цены ўключаюць ўсе зборы"
   },
   "PROFILE": {
     "TITLE": "Профіль",

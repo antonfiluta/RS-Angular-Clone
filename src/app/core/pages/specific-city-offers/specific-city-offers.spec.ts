@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SpecificCityOffers } from './specific-city-offers';
 
-import { SpecificOfferOverview } from './specific-offer-overview';
-
-describe('SpecificOfferOverview', () => {
-  let component: SpecificOfferOverview;
-  let fixture: ComponentFixture<SpecificOfferOverview>;
+describe('SpecificCityOffers', () => {
+  let component: SpecificCityOffers;
+  let fixture: ComponentFixture<SpecificCityOffers>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpecificOfferOverview],
+      imports: [SpecificCityOffers],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SpecificOfferOverview);
+    fixture = TestBed.createComponent(SpecificCityOffers);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

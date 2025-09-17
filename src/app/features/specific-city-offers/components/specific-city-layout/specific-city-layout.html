@@ -1,0 +1,25 @@
+<div class="w-full flex justify-between">
+  <div>
+    <i class="pi pi-home mr-2"></i>
+    <span>
+      {{
+        'SPECIFIC_CITY_OFFERS.CITY_AMOUNT'
+          | translate
+          | template: { city: cityName(), count: offersAmount() }
+      }}
+    </span>
+  </div>
+
+  <div>
+    <i class="pi pi-tags mr-2"></i>
+    <span>{{ 'SPECIFIC_CITY_OFFERS.FEES' | translate }} </span>
+  </div>
+</div>
+
+<div
+  class="grid [grid-template-columns:repeat(1,55vw)] sm:[grid-template-columns:repeat(2,35vw)] md:[grid-template-columns:repeat(3,25vw)] lg:[grid-template-columns:repeat(4,20vw)] xl:[grid-template-columns:repeat(5,15vw)] gap-4 mx-auto"
+>
+  @for (offer of offers(); track offer.id) {
+    <app-specific-city-card [offer]="offer" [routerLink]="offer.id"></app-specific-city-card>
+  }
+</div>

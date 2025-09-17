@@ -59,11 +59,15 @@
     "SAVE": "Сохранить",
     "CANCEL": "Отмена"
   },
-  "OFFERS_OVERVIEW": {
+  "OFFERS": {
     "EMPTY": "Нет доступных предложений",
     "POPULAR": "Популярные дома в",
     "TERM": "за 2 дня",
     "FAVORITE": "Популярно у гостей"
+  },
+  "SPECIFIC_CITY_OFFERS": {
+    "CITY_AMOUNT": "В {city} {count} дамов",
+    "FEES": "Цены включают все налоги"
   },
   "PROFILE": {
     "TITLE": "Профиль",

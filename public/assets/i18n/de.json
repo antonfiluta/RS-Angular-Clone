@@ -59,11 +59,15 @@
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen"
   },
-  "OFFERS_OVERVIEW": {
+  "OFFERS": {
     "EMPTY": "Keine Angebote verfügbar",
     "POPULAR": "Beliebtehäuser in",
     "TERM": "für 2 Tage",
     "FAVORITE": "Gastfavorit"
+  },
+  "SPECIFIC_CITY_OFFERS": {
+    "CITY_AMOUNT": "In {city} gibt es {count} Angebote für dich",
+    "FEES": "Preise inkludieren alle Gebühren"
   },
   "PROFILE": {
     "TITLE": "Profil",
