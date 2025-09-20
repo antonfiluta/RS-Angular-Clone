@@ -1,0 +1,92 @@
+<section class="flex justify-between items-start px-6 py-5 border-b border-gray-200">
+  <div class="flex-1">
+    <div class="text-xl font-bold text-gray-900 mb-1.5">{{ title }}</div>
+
+    @if (sub) {
+      <div class="text-gray-500 text-sm mt-1">{{ sub }}</div>
+    }
+
+    <!-- View mode -->
+    @if (!isEditing) {
+      <div class="text-gray-900 text-base mt-1.5" [class.text-gray-400]="empty">
+        {{ empty ? ('FORM.NOT_PROVIDED' | translate) : control.value }}
+      </div>
+    }
+
+    <!-- Edit mode -->
+    @if (isEditing) {
+      @switch (type) {
+        @default {
+          <input
+            [type]="type"
+            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base"
+            [class.border-red-500]="isFieldInvalid"
+            [formControl]="control"
+            [placeholder]="title"
+            [attr.aria-label]="title"
+          />
+        }
+        @case ('select') {
+          <select
+            class="select select-bordered w-full rounded-xl text-base"
+            [class.border-red-500]="isFieldInvalid"
+            [formControl]="control"
+          >
+            <option value="">{{ 'FORM.SELECT' | translate }} {{ title.toLowerCase() }}</option>
+            @for (opt of options; track opt) {
+              <option [value]="opt">{{ opt }}</option>
+            }
+          </select>
+        }
+        @case ('date') {
+          <input
+            type="date"
+            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base"
+            [class.border-red-500]="isFieldInvalid"
+            [formControl]="control"
+            [attr.aria-label]="title"
+          />
+        }
+      }
+
+      @if (isFieldInvalid) {
+        <div class="text-red-500 text-sm mt-1">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="mt-4">
+        <button
+          type="button"
+          class="bg-gray-900 text-white rounded-lg px-4 py-2.5 border-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="isFieldInvalid || control.pristine"
+          (click)="saveField.emit(fieldKey)"
+        >
+          {{ 'FORM.SAVE' | translate }}
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Right action buttons -->
+  <div class="ml-4 flex-none flex items-center">
+    @if (!isEditing) {
+      <button
+        type="button"
+        class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
+        (click)="editField.emit(fieldKey)"
+      >
+        {{ actionLabel }}
+      </button>
+    }
+    @if (isEditing) {
+      <button
+        type="button"
+        class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
+        (click)="cancelEdit.emit(fieldKey)"
+      >
+        {{ 'FORM.CANCEL' | translate }}
+      </button>
+    }
+  </div>
+</section>

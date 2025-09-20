@@ -1,0 +1,33 @@
+:host {
+  position: absolute;
+  right: 40px;
+  top: 100px;
+  display: flex;
+  gap: 10px;
+}
+
+.switcher__button {
+  position: relative;
+  transition: 300ms;
+  color: var(--color-brand-gray);
+}
+
+.switcher__button.active {
+  color: var(--color-brand-red);
+}
+
+.switcher__button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0px;
+  transition: 300ms;
+  background: var(--color-brand-red);
+}
+
+.switcher__button.active::after {
+  width: 100%;
+}

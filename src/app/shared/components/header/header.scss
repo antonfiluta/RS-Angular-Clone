@@ -1,0 +1,138 @@
+:host {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  background: linear-gradient(to bottom, var(--color-brand-bg), white);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.header__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-brand-red);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header__title__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--color-brand-red);
+  border-radius: 6px;
+}
+
+.header__title__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+}
+
+.header__button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  background: var(--color-brand-light-gray);
+  transition: box-shadow 0.15s ease;
+}
+
+.header__button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.header__button--link {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 100%;
+}
+
+.header__button__icon {
+  font-size: 1rem;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.dropdown__link {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown__link a,
+.dropdown__link button {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dropdown__link:hover {
+  background-color: var(--color-brand-bg);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 5;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.header__button:focus-visible,
+.header__button--link:focus-visible,
+.header__title__link:focus-visible,
+.dropdown__link a:focus-visible,
+.dropdown__link button:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,9 @@
+<div class="carousel carousel-center rounded-box w-[95vw] space-x-4 p-4">
+  @for (offer of cityOffers(); track offer.id) {
+    <app-offer-card
+      [offer]="offer"
+      class="carousel-item"
+      [routerLink]="['/offers', cityName(), offer.id]"
+    ></app-offer-card>
+  }
+</div>

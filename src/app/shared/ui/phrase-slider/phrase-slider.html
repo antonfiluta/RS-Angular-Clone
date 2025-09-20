@@ -1,0 +1,14 @@
+<button class="flex text-sm gap-1 items-center overflow-hidden">
+  @if (!dependancy()) {
+    <i class="pi pi-{{ content().icon1 }}"></i>
+  } @else {
+    <i class="pi pi-{{ content().icon2 }} text-{{ content().fillIcon }}"></i>
+  }
+
+  <div class="flex flex-col text-sm overflow-hidden h-5">
+    <div class="flex flex-col duration-300" [class.-translate-y-5]="dependancy()">
+      <span class="block underline tracking-wide">{{ content().title1 }}</span>
+      <span class="block underline tracking-wide">{{ content().title2 }}</span>
+    </div>
+  </div>
+</button>

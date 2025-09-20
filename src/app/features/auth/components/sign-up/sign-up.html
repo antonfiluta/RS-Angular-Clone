@@ -1,0 +1,89 @@
+<h2
+  class="uppercase tracking-wider font-bold text-brand-red mb-3 text-3xl text-shadow-[1px_1px_0_black]"
+>
+  {{ 'AUTH.SIGNUP' | translate }}
+</h2>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-1">
+    <div class="flex gap-5">
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">{{ 'AUTH.LASTNAME_QUESTION' | translate }}</legend>
+        <label class="input w-40">
+          <i class="pi pi-user"></i>
+          <input
+            type="text"
+            class="grow"
+            [placeholder]="'AUTH.LASTNAME_PLACEHOLDER' | translate"
+            formControlName="lastname"
+          />
+        </label>
+        @if (formStatus.fieldsValid.isLastnameInvalid()) {
+          <p class="label text-brand-red">{{ formStatus.fieldsErrors.lastnameError() }}</p>
+        }
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">{{ 'AUTH.FIRSTNAME_QUESTION' | translate }}</legend>
+        <label class="input w-40">
+          <i class="pi pi-user"></i>
+          <input
+            type="text"
+            class="grow"
+            [placeholder]="'AUTH.FIRSTNAME_PLACEHOLDER' | translate"
+            formControlName="firstname"
+          />
+        </label>
+        @if (formStatus.fieldsValid.isFirstnameInvalid()) {
+          <p class="label text-brand-red">{{ formStatus.fieldsErrors.firstnameError() }}</p>
+        }
+      </fieldset>
+    </div>
+
+    <fieldset class="fieldset w-full relative">
+      <legend class="fieldset-legend">{{ 'AUTH.EMAIL_QUESTION' | translate }}</legend>
+      <label class="input w-full">
+        <i class="pi pi-envelope"></i>
+        <input
+          type="email"
+          class="grow"
+          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
+          formControlName="email"
+        />
+      </label>
+      @if (formStatus.fieldsValid.isEmailInvalid()) {
+        <p class="label text-brand-red">
+          {{ formStatus.fieldsErrors.emailError() }}
+        </p>
+      }
+    </fieldset>
+
+    <fieldset class="fieldset w-full relative">
+      <legend class="fieldset-legend">{{ 'AUTH.PASSWORD_QUESTION' | translate }}</legend>
+      <label class="input w-full">
+        <i class="pi pi-lock"></i>
+        <input
+          type="password"
+          class="grow"
+          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
+          formControlName="password"
+        />
+      </label>
+      @if (formStatus.fieldsValid.isPasswordInvalid()) {
+        <p class="label text-brand-red">{{ formStatus.fieldsErrors.passwordError() }}</p>
+      }
+    </fieldset>
+  </div>
+
+  <div class="flex justify-center gap-5 mt-7">
+    <button (click)="clearForm()" class="btn btn-outline btn-error">
+      {{ 'AUTH.CLEAR' | translate }}
+    </button>
+    <button
+      type="submit"
+      class="btn btn-outline btn-success"
+      [disabled]="formStatus.isFormInvalid()"
+    >
+      {{ 'AUTH.SUBMIT' | translate }}
+    </button>
+  </div>
+</form>
