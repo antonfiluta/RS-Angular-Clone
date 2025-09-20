@@ -34,8 +34,8 @@
     "REQUIRED": "{{field}} ist erforderlich",
     "INVALID_EMAIL": "Bitte gib eine gültige E-Mail-Adresse ein",
     "INVALID_DOMAIN": "Die E-Mail-Domain ist ungültig",
-    "MIN_LENGTH": "Die Mindestlänge beträgt {{length}} Zeichen",
-    "MAX_LENGTH": "Die maximale Länge beträgt {{length}} Zeichen",
+    "MIN_LENGTH": "Die Mindestlänge beträgt {{requiredLength}} Zeichen (jetzt {{actualLength}})",
+    "MAX_LENGTH": "Die maximale Länge beträgt {{requiredLength}} Zeichen (jetzt {{actualLength}})",
     "MISSING_UPPERCASE": "Mindestens ein Großbuchstabe ist erforderlich",
     "MISSING_LOWERCASE": "Mindestens ein Kleinbuchstabe ist erforderlich",
     "MISSING_NUMBER": "Mindestens eine Zahl ist erforderlich",
@@ -453,5 +453,11 @@
     "YEMEN": "Jemen",
     "ZAMBIA": "Sambia",
     "ZIMBABWE": "Simbabwe"
+  },
+  "ERROR": {
+    "PAGE_NOT_FOUND": "Seite nicht gefunden",
+    "PAGE_NOT_FOUND_DESCRIPTION": "Die gesuchte Seite konnte nicht gefunden werden.",
+    "GO_BACK": "Zurück",
+    "GO_HOME": "Zur Startseite"
   }
 }

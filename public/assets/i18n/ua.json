@@ -34,8 +34,8 @@
     "REQUIRED": "{{field}} обов'язкове для заповнення",
     "INVALID_EMAIL": "Будь ласка, введіть дійсну електронну адресу",
     "INVALID_DOMAIN": "Домен електронної пошти недійсний",
-    "MIN_LENGTH": "Мінімальна довжина – {{length}} символів",
-    "MAX_LENGTH": "Максимальна довжина – {{length}} символів",
+    "MIN_LENGTH": "Мінімальна довжина – {{requiredLength}} символів (зараз {{actualLength}})",
+    "MAX_LENGTH": "Максимальна довжина – {{requiredLength}} символів (зараз {{actualLength}})",
     "MISSING_UPPERCASE": "Потрібна хоча б одна велика літера",
     "MISSING_LOWERCASE": "Потрібна хоча б одна мала літера",
     "MISSING_NUMBER": "Потрібна хоча б одна цифра",
@@ -453,5 +453,11 @@
     "YEMEN": "Ємен",
     "ZAMBIA": "Замбія",
     "ZIMBABWE": "Зімбабве"
+  },
+  "ERROR": {
+    "PAGE_NOT_FOUND": "Сторінку не знайдено",
+    "PAGE_NOT_FOUND_DESCRIPTION": "Не вдається знайти сторінку, яку ви шукаєте.",
+    "GO_BACK": "Повернутися назад",
+    "GO_HOME": "Перейти на головну"
   }
 }

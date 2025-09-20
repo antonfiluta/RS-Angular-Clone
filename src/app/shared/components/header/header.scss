@@ -27,6 +27,7 @@
   gap: 5px;
   text-decoration: none;
   color: var(--color-brand-red);
+  border-radius: 6px;
 }
 
 .header__title__icon {
@@ -51,6 +52,7 @@
   border: none;
   cursor: pointer;
   background: var(--color-brand-light-gray);
+  transition: box-shadow 0.15s ease;
 }
 
 .header__button:hover {
@@ -60,12 +62,7 @@
 .header__button--link {
   text-decoration: none;
   color: inherit;
-}
-
-.header__button--link:hover {
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  border-radius: 100%;
 }
 
 .header__button__icon {
@@ -105,6 +102,7 @@
   border: none;
   text-align: left;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .dropdown__link:hover {
@@ -127,4 +125,14 @@
 .menu-overlay.show {
   opacity: 1;
   pointer-events: all;
+}
+
+.header__button:focus-visible,
+.header__button--link:focus-visible,
+.header__title__link:focus-visible,
+.dropdown__link a:focus-visible,
+.dropdown__link button:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
 }
