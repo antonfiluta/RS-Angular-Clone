@@ -7,7 +7,7 @@
     "FIRSTNAME_QUESTION": "Как ваше имя?",
     "LASTNAME_QUESTION": "Какая ваша фамилия?",
     "EMAIL_PLACEHOLDER": "mail@gmail.com",
-    "PASSWORD_PLACEHOLDER": "Тш-ш-ш... это секрет",
+    "PASSWORD_PLACEHOLDER": "Тс-с-с... это секрет",
     "FIRSTNAME_PLACEHOLDER": "Пользователь",
     "LASTNAME_PLACEHOLDER": "Новый",
     "CLEAR": "Очистить",
@@ -34,8 +34,8 @@
     "REQUIRED": "Поле {{field}} обязательно для заполнения",
     "INVALID_EMAIL": "Пожалуйста, введите корректный адрес электронной почты",
     "INVALID_DOMAIN": "Домен электронной почты недействителен",
-    "MIN_LENGTH": "Минимальная длина {{length}} символов",
-    "MAX_LENGTH": "Максимальная длина {{length}} символов",
+    "MIN_LENGTH": "Минимальная длина {{requiredLength}} символов (сейчас {{actualLength}})",
+    "MAX_LENGTH": "Максимальная длина {{requiredLength}} символов (сейчас {{actualLength}})",
     "MISSING_UPPERCASE": "Требуется хотя бы одна заглавная буква",
     "MISSING_LOWERCASE": "Требуется хотя бы одна строчная буква",
     "MISSING_NUMBER": "Требуется хотя бы одна цифра",
@@ -453,5 +453,11 @@
     "YEMEN": "Йемен",
     "ZAMBIA": "Замбия",
     "ZIMBABWE": "Зимбабве"
+  },
+  "ERROR": {
+    "PAGE_NOT_FOUND": "Страница не найдена",
+    "PAGE_NOT_FOUND_DESCRIPTION": "Не удаётся найти страницу, которую вы ищете.",
+    "GO_BACK": "Вернуться назад",
+    "GO_HOME": "Перейти на главную"
   }
 }
