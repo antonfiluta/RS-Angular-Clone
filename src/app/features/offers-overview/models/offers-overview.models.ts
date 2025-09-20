@@ -1,8 +1,8 @@
 export interface OffersOverviewModel {
-  cities: CityModel[];
+  cities: CityOffersModel[];
 }
 
-export interface CityModel {
+export interface CityOffersModel {
   name: string;
   offers: OfferModel[];
 }

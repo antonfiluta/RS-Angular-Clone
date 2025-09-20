@@ -15,6 +15,8 @@ export interface User {
 export interface UserProfile {
   // Характеристики
   characteristics: Characteristic[];
+  languages: string[];
+  countries: string[];
 
   // О себе
   aboutMe: string; // max 450 chars

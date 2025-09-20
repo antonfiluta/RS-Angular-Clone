@@ -13,6 +13,6 @@ export class OffersOverview {
   private readonly store = inject(Store);
 
   constructor() {
-    this.store.dispatch(OffersOverviewActions.loadOffers());
+    this.store.dispatch(OffersOverviewActions.loadAllOffers());
   }
 }

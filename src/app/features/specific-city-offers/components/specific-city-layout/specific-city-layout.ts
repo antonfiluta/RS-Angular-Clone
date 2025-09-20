@@ -1,11 +1,14 @@
 import { Component, computed, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectCityName, selectOffers } from '../../store/specific-city.selector';
 import { TemplatePipe } from '../../../../shared/pipes/template-pipe';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SpecificCityCard } from '../specific-city-card/specific-city-card';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {
+  selectCityName,
+  selectSpecificCityOffers,
+} from '../../../offers-overview/store/offers-overview.selector';
 
 @Component({
   selector: 'app-specific-city-layout',
@@ -18,8 +21,8 @@ export class SpecificCityLayout {
   @Input() cityId!: string;
   private readonly store = inject(Store);
 
-  public cityName = this.store.selectSignal(selectCityName);
-  public offers = this.store.selectSignal(selectOffers);
+  public readonly cityName = this.store.selectSignal(selectCityName);
+  public readonly offers = this.store.selectSignal(selectSpecificCityOffers);
 
-  public offersAmount = computed(() => (this.offers()?.length || 0).toString());
+  public offersAmount = computed(() => (this.offers()?.length ?? 0).toString());
 }

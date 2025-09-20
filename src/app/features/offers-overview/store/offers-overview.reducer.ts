@@ -6,9 +6,17 @@ export const OffersOverviewFeature = createFeature({
   name: 'offersOverview',
   reducer: createReducer(
     initialOffersOverviewState,
-    on(OffersOverviewActions.loadOffersSuccess, (state, { offers }) => ({
+    on(OffersOverviewActions.loadAllOffersSuccess, (state, { offers }) => ({
       ...state,
       offers,
+    })),
+    on(OffersOverviewActions.loadSpecificCityOffersSuccess, (state, { response }) => ({
+      ...state,
+      specificCityOffers: response,
+    })),
+    on(OffersOverviewActions.loadSpecificOfferSuccess, (state, { offer }) => ({
+      ...state,
+      specificOffer: offer,
     })),
   ),
 });

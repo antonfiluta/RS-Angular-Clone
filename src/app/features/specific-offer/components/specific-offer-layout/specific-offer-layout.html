@@ -1,0 +1,22 @@
+<div class="flex justify-between items-center">
+  <h2 class="text-2xl tracking-wider flex items-center gap-2">
+    <i class="pi pi-building"></i>
+    <span>{{ offer()?.name }}</span>
+  </h2>
+
+  <div class="flex gap-5">
+    <app-phrase-slider
+      [dependancy]="isLinkSaved"
+      [content]="shareButtonContent"
+      (click)="copyLink()"
+    ></app-phrase-slider>
+
+    <app-phrase-slider
+      [dependancy]="true"
+      [content]="likeButtonContent"
+      (click)="saveOffer()"
+    ></app-phrase-slider>
+  </div>
+</div>
+
+<img [src]="offerData.img()" alt="apartment image" class="h-[400px] object-cover rounded-lg" />

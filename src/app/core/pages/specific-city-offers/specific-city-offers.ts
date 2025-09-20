@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { SpecificCityLayout } from '../../../features/specific-city-offers/components/specific-city-layout/specific-city-layout';
 import { Store } from '@ngrx/store';
-import { SpecificCityActions } from '../../../features/specific-city-offers/store/specific-city.actions';
+import { OffersOverviewActions } from '../../../features/offers-overview/store/offers-overview.actions';
 
 @Component({
   selector: 'app-specific-city-offers',
@@ -14,13 +14,9 @@ export class SpecificCityOffers implements OnInit {
 
   private readonly store = inject(Store);
 
-  show() {
-    console.log('cityId:', this.cityId);
-  }
-
   ngOnInit() {
     if (this.cityId) {
-      this.store.dispatch(SpecificCityActions.loadCity({ cityName: this.cityId }));
+      this.store.dispatch(OffersOverviewActions.loadSpecificCityOffers({ cityId: this.cityId }));
     }
   }
 }

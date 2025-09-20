@@ -9,13 +9,39 @@ export class OffersOverviewEffects {
   private readonly action$ = inject(Actions);
   private readonly offersOverviewService = inject(OffersOverviewService);
 
-  public setOffersOverview = createEffect(() =>
+  public setAllOffersOverview = createEffect(() =>
     this.action$.pipe(
-      ofType(OffersOverviewActions.loadOffers),
+      ofType(OffersOverviewActions.loadAllOffers),
       switchMap(() =>
         this.offersOverviewService.getOffersOverview().pipe(
-          switchMap((offers) => of(OffersOverviewActions.loadOffersSuccess({ offers }))),
-          catchError((error) => of(OffersOverviewActions.loadOffersFailure({ error }))),
+          switchMap((offers) => of(OffersOverviewActions.loadAllOffersSuccess({ offers }))),
+          catchError((error) => of(OffersOverviewActions.loadAllOffersFailure({ error }))),
+        ),
+      ),
+    ),
+  );
+
+  public setSpecificCityOffers = createEffect(() =>
+    this.action$.pipe(
+      ofType(OffersOverviewActions.loadSpecificCityOffers),
+      switchMap(({ cityId }) =>
+        this.offersOverviewService.getSpecificCityOffers(cityId).pipe(
+          switchMap((response) =>
+            of(OffersOverviewActions.loadSpecificCityOffersSuccess({ response })),
+          ),
+          catchError((error) => of(OffersOverviewActions.loadSpecificCityOffersFailure({ error }))),
+        ),
+      ),
+    ),
+  );
+
+  public loadSpecificOffer = createEffect(() =>
+    this.action$.pipe(
+      ofType(OffersOverviewActions.loadSpecificOffer),
+      switchMap(({ cityId, offerId }) =>
+        this.offersOverviewService.getSpecificOffer(cityId, offerId).pipe(
+          switchMap((offer) => of(OffersOverviewActions.loadSpecificOfferSuccess({ offer }))),
+          catchError((error) => of(OffersOverviewActions.loadSpecificOfferFailure({ error }))),
         ),
       ),
     ),
