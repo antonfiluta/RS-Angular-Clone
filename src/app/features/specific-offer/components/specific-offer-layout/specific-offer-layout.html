@@ -1,22 +1,148 @@
 <div class="flex justify-between items-center">
-  <h2 class="text-2xl tracking-wider flex items-center gap-2">
-    <i class="pi pi-building"></i>
-    <span>{{ offer()?.name }}</span>
-  </h2>
+  <h2 class="text-3xl text-gray-900 mb-2">{{ offer().title }}</h2>
 
-  <div class="flex gap-5">
-    <app-phrase-slider
-      [dependancy]="isLinkSaved"
-      [content]="shareButtonContent"
-      (click)="copyLink()"
-    ></app-phrase-slider>
+  <div class="flex">
+    <app-link-saver></app-link-saver>
 
     <app-phrase-slider
-      [dependancy]="true"
+      [dependancy]="false"
       [content]="likeButtonContent"
       (click)="saveOffer()"
     ></app-phrase-slider>
   </div>
 </div>
 
-<img [src]="offerData.img()" alt="apartment image" class="h-[400px] object-cover rounded-lg" />
+<img
+  [src]="offer().photos[0].url"
+  [alt]="offer().photos[0].id"
+  class="h-[400px] object-cover rounded-lg"
+/>
+
+<div class="flex justify-between">
+  <div>
+    <h2 class="text-2xl pb-1">
+      <i class="pi pi-building mr-1"></i>
+      <span
+        >{{ getPropertyTypeLabel(offer().propertyType) }} hosted in {{ offer().address.city }},
+        {{ offer().address.country }}</span
+      >
+    </h2>
+
+    <div class="flex items-center gap-2">
+      @for (item of capacityItems(); track item.key) {
+        <div class="flex items-center gap-2">
+          <i [class]="item.icon"></i>
+          <span>{{ item.value }} {{ item.label }}</span>
+        </div>
+
+        @if (!$last) {
+          <span class="text-gray-500">·</span>
+        }
+      }
+    </div>
+  </div>
+
+  <div>
+    <div class="flex items-center gap-4 text-gray-600">
+      <div class="flex items-center gap-1">
+        <i class="pi pi-star-fill text-yellow-400"></i>
+        <span class="font-medium">{{ offer().averageRating }}</span>
+        <span class="text-gray-500">·</span>
+        <span class="underline">{{ reviewsAmount }} reviews</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex w-[100%] justify-between mt-4">
+  <div class="w-[60%]">
+    <div class="border-b pb-4 pl-2">
+      <p class="text-lg text-gray-900 leading-relaxed flex gap-4">
+        <i class="pi pi-align-left mt-1.5"></i>
+        <span>{{ offer().description }}</span>
+      </p>
+    </div>
+
+    <div class="border-b py-5 pl-2">
+      <h3 class="text-xl tracking-wide mb-3">
+        <i class="pi pi-gift mr-1"></i>
+        <span>What this place offers</span>
+      </h3>
+
+      <div class="grid grid-cols-3">
+        <div>
+          <h4 class="text-lg tracking-wide pb-1">Accessibility</h4>
+          <div class="flex flex-col gap-3 pl-1">
+            @for (accessibility of accessibilityList(); track accessibility) {
+              <div class="flex items-center gap-2">
+                <i class="pi pi-plus-circle"></i>
+                <span>{{ accessibility }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg tracking-wide pb-1">Amenities</h4>
+          <div class="flex flex-col gap-3 pl-1">
+            @for (amenity of amenitiesList(); track amenity) {
+              <div class="flex items-center gap-2">
+                <i class="pi pi-plus-circle"></i>
+                <span>{{ amenity }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg tracking-wide pb-1">Safety features</h4>
+          <div class="flex flex-col gap-3 pl-1">
+            @for (safetyFeature of safetyFeaturesList(); track safetyFeature) {
+              <div class="flex items-center gap-2">
+                <i class="pi pi-plus-circle"></i>
+                <span>{{ safetyFeature }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-[30%] flex flex-col gap-6">
+    <div
+      class="rounded-xl shadow-[0_8px_25px_-10px_rgba(0,0,0,0.4)] py-3 flex justify-center gap-2 items-center"
+    >
+      <i class="pi pi-tags text-lg"></i>
+      <span class="text-[16px]">Prices include all fees</span>
+    </div>
+
+    <div class="rounded-xl shadow-[0_8px_25px_-10px_rgba(0,0,0,0.4)] px-6 py-5">
+      <p class="mb-5">
+        <span class="underline mr-1 text-xl">{{ offer().pricing.weekdayPrice }}$ </span>
+        <span class="">for 2 nights</span>
+      </p>
+
+      <p class="flex items-center mb-2">
+        <i class="pi pi-phone mr-1.5"></i>
+        <span class="tracking-wide mr-2">Booking:</span>
+        <a href="tel:+375 (29) 23-23-233" target="_blank" class="underline">+375 (29) 23-23-233</a>
+      </p>
+
+      <p class="mb-8 flex">
+        <i class="pi pi-map-marker mr-1.5 mt-1"></i>
+        <span class="tracking-wide mr-2">Location:</span>
+        <span class="text-sm mt-0.5">{{ offer().address | addressFormat }}</span>
+      </p>
+
+      <a
+        href="tel:+375 (29) 23-23-233"
+        class="block text-center w-full bg-brand-red text-white rounded-full uppercase tracking-wider font-medium py-3 mb-2"
+      >
+        Reserve
+      </a>
+
+      <p class="text-center text-sm text-gray-500">You won't be charged yet</p>
+    </div>
+  </div>
+</div>

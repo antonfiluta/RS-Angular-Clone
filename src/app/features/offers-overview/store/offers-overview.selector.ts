@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { OffersOverviewState } from './offers-overview.state';
+import { basicOffer } from '../../../shared/utils/data/basic-offer';
 
 const selectOverviewState = createFeatureSelector<OffersOverviewState>('offersOverview');
 
@@ -20,5 +21,5 @@ export const selectCityName = createSelector(
 
 export const selectSpecificOffer = createSelector(
   selectOverviewState,
-  (state: OffersOverviewState) => state.specificOffer,
+  (state: OffersOverviewState) => state.specificOffer ?? basicOffer,
 );

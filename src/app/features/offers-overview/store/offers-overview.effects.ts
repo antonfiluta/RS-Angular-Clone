@@ -46,4 +46,16 @@ export class OffersOverviewEffects {
       ),
     ),
   );
+
+  public toggleOfferLike = createEffect(() =>
+    this.action$.pipe(
+      ofType(OffersOverviewActions.toggleOfferLike),
+      switchMap(({ cityId, offerId, isLiked }) =>
+        this.offersOverviewService.toggleOfferLike(cityId, offerId, isLiked).pipe(
+          switchMap((offer) => of(OffersOverviewActions.toggleOfferLikeSuccess({ cityId, offer }))),
+          catchError((error) => of(OffersOverviewActions.toggleOfferLikeFailure({ error }))),
+        ),
+      ),
+    ),
+  );
 }

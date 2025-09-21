@@ -17,8 +17,8 @@ export const OffersOverviewActions = createActionGroup({
     'Load Specific Offer Success': props<{ offer: OfferModel }>(),
     'Load Specific Offer Failure': props<{ error: HttpErrorResponse }>(),
 
-    'Toggle Offer Like': props<{ isLiked: boolean }>(),
-    'Toggle Offer Like Success': props<{ isLiked: boolean }>(),
+    'Toggle Offer Like': props<{ cityId: string; offerId: string; isLiked: boolean }>(),
+    'Toggle Offer Like Success': props<{ cityId: string; offer: OfferModel }>(),
     'Toggle Offer Like Failure': props<{ error: HttpErrorResponse }>(),
   },
 });
