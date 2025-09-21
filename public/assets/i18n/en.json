@@ -51,7 +51,8 @@
   },
   "MENU": {
     "PERSONAL_INFORMATION": "Personal Information",
-    "AUTHENTICATION": "Login or sign up"
+    "AUTHENTICATION": "Login or sign up",
+    "HOST_MODE": "Host mode"
   },
   "FORM": {
     "NOT_PROVIDED": "Not provided",
@@ -459,5 +460,136 @@
     "PAGE_NOT_FOUND_DESCRIPTION": "We can't seem to find the page you're looking for.",
     "GO_BACK": "Go Back",
     "GO_HOME": "Go to Homepage"
+  },
+  "LISTING": {
+    "CREATE_TITLE": "Create an accommodation",
+    "STEP1_TITLE": "Tell us about your place",
+    "STEP1_SUBTITLE": "In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room.",
+    "STEP1_PROGRESS": "About your place",
+    "STEP2_TITLE": "Tell guests what your place has to offer",
+    "STEP2_SUBTITLE": "You can add more amenities after you publish your accommodation.",
+    "STEP2_PROGRESS": "Features",
+    "STEP3_TITLE": "Finish up and publish",
+    "STEP3_SUBTITLE": "Finally, you'll choose booking settings, set up pricing, and publish your accommodation.",
+    "STEP3_PROGRESS": "Details",
+
+    "PROPERTY_TYPE": "Which of these best describes your place?",
+    "LOCATION": "Where's your place located?",
+    "CAPACITY": "Share some basics about your place",
+
+    "AMENITIES_BASIC": "What about these guest favorites?",
+    "AMENITIES_LUXURY": "Do you have any standout amenities?",
+    "SAFETY_FEATURES": "Do you have any of these safety items?",
+
+    "TITLE_LABEL": "Create your title",
+    "TITLE_PLACEHOLDER": "Beautiful apartment in city center",
+    "TITLE_HELP": "Choose a catchy title that describes your place",
+    "DESCRIPTION_LABEL": "Create your description",
+    "DESCRIPTION_PLACEHOLDER": "Share what makes your place special...",
+    "DESCRIPTION_HELP": "Describe your accommodation in detail",
+    "PHOTOS_LABEL": "Add some photos of your place",
+    "PHOTO_ALT": "Photo",
+    "PHOTO_INDEX": "Photo",
+    "ADD_PHOTO": "Add photo",
+    "REMOVE_PHOTO": "Remove photo",
+    "PHOTO_UPLOAD_HELP": "Upload high-quality photos of your accommodation",
+    "PRICING_LABEL": "Now, set your price",
+    "CHARACTERS": "characters",
+
+    "ADDRESS": {
+      "COUNTRY": "Country",
+      "COUNTRY_PLACEHOLDER": "Germany",
+      "COUNTRY_HELP": "Enter the country where your property is located",
+      "CITY": "City",
+      "CITY_PLACEHOLDER": "Berlin",
+      "CITY_HELP": "Enter the city where your property is located",
+      "STREET": "Street",
+      "STREET_PLACEHOLDER": "Alexanderplatz",
+      "STREET_HELP": "Enter the street address",
+      "BUILDING": "Building",
+      "BUILDING_PLACEHOLDER": "1",
+      "BUILDING_HELP": "Enter the building number"
+    },
+
+    "CAPACITY": {
+      "GUESTS": "Guests",
+      "BEDROOMS": "Bedrooms",
+      "BEDS": "Beds",
+      "BATHROOMS": "Bathrooms",
+      "INCREASE_GUESTS": "Increase number of guests",
+      "DECREASE_GUESTS": "Decrease number of guests",
+      "INCREASE_BEDROOMS": "Increase number of bedrooms",
+      "DECREASE_BEDROOMS": "Decrease number of bedrooms",
+      "INCREASE_BEDS": "Increase number of beds",
+      "DECREASE_BEDS": "Decrease number of beds",
+      "INCREASE_BATHROOMS": "Increase number of bathrooms",
+      "DECREASE_BATHROOMS": "Decrease number of bathrooms"
+    },
+
+    "PRICING": {
+      "WEEKDAY": "Weekday price (per night)",
+      "WEEKDAY_PLACEHOLDER": "50",
+      "WEEKDAY_HELP": "Set your price for Monday to Thursday",
+      "WEEKEND": "Weekend price (per night)",
+      "WEEKEND_PLACEHOLDER": "75",
+      "WEEKEND_HELP": "Set your price for Friday to Sunday"
+    },
+
+    "AMENITIES": {
+      "WIFI": "WiFi",
+      "WIFI_DESC": "High-speed internet connection",
+      "TV": "TV",
+      "TV_DESC": "Television with cable/streaming",
+      "KITCHEN": "Kitchen",
+      "KITCHEN_DESC": "Full kitchen with appliances",
+      "WASHER": "Washer",
+      "WASHER_DESC": "Washing machine available",
+      "AIRCONDITIONING": "Air conditioning",
+      "AIRCONDITIONING_DESC": "Climate control system",
+      "PARKING": "Free parking",
+      "PARKING_DESC": "Free parking space available",
+      "POOL": "Pool",
+      "POOL_DESC": "Swimming pool access",
+      "PIANO": "Piano",
+      "PIANO_DESC": "Piano available for use",
+      "BEACHACCESS": "Beach access",
+      "BEACHACCESS_DESC": "Direct beach access",
+      "GYM": "Gym",
+      "GYM_DESC": "Fitness center access",
+      "BILLIARDS": "Billiards table",
+      "BILLIARDS_DESC": "Pool/billiards table available",
+      "GRILL": "BBQ grill",
+      "GRILL_DESC": "Barbecue grill for outdoor cooking"
+    },
+
+    "SAFETY": {
+      "SMOKEDETECTOR": "Smoke detector",
+      "SMOKEDETECTOR_DESC": "Working smoke detection system",
+      "FIREEXTINGUISHER": "Fire extinguisher",
+      "FIREEXTINGUISHER_DESC": "Fire safety equipment available",
+      "FIRSTAIDKIT": "First aid kit",
+      "FIRSTAIDKIT_DESC": "Medical emergency supplies",
+      "SECURITYSYSTEM": "Security system",
+      "SECURITYSYSTEM_DESC": "Alarm or security monitoring"
+    },
+
+    "PROPERTY_TYPES": {
+      "APARTMENT": "Apartment",
+      "APARTMENT_DESC": "A place within a multi-unit building",
+      "PART_APARTMENT": "Part of apartment",
+      "PART_APARTMENT_DESC": "A room or part of an apartment",
+      "WHOLE_HOUSE": "Whole house",
+      "WHOLE_HOUSE_DESC": "A standalone house",
+      "ROOM": "Room",
+      "ROOM_DESC": "A room in a house",
+      "DORMITORY": "Dormitory",
+      "DORMITORY_DESC": "A shared living space",
+      "CABIN": "Cabin",
+      "CABIN_DESC": "A small house in nature"
+    },
+
+    "BACK": "Back",
+    "NEXT": "Next",
+    "PUBLISH": "Publish"
   }
 }

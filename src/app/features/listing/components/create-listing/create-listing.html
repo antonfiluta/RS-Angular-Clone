@@ -1,0 +1,739 @@
+<div class="min-h-screen bg-white">
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-8 pb-32">
+    <!-- Step 1: Basic Information -->
+    @if (currentStep() === 1) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            {{ 'LISTING.STEP1_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-gray-600">
+            {{ 'LISTING.STEP1_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Property Type -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900">
+            {{ 'LISTING.PROPERTY_TYPE' | translate }}
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            role="radiogroup"
+            [attr.aria-labelledby]="'property-type-legend'"
+          >
+            @for (type of propertyTypes; track type.value) {
+              <button
+                (click)="selectPropertyType(type.value)"
+                [attr.aria-pressed]="step1Data().propertyType === type.value"
+                [attr.aria-describedby]="'property-' + type.value + '-desc'"
+                class="p-6 border-2 rounded-xl text-left hover:border-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500"
+                [class]="
+                  step1Data().propertyType === type.value
+                    ? 'border-gray-900 bg-gray-50'
+                    : 'border-gray-200'
+                "
+              >
+                <div class="text-3xl mb-2" aria-hidden="true">{{ type.icon }}</div>
+                <div class="font-semibold">
+                  {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() | translate }}
+                </div>
+                <div class="text-sm text-gray-600" [id]="'property-' + type.value + '-desc'">
+                  {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Address -->
+        @if (step1Data().propertyType) {
+          <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              {{ 'LISTING.LOCATION' | translate }}
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="address-country" class="block text-sm font-medium text-gray-700 mb-2">
+                  {{ 'LISTING.ADDRESS.COUNTRY' | translate }}
+                </label>
+                <input
+                  id="address-country"
+                  type="text"
+                  [value]="step1Data().address.country || ''"
+                  (input)="updateAddress('country', $event)"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.ADDRESS.COUNTRY_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'address-country-help'"
+                />
+                <div id="address-country-help" class="sr-only">
+                  {{ 'LISTING.ADDRESS.COUNTRY_HELP' | translate }}
+                </div>
+              </div>
+              <div>
+                <label for="address-city" class="block text-sm font-medium text-gray-700 mb-2">
+                  {{ 'LISTING.ADDRESS.CITY' | translate }}
+                </label>
+                <input
+                  id="address-city"
+                  type="text"
+                  [value]="step1Data().address.city || ''"
+                  (input)="updateAddress('city', $event)"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.ADDRESS.CITY_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'address-city-help'"
+                />
+                <div id="address-city-help" class="sr-only">
+                  {{ 'LISTING.ADDRESS.CITY_HELP' | translate }}
+                </div>
+              </div>
+              <div>
+                <label for="address-street" class="block text-sm font-medium text-gray-700 mb-2">
+                  {{ 'LISTING.ADDRESS.STREET' | translate }}
+                </label>
+                <input
+                  id="address-street"
+                  type="text"
+                  [value]="step1Data().address.street || ''"
+                  (input)="updateAddress('street', $event)"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.ADDRESS.STREET_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'address-street-help'"
+                />
+                <div id="address-street-help" class="sr-only">
+                  {{ 'LISTING.ADDRESS.STREET_HELP' | translate }}
+                </div>
+              </div>
+              <div>
+                <label for="address-building" class="block text-sm font-medium text-gray-700 mb-2">
+                  {{ 'LISTING.ADDRESS.BUILDING' | translate }}
+                </label>
+                <input
+                  id="address-building"
+                  type="text"
+                  [value]="step1Data().address.building || ''"
+                  (input)="updateAddress('building', $event)"
+                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.ADDRESS.BUILDING_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'address-building-help'"
+                />
+                <div id="address-building-help" class="sr-only">
+                  {{ 'LISTING.ADDRESS.BUILDING_HELP' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Capacity -->
+        @if (step1Data().address.country) {
+          <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              {{ 'LISTING.CAPACITY' | translate }}
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center">
+                <div class="font-medium text-gray-900 mb-2" id="guests-label">
+                  {{ 'LISTING.CAPACITY.GUESTS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'guests-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('maxGuests', -1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [disabled]="(step1Data().capacity.maxGuests || 0) <= 1"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_GUESTS' | translate"
+                  >
+                    -
+                  </button>
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.maxGuests || 1) +
+                      ' ' +
+                      ('LISTING.CAPACITY.GUESTS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.maxGuests || 1 }}
+                  </span>
+                  <button
+                    type="button"
+                    (click)="updateCapacity('maxGuests', 1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_GUESTS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-medium text-gray-900 mb-2" id="bedrooms-label">
+                  {{ 'LISTING.CAPACITY.BEDROOMS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'bedrooms-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bedrooms', -1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [disabled]="(step1Data().capacity.bedrooms || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDROOMS' | translate"
+                  >
+                    -
+                  </button>
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.bedrooms || 0) +
+                      ' ' +
+                      ('LISTING.CAPACITY.BEDROOMS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.bedrooms || 0 }}
+                  </span>
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bedrooms', 1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDROOMS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-medium text-gray-900 mb-2" id="beds-label">
+                  {{ 'LISTING.CAPACITY.BEDS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'beds-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('beds', -1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [disabled]="(step1Data().capacity.beds || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDS' | translate"
+                  >
+                    -
+                  </button>
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.beds || 0) + ' ' + ('LISTING.CAPACITY.BEDS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.beds || 0 }}
+                  </span>
+                  <button
+                    type="button"
+                    (click)="updateCapacity('beds', 1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="font-medium text-gray-900 mb-2" id="bathrooms-label">
+                  {{ 'LISTING.CAPACITY.BATHROOMS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'bathrooms-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bathrooms', -1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [disabled]="(step1Data().capacity.bathrooms || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BATHROOMS' | translate"
+                  >
+                    -
+                  </button>
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.bathrooms || 0) +
+                      ' ' +
+                      ('LISTING.CAPACITY.BATHROOMS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.bathrooms || 0 }}
+                  </span>
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bathrooms', 1)"
+                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BATHROOMS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Step 2: Features & Amenities -->
+    @if (currentStep() === 2) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            {{ 'LISTING.STEP2_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-gray-600">
+            {{ 'LISTING.STEP2_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Basic Amenities -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900" id="basic-amenities-legend">
+            {{ 'LISTING.AMENITIES_BASIC' | translate }}
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'basic-amenities-legend'"
+          >
+            @for (amenity of basicAmenities; track amenity.key) {
+              <label
+                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
+                [class.border-gray-900]="getBasicAmenity(amenity.key)"
+                [class.bg-gray-50]="getBasicAmenity(amenity.key)"
+              >
+                <input
+                  type="checkbox"
+                  [id]="'basic-amenity-' + amenity.key"
+                  [checked]="getBasicAmenity(amenity.key)"
+                  (change)="toggleBasicAmenity(amenity.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'basic-amenity-' + amenity.key + '-desc'"
+                />
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3" aria-hidden="true">{{ amenity.icon }}</span>
+                  <span class="font-medium">{{
+                    'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
+                  }}</span>
+                  @if (getBasicAmenity(amenity.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-gray-900"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+                <div [id]="'basic-amenity-' + amenity.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+
+        <!-- Luxury Amenities -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900" id="luxury-amenities-legend">
+            {{ 'LISTING.AMENITIES_LUXURY' | translate }}
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'luxury-amenities-legend'"
+          >
+            @for (amenity of luxuryAmenities; track amenity.key) {
+              <label
+                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
+                [class.border-gray-900]="getLuxuryAmenity(amenity.key)"
+                [class.bg-gray-50]="getLuxuryAmenity(amenity.key)"
+              >
+                <input
+                  type="checkbox"
+                  [id]="'luxury-amenity-' + amenity.key"
+                  [checked]="getLuxuryAmenity(amenity.key)"
+                  (change)="toggleLuxuryAmenity(amenity.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'luxury-amenity-' + amenity.key + '-desc'"
+                />
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3" aria-hidden="true">{{ amenity.icon }}</span>
+                  <span class="font-medium">{{
+                    'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
+                  }}</span>
+                  @if (getLuxuryAmenity(amenity.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-gray-900"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+                <div [id]="'luxury-amenity-' + amenity.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+
+        <!-- Safety Features -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900" id="safety-features-legend">
+            {{ 'LISTING.SAFETY_FEATURES' | translate }}
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'safety-features-legend'"
+          >
+            @for (safety of safetyItems; track safety.key) {
+              <label
+                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
+                [class.border-gray-900]="getSafetyFeature(safety.key)"
+                [class.bg-gray-50]="getSafetyFeature(safety.key)"
+              >
+                <input
+                  type="checkbox"
+                  [id]="'safety-feature-' + safety.key"
+                  [checked]="getSafetyFeature(safety.key)"
+                  (change)="toggleSafetyFeature(safety.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'safety-feature-' + safety.key + '-desc'"
+                />
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3" aria-hidden="true">{{ safety.icon }}</span>
+                  <span class="font-medium">{{
+                    'LISTING.SAFETY.' + safety.key.toUpperCase() | translate
+                  }}</span>
+                  @if (getSafetyFeature(safety.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-gray-900"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+                <div [id]="'safety-feature-' + safety.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.SAFETY.' + safety.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Step 3: Details & Pricing -->
+    @if (currentStep() === 3) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            {{ 'LISTING.STEP3_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-gray-600">
+            {{ 'LISTING.STEP3_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Title & Description -->
+        <div class="space-y-6">
+          <div>
+            <label for="listing-title" class="block text-2xl font-semibold text-gray-900 mb-4">
+              {{ 'LISTING.TITLE_LABEL' | translate }}
+            </label>
+            <input
+              id="listing-title"
+              type="text"
+              [value]="step3Data().title"
+              (input)="updateStep3('title', $event)"
+              maxlength="25"
+              class="w-full p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+              [placeholder]="'LISTING.TITLE_PLACEHOLDER' | translate"
+              [attr.aria-describedby]="'listing-title-help listing-title-count'"
+            />
+            <div id="listing-title-help" class="sr-only">
+              {{ 'LISTING.TITLE_HELP' | translate }}
+            </div>
+            <div id="listing-title-count" class="text-sm text-gray-500 mt-2">
+              {{ step3Data().title.length }}/25 {{ 'LISTING.CHARACTERS' | translate }}
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="listing-description"
+              class="block text-2xl font-semibold text-gray-900 mb-4"
+            >
+              {{ 'LISTING.DESCRIPTION_LABEL' | translate }}
+            </label>
+            <textarea
+              id="listing-description"
+              [value]="step3Data().description"
+              (input)="updateStep3('description', $event)"
+              maxlength="500"
+              rows="6"
+              class="w-full p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+              [placeholder]="'LISTING.DESCRIPTION_PLACEHOLDER' | translate"
+              [attr.aria-describedby]="'listing-description-help listing-description-count'"
+            ></textarea>
+            <div id="listing-description-help" class="sr-only">
+              {{ 'LISTING.DESCRIPTION_HELP' | translate }}
+            </div>
+            <div id="listing-description-count" class="text-sm text-gray-500 mt-2">
+              {{ step3Data().description.length }}/500 {{ 'LISTING.CHARACTERS' | translate }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Photos -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900" id="photos-legend">
+            {{ 'LISTING.PHOTOS_LABEL' | translate }}
+          </h2>
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-4"
+            [attr.aria-labelledby]="'photos-legend'"
+          >
+            @for (photo of step3Data().photos; track photo.id; let i = $index) {
+              <div
+                class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden"
+                [attr.aria-label]="('LISTING.PHOTO_INDEX' | translate) + ' ' + (i + 1)"
+              >
+                <img
+                  [src]="photo.url"
+                  [alt]="('LISTING.PHOTO_ALT' | translate) + ' ' + (i + 1)"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  (click)="removePhoto(i)"
+                  class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  [attr.aria-label]="('LISTING.REMOVE_PHOTO' | translate) + ' ' + (i + 1)"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            }
+            <label
+              for="photo-upload"
+              class="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 focus-within:ring-2 focus-within:ring-rose-500"
+            >
+              <svg
+                class="w-12 h-12 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              <span class="text-gray-600 text-sm mt-2">{{ 'LISTING.ADD_PHOTO' | translate }}</span>
+              <input
+                id="photo-upload"
+                type="file"
+                accept="image/*"
+                (change)="addPhoto($event)"
+                class="sr-only"
+                [attr.aria-describedby]="'photo-upload-help'"
+              />
+              <div id="photo-upload-help" class="sr-only">
+                {{ 'LISTING.PHOTO_UPLOAD_HELP' | translate }}
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-gray-900">
+            {{ 'LISTING.PRICING_LABEL' | translate }}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="weekday-price" class="block text-lg font-medium text-gray-700 mb-2">
+                {{ 'LISTING.PRICING.WEEKDAY' | translate }}
+              </label>
+              <div class="relative">
+                <span class="absolute left-3 top-4 text-gray-500" aria-hidden="true">€</span>
+                <input
+                  id="weekday-price"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  [value]="step3Data().pricing.weekdayPrice || ''"
+                  (input)="updatePricing('weekdayPrice', $event)"
+                  class="w-full pl-8 pr-4 py-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.PRICING.WEEKDAY_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'weekday-price-help'"
+                />
+                <div id="weekday-price-help" class="sr-only">
+                  {{ 'LISTING.PRICING.WEEKDAY_HELP' | translate }}
+                </div>
+              </div>
+            </div>
+            <div>
+              <label for="weekend-price" class="block text-lg font-medium text-gray-700 mb-2">
+                {{ 'LISTING.PRICING.WEEKEND' | translate }}
+              </label>
+              <div class="relative">
+                <span class="absolute left-3 top-4 text-gray-500" aria-hidden="true">€</span>
+                <input
+                  id="weekend-price"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  [value]="step3Data().pricing.weekendPrice || ''"
+                  (input)="updatePricing('weekendPrice', $event)"
+                  class="w-full pl-8 pr-4 py-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  [placeholder]="'LISTING.PRICING.WEEKEND_PLACEHOLDER' | translate"
+                  [attr.aria-describedby]="'weekend-price-help'"
+                />
+                <div id="weekend-price-help" class="sr-only">
+                  {{ 'LISTING.PRICING.WEEKEND_HELP' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </main>
+
+  <!-- Progress Bar and Navigation Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+    <!-- Progress Bar -->
+    <div class="max-w-4xl mx-auto px-6 py-2">
+      <div class="flex items-center">
+        <div class="flex items-center text-sm font-medium text-gray-900 w-full">
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [class]="currentStep() >= 1 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+            >
+              1
+            </span>
+            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP1_PROGRESS' | translate }}</span>
+          </span>
+          <div
+            class="flex-1 h-px mx-4"
+            [class]="currentStep() >= 2 ? 'bg-gray-900' : 'bg-gray-200'"
+          ></div>
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [class]="currentStep() >= 2 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+            >
+              2
+            </span>
+            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP2_PROGRESS' | translate }}</span>
+          </span>
+          <div
+            class="flex-1 h-px mx-4"
+            [class]="currentStep() >= 3 ? 'bg-gray-900' : 'bg-gray-200'"
+          ></div>
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [class]="currentStep() >= 3 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+            >
+              3
+            </span>
+            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP3_PROGRESS' | translate }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      @if (currentStep() > 1) {
+        <button
+          type="button"
+          (click)="previousStep()"
+          class="px-6 py-3 text-gray-700 font-semibold hover:bg-gray-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        >
+          {{ 'LISTING.BACK' | translate }}
+        </button>
+      } @else {
+        <div></div>
+      }
+
+      <div class="flex items-center space-x-4">
+        @if (currentStep() < 3) {
+          <button
+            type="button"
+            (click)="nextStep()"
+            [disabled]="!canProceed()"
+            class="px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            {{ 'LISTING.NEXT' | translate }}
+          </button>
+        }
+        @if (currentStep() === 3) {
+          <button
+            type="button"
+            (click)="saveListing()"
+            [disabled]="!canSave()"
+            class="px-8 py-3 bg-rose-500 text-white font-semibold rounded-lg hover:bg-rose-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500"
+          >
+            {{ 'LISTING.PUBLISH' | translate }}
+          </button>
+        }
+      </div>
+    </div>
+  </footer>
+</div>

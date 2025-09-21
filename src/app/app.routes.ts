@@ -41,9 +41,9 @@ export const routes: Routes = [
     loadComponent: () => import('./core/pages/booking/booking').then((c) => c.Booking),
   },
   {
-    path: 'hosting',
-    title: 'Hosting',
-    loadComponent: () => import('./core/pages/hosting/hosting').then((c) => c.Hosting),
+    path: 'listing',
+    title: 'Listing',
+    loadComponent: () => import('./core/pages/listing/listing').then((c) => c.Listing),
   },
   {
     path: 'offers',
