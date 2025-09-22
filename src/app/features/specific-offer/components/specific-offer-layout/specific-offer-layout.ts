@@ -12,10 +12,11 @@ import {
   SafetyFeatures,
 } from '../../../offers-overview/models/offers-overview.models';
 import { AddressFormatPipe } from '../../../../shared/pipes/address-format-pipe/address-format-pipe-pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-specific-offer-layout',
-  imports: [PhraseSlider, LinkSaver, AddressFormatPipe],
+  imports: [PhraseSlider, LinkSaver, AddressFormatPipe, TranslateModule],
   templateUrl: './specific-offer-layout.html',
   styleUrl: './specific-offer-layout.scss',
 })

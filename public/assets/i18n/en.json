@@ -63,7 +63,17 @@
     "EMPTY": "No offers available",
     "POPULAR": "Popular homes in",
     "TERM": "for 2 days",
-    "FAVORITE": "Guest favorite"
+    "FAVORITE": "Guest favorite",
+    "PLACE_OFFERS": "What this place offers",
+    "ACCESSIBILITY": "Accessibility",
+    "AMENITIES": "Amenities",
+    "PROPERTY_TYPE": "Property type",
+    "SAFETY_FEATURES": "Safety features",
+    "BOOKING": "Booking",
+    "LOCATION": "Location",
+    "YOU_WONT_BE_CHARGED_YET": "You won't be charged yet",
+    "RESERVE": "Reserve",
+    "REVIEWS": "reviews"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "{city} has {count} offers for you",
