@@ -16,6 +16,7 @@ import { AppReducer } from './core/store';
 import { OffersOverviewEffects } from './features/offers-overview/store/offers-overview.effects';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AuthEffects } from './features/auth/store/auth.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
     provideStore({ ...AppReducer }),
-    provideEffects(OffersOverviewEffects),
+    provideEffects(OffersOverviewEffects, AuthEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),
     provideHttpClient(withInterceptors([])),

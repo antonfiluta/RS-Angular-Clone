@@ -5,3 +5,9 @@ export interface PhraseSliderModal {
   title2: string;
   fillIcon?: string;
 }
+
+export interface Language {
+  code: string;
+  name: string;
+  flag: string;
+}

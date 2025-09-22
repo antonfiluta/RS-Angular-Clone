@@ -50,9 +50,12 @@
     "UNKNOWN": "Unknown error"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Personal Information",
-    "AUTHENTICATION": "Login or sign up",
-    "HOST_MODE": "Host mode"
+    "PERSONAL_INFORMATION": "Personal Info",
+    "AUTHENTICATION": "Authantication",
+    "HOST_MODE": "Host mode",
+    "LOGOUT": "Logout",
+    "ABOUT": "About",
+    "SEARCH": "Search"
   },
   "FORM": {
     "NOT_PROVIDED": "Not provided",

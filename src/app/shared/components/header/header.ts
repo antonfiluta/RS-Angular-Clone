@@ -2,12 +2,10 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
-interface Language {
-  code: string;
-  name: string;
-  flag: string;
-}
+import { Language } from '../../models/shared.models';
+import { Store } from '@ngrx/store';
+import { selectIsAuthanticated } from '../../../features/auth/store/auth.selector';
+import { AuthActions } from '../../../features/auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +14,16 @@ interface Language {
   styleUrl: './header.scss',
 })
 export class Header {
-  menuOpen = false;
-  languageMenuOpen = false;
-  currentLanguage = 'en';
+  private readonly translate = inject(TranslateService);
+  private readonly store = inject(Store);
 
-  private translate = inject(TranslateService);
+  public readonly isAuth = this.store.selectSignal(selectIsAuthanticated);
 
-  languages: Language[] = [
+  public menuOpen = false;
+  public languageMenuOpen = false;
+  public currentLanguage = 'en';
+
+  public languages: Language[] = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
     { code: 'ru', name: 'Русский', flag: '🇷🇺' },
@@ -30,32 +31,37 @@ export class Header {
     { code: 'by', name: 'Беларуская', flag: '🇧🇾' },
   ];
 
-  constructor() {
-    this.currentLanguage = this.translate.getCurrentLang() || 'en';
-  }
-
-  toggleMenu() {
+  public toggleMenu() {
     this.menuOpen = !this.menuOpen;
     if (this.menuOpen) {
       this.languageMenuOpen = false;
     }
   }
 
-  toggleLanguageMenu() {
+  public toggleLanguageMenu() {
     this.languageMenuOpen = !this.languageMenuOpen;
     if (this.languageMenuOpen) {
       this.menuOpen = false;
     }
   }
 
-  closeAllMenus() {
+  public closeAllMenus() {
     this.menuOpen = false;
     this.languageMenuOpen = false;
   }
 
-  selectLanguage(langCode: string) {
+  public selectLanguage(langCode: string) {
     this.currentLanguage = langCode;
     this.translate.use(langCode);
     this.closeAllMenus();
+  }
+
+  public logout() {
+    this.store.dispatch(AuthActions.logoutUser());
+    this.closeAllMenus();
+  }
+
+  constructor() {
+    this.currentLanguage = this.translate.getCurrentLang() || 'en';
   }
 }

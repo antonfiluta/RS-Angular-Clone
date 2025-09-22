@@ -50,9 +50,12 @@
     "UNKNOWN": "Невядомая памылка"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Асабістая інфармацыя",
-    "AUTHENTICATION": "Увайсці або зарэгістравацца",
-    "HOST_MODE": "Рэжым хаста"
+    "PERSONAL_INFORMATION": "Аба мне",
+    "AUTHENTICATION": "Уваход",
+    "HOST_MODE": "Рэжым хаста",
+    "LOGOUT": "Выхад",
+    "ABOUT": "Аб Нас",
+    "SEARCH": "Пошук"
   },
   "FORM": {
     "NOT_PROVIDED": "Не пададзена",

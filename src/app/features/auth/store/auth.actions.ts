@@ -6,12 +6,12 @@ export const AuthActions = createActionGroup({
   source: 'Auth',
   events: {
     'Login User': props<{ credentials: LoginCredentials }>(),
-    'Login User Success': props<{ token: string }>(),
     'Login User Failure': props<{ error: HttpErrorResponse }>(),
 
     'Register User': props<{ credentials: SignUpCredentials }>(),
-    'Register User Success': props<{ token: string }>(),
     'Register User Failure': props<{ error: HttpErrorResponse }>(),
+
+    'Auth Success': props<{ token: string }>(),
 
     'Logout User': emptyProps,
     'Init User Session': props<{ token: string }>(),
