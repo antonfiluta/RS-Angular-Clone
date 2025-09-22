@@ -3,7 +3,13 @@ import { Store } from '@ngrx/store';
 import { selectSpecificOffer } from '../../../offers-overview/store/offers-overview.selector';
 import { OffersOverviewActions } from '../../../offers-overview/store/offers-overview.actions';
 import { PhraseSlider } from '../../../../shared/ui/phrase-slider/phrase-slider';
-import { likeButtonContent } from '../../utils/content';
+import {
+  accessibilityLabels,
+  amenityLabels,
+  likeButtonContent,
+  propertyTypeLabels,
+  safetyFeatureLabels,
+} from '../../utils/content';
 import { LinkSaver } from '../../../../shared/ui/link-saver/link-saver';
 import {
   AccessibleEnvironment,
@@ -34,15 +40,6 @@ export class SpecificOfferLayout {
     const amenities = this.offer().amenities;
     const result: string[] = [];
 
-    const amenityLabels = {
-      pool: 'Swimming pool',
-      piano: 'Piano',
-      beachAccess: 'Beach access',
-      gym: 'Gym',
-      billiards: 'Billiards table',
-      grill: 'Barbecue grill',
-    };
-
     for (const key in amenities) {
       const amenityKey = key as keyof Amenities;
       if (amenities[amenityKey]) {
@@ -56,15 +53,6 @@ export class SpecificOfferLayout {
   protected accessibilityList = computed(() => {
     const accessibilities = this.offer().accessibleEnvironment;
     const result: string[] = [];
-
-    const accessibilityLabels = {
-      wifi: 'Wi-Fi Connection',
-      tv: 'Television',
-      kitchen: 'Kitchen',
-      washer: 'Washer',
-      airConditioning: 'Air Conditioning',
-      parking: 'Parking',
-    };
 
     for (const key in accessibilities) {
       const accessibilityKey = key as keyof AccessibleEnvironment;
@@ -80,13 +68,6 @@ export class SpecificOfferLayout {
     const safetyFeatures = this.offer().safetyFeatures;
     const result: string[] = [];
 
-    const safetyFeatureLabels = {
-      fireExtinguisher: 'Fire extinguisher',
-      firstAidKit: 'First aid kit',
-      securitySystem: 'Security system',
-      smokeDetector: 'Smoke detector',
-    };
-
     for (const key in safetyFeatures) {
       const safetyFeatureKey = key as keyof SafetyFeatures;
       if (safetyFeatures[safetyFeatureKey]) {
@@ -99,6 +80,7 @@ export class SpecificOfferLayout {
 
   protected capacityItems = computed(() => {
     const capacity = this.offer().capacity;
+
     return [
       {
         key: 'guests',
@@ -128,15 +110,7 @@ export class SpecificOfferLayout {
   });
 
   protected getPropertyTypeLabel(type: PropertyType): string {
-    const labels = {
-      apartment: 'Entire apartment',
-      part_apartment: 'Part of apartment',
-      whole_house: 'Entire house',
-      room: 'Private room',
-      dormitory: 'Dormitory room',
-      cabin: 'Entire cabin',
-    };
-    return labels[type];
+    return propertyTypeLabels[type];
   }
 
   protected saveOffer() {

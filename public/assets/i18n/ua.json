@@ -64,16 +64,16 @@
     "POPULAR": "Популярні домівки в",
     "TERM": "за 2 дні",
     "FAVORITE": "Гостя вподобали",
-    "PLACE_OFFERS": "Чо гэты апартамент выкачае",
-    "ACCESSIBILITY": "Доступнасць",
-    "AMENITIES": "Амʼеніті",
+    "PLACE_OFFERS": "Чо гэты апартамент викачае",
+    "ACCESSIBILITY": "Доступність",
+    "AMENITIES": "Удобства",
     "PROPERTY_TYPE": "Тып апартамента",
     "SAFETY_FEATURES": "Безпека",
     "BOOKING": "Бронювання",
     "LOCATION": "Локацыя",
-    "YOU_WONT_BE_CHARGED_YET": "Вы не будзеце будзеце змяніць цenu за апартамент",
-    "RESERVE": "Бронювання",
-    "REVIEWS": "Ревю"
+    "YOU_WONT_BE_CHARGED_YET": "Не абавязакова аплачваць зараз",
+    "RESERVE": "Забраніраваць",
+    "REVIEWS": "Агляды"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "У {city} {count} дамоу",

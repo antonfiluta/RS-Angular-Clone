@@ -12,3 +12,37 @@ export const likeButtonContent = {
   title2: 'Saved',
   fillIcon: 'red-600',
 };
+
+export const amenityLabels = {
+  pool: 'Swimming pool',
+  piano: 'Piano',
+  beachAccess: 'Beach access',
+  gym: 'Gym',
+  billiards: 'Billiards table',
+  grill: 'Barbecue grill',
+};
+
+export const accessibilityLabels = {
+  wifi: 'Wi-Fi Connection',
+  tv: 'Television',
+  kitchen: 'Kitchen',
+  washer: 'Washer',
+  airConditioning: 'Air Conditioning',
+  parking: 'Parking',
+};
+
+export const safetyFeatureLabels = {
+  fireExtinguisher: 'Fire extinguisher',
+  firstAidKit: 'First aid kit',
+  securitySystem: 'Security system',
+  smokeDetector: 'Smoke detector',
+};
+
+export const propertyTypeLabels = {
+  apartment: 'Entire apartment',
+  part_apartment: 'Part of apartment',
+  whole_house: 'Entire house',
+  room: 'Private room',
+  dormitory: 'Dormitory room',
+  cabin: 'Entire cabin',
+};

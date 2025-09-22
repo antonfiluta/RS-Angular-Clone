@@ -59,21 +59,22 @@
     "SAVE": "Захаваць",
     "CANCEL": "Скасаваць"
   },
+
   "OFFERS": {
-    "EMPTY": "Няма доступных дамоу",
-    "POPULAR": "Популярныя дамы у",
-    "TERM": "за 2 дні",
-    "FAVORITE": "Гасцям спадабаецца",
-    "PLACE_OFFERS": "Чо гэты апартамент выкачае",
-    "ACCESSIBILITY": "Доступнасць",
-    "AMENITIES": "Амʼеніті",
-    "PROPERTY_TYPE": "Тып апартамента",
-    "SAFETY_FEATURES": "Безпека",
-    "BOOKING": "Бронювання",
-    "LOCATION": "Локацыя",
-    "YOU_WONT_BE_CHARGED_YET": "Вы не будзеце будзеце змяніць цenu за апартамент",
-    "RESERVE": "Бронювання",
-    "REVIEWS": "рэвю"
+    "EMPTY": "Няма даступных прапаноў",
+    "POPULAR": "Папулярныя прапановы ў",
+    "TERM": "на 2 дні",
+    "FAVORITE": "Спадабалася гасцям",
+    "PLACE_OFFERS": "Што прапануе гэты аб'ект",
+    "ACCESSIBILITY": "Даступнасць",
+    "AMENITIES": "Зручнасці",
+    "PROPERTY_TYPE": "Тып нерухомасці",
+    "SAFETY_FEATURES": "Бяспека",
+    "BOOKING": "Браніраванне",
+    "LOCATION": "Размяшчэнне",
+    "YOU_WONT_BE_CHARGED_YET": "Вас не абавязакова аплачваць зараз",
+    "RESERVE": "Забраніраваць",
+    "REVIEWS": "Агляды"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "У {city} {count} дамоу",
