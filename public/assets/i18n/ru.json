@@ -63,7 +63,17 @@
     "EMPTY": "Нет доступных предложений",
     "POPULAR": "Популярные дома в",
     "TERM": "за 2 дня",
-    "FAVORITE": "Популярно у гостей"
+    "FAVORITE": "Популярно у гостей",
+    "PLACE_OFFERS": "Чо гэты апартамент выкачае",
+    "ACCESSIBILITY": "Доступность",
+    "AMENITIES": "Удобства",
+    "PROPERTY_TYPE": "Тип недвижимости",
+    "SAFETY_FEATURES": "Безопасность",
+    "BOOKING": "Бронирование",
+    "LOCATION": "Локация",
+    "YOU_WONT_BE_CHARGED_YET": "Вы не будете оплачивать пока не забронируете",
+    "RESERVE": "Бронирование",
+    "REVIEWS": "Отзывы"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "В {city} {count} дамов",

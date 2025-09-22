@@ -1,55 +1,125 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectSpecificOffer } from '../../../offers-overview/store/offers-overview.selector';
 import { OffersOverviewActions } from '../../../offers-overview/store/offers-overview.actions';
 import { PhraseSlider } from '../../../../shared/ui/phrase-slider/phrase-slider';
+import {
+  accessibilityLabels,
+  amenityLabels,
+  likeButtonContent,
+  propertyTypeLabels,
+  safetyFeatureLabels,
+} from '../../utils/content';
+import { LinkSaver } from '../../../../shared/ui/link-saver/link-saver';
+import {
+  AccessibleEnvironment,
+  Amenities,
+  PropertyType,
+  SafetyFeatures,
+} from '../../../offers-overview/models/offers-overview.models';
+import { AddressFormatPipe } from '../../../../shared/pipes/address-format-pipe/address-format-pipe-pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-specific-offer-layout',
-  imports: [PhraseSlider],
+  imports: [PhraseSlider, LinkSaver, AddressFormatPipe, TranslateModule],
   templateUrl: './specific-offer-layout.html',
   styleUrl: './specific-offer-layout.scss',
 })
-export class SpecificOfferLayout implements OnInit {
-  private readonly store = inject(Store);
+export class SpecificOfferLayout {
+  @Input() cityId = '';
+  @Input() offerId = '';
 
+  private readonly store = inject(Store);
   public readonly offer = this.store.selectSignal(selectSpecificOffer);
 
-  public offerData = {
-    name: computed(() => this.offer()?.name ?? 'undefind'),
-    isLiked: computed(() => this.offer()?.isLiked ?? false),
-    img: computed(() => this.offer()?.img ?? ''),
-  };
+  protected likeButtonContent = likeButtonContent;
+  protected reviewsAmount = Math.round(Math.random() * 1000);
 
-  shareButtonContent = {
-    icon1: 'pi pi-share-alt',
-    icon2: 'pi pi-check-square',
-    title1: 'Share',
-    title2: 'Copied',
-  };
+  protected amenitiesList = computed(() => {
+    const amenities = this.offer().amenities;
+    const result: string[] = [];
 
-  likeButtonContent = {
-    icon1: 'pi pi-heart',
-    icon2: 'pi pi-heart-fill',
-    title1: 'Save',
-    title2: 'Saved',
-    fillIcon: 'red-600',
-  };
-  public fullUrl = '';
-  public isLinkSaved = false;
+    for (const key in amenities) {
+      const amenityKey = key as keyof Amenities;
+      if (amenities[amenityKey]) {
+        result.push(amenityLabels[amenityKey]);
+      }
+    }
 
-  public copyLink(): void {
-    navigator.clipboard.writeText(this.fullUrl);
-    this.isLinkSaved = true;
+    return result;
+  });
+
+  protected accessibilityList = computed(() => {
+    const accessibilities = this.offer().accessibleEnvironment;
+    const result: string[] = [];
+
+    for (const key in accessibilities) {
+      const accessibilityKey = key as keyof AccessibleEnvironment;
+      if (accessibilities[accessibilityKey]) {
+        result.push(accessibilityLabels[accessibilityKey]);
+      }
+    }
+
+    return result;
+  });
+
+  protected safetyFeaturesList = computed(() => {
+    const safetyFeatures = this.offer().safetyFeatures;
+    const result: string[] = [];
+
+    for (const key in safetyFeatures) {
+      const safetyFeatureKey = key as keyof SafetyFeatures;
+      if (safetyFeatures[safetyFeatureKey]) {
+        result.push(safetyFeatureLabels[safetyFeatureKey]);
+      }
+    }
+
+    return result;
+  });
+
+  protected capacityItems = computed(() => {
+    const capacity = this.offer().capacity;
+
+    return [
+      {
+        key: 'guests',
+        icon: 'pi pi-users',
+        value: capacity.maxGuests,
+        label: capacity.maxGuests === 1 ? 'guest' : 'guests',
+      },
+      {
+        key: 'bedrooms',
+        icon: 'pi pi-address-book',
+        value: capacity.bedrooms,
+        label: capacity.bedrooms === 1 ? 'bedroom' : 'bedrooms',
+      },
+      {
+        key: 'beds',
+        icon: 'pi pi-inbox',
+        value: capacity.beds,
+        label: capacity.beds === 1 ? 'bed' : 'beds',
+      },
+      {
+        key: 'bathrooms',
+        icon: 'pi pi-lock',
+        value: capacity.bathrooms,
+        label: capacity.bathrooms === 1 ? 'bathroom' : 'bathrooms',
+      },
+    ];
+  });
+
+  protected getPropertyTypeLabel(type: PropertyType): string {
+    return propertyTypeLabels[type];
   }
 
-  public saveOffer(): void {
+  protected saveOffer() {
     this.store.dispatch(
-      OffersOverviewActions.toggleOfferLike({ isLiked: !this.offerData.isLiked() }),
+      OffersOverviewActions.toggleOfferLike({
+        cityId: this.cityId,
+        offerId: this.offerId,
+        isLiked: true,
+      }),
     );
-  }
-
-  ngOnInit(): void {
-    this.fullUrl = window.location.href;
   }
 }

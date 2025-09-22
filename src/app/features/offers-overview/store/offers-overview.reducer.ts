@@ -18,5 +18,9 @@ export const OffersOverviewFeature = createFeature({
       ...state,
       specificOffer: offer,
     })),
+    on(OffersOverviewActions.toggleOfferLikeSuccess, (state, { offer }) => ({
+      ...state,
+      specificOffer: offer,
+    })),
   ),
 });

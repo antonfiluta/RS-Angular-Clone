@@ -63,7 +63,17 @@
     "EMPTY": "Keine Angebote verfügbar",
     "POPULAR": "Beliebtehäuser in",
     "TERM": "für 2 Tage",
-    "FAVORITE": "Gastfavorit"
+    "FAVORITE": "Gastfavorit",
+    "PLACE_OFFERS": "Was bietet dieser Platz?",
+    "ACCESSIBILITY": "Zugänglichkeit",
+    "AMENITIES": "Annehmlichkeiten",
+    "PROPERTY_TYPE": "Eigenschaftstyp",
+    "SAFETY_FEATURES": "Sicherheitsfunktionen",
+    "BOOKING": "Buchung",
+    "LOCATION": "Ort",
+    "YOU_WONT_BE_CHARGED_YET": "Du wirst noch nicht für diesen Platz bezahlt",
+    "RESERVE": "Buchen",
+    "REVIEWS": "Bewertungen"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "In {city} gibt es {count} Angebote für dich",

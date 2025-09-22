@@ -1,6 +1,5 @@
 import { Component, computed, inject, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TemplatePipe } from '../../../../shared/pipes/template-pipe';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SpecificCityCard } from '../specific-city-card/specific-city-card';
 import { RouterLink } from '@angular/router';
@@ -9,6 +8,7 @@ import {
   selectCityName,
   selectSpecificCityOffers,
 } from '../../../offers-overview/store/offers-overview.selector';
+import { TemplatePipe } from '../../../../shared/pipes/template-pipe/template-pipe';
 
 @Component({
   selector: 'app-specific-city-layout',

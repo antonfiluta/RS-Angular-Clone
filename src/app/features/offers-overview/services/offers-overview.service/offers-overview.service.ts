@@ -21,10 +21,10 @@ export class OffersOverviewService {
   // return this.http.get<OffersOverviewModel>(url);
   // }
 
-  public getSpecificCityOffers(cityID: string) {
+  public getSpecificCityOffers(cityId: string) {
     return of(null).pipe(
       map(() => {
-        const city = sampleData.cities.find((city) => city.name === cityID);
+        const city = sampleData.cities.find((city) => city.name === cityId);
         return {
           name: city?.name ?? '',
           offers: city?.offers ?? [],
@@ -32,28 +32,50 @@ export class OffersOverviewService {
       }),
     );
   }
-  // public getSpecificCityOffers(cityID: string) {
-  //   const url = `/offers/${cityID}`;
+  // public getSpecificCityOffers(cityId: string) {
+  //   const url = `/offers/${cityId}`;
 
   //   return this.http.get<SpecificCityState>(url);
   // }
 
-  public getSpecificOffer(cityID: string, offerID: string) {
+  public getSpecificOffer(cityId: string, offerId: string) {
     return of(null).pipe(
       map(() => {
-        const city = sampleData.cities.find((city) => city.name === cityID);
+        const city = sampleData.cities.find((city) => city.name === cityId);
         if (!city) throw new Error('City not found');
 
-        const offer = city.offers.find((offer) => offer.id === offerID);
+        const offer = city.offers.find((offer) => offer.id === offerId);
         if (!offer) throw new Error('Offer not found');
 
         return offer;
       }),
     );
   }
-  // public getSpecificOffer(cityID: string, offerID: string) {
-  //   const url = `/offers/${cityID}/${offerID}`;
+  // public getSpecificOffer(cityId: string, offerId: string) {
+  //   const url = `/offers/${cityId}/${offerId}`;
 
   //   return this.http.get<SpecificCityState>(url);
+  // }
+
+  public toggleOfferLike(cityId: string, offerId: string, isLiked: boolean) {
+    return of(null).pipe(
+      map(() => {
+        const city = sampleData.cities.find((city) => city.name === cityId);
+        if (!city) throw new Error('City not found');
+
+        const offer = city.offers.find((offer) => offer.id === offerId);
+        if (!offer) throw new Error('Offer not found');
+
+        return {
+          ...offer,
+          isLiked,
+        };
+      }),
+    );
+  }
+  // public toggleOfferLike(cityId: string, offerId: string, isLiked: boolean) {
+  //   const url = `/offers/${cityId}/${offerId}/isLiked`;
+
+  //   return this.http.post<SpecificCityState>(url, { isLiked });
   // }
 }

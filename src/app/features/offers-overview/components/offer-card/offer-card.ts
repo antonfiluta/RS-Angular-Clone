@@ -12,10 +12,10 @@ export class OfferCard {
   public readonly offer = input.required<OfferModel>();
 
   public readonly offerId = computed(() => this.offer().id);
-  public readonly offerName = computed(() => this.offer().name);
-  public readonly offerCost = computed(() => this.offer().cost);
-  public readonly offerRate = computed(() => this.offer().rate);
-  public readonly offerImg = computed(() => this.offer().img);
+  public readonly offerName = computed(() => this.offer().title);
+  public readonly offerCost = computed(() => this.offer().pricing.weekdayPrice);
+  public readonly offerRate = computed(() => this.offer().averageRating);
+  public readonly offerImg = computed(() => this.offer().photos?.[0] ?? '');
   public readonly isFavorite = computed(() => this.offer().isFavorite);
-  public readonly isLiked = computed(() => this.offer().isLiked);
+  public readonly isLiked = computed(() => false);
 }
