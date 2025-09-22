@@ -11,6 +11,12 @@ import {
   PropertyType,
   SafetyFeatures,
 } from '../../../../shared/utils/apartments.models';
+import {
+  PROPERTY_TYPES,
+  BASIC_AMENITIES,
+  LUXURY_AMENITIES,
+  SAFETY_ITEMS,
+} from '../../config/listing-config';
 import { Step1Data, Step2Data, Step3Data } from '../../models/create-listing.model';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -21,6 +27,11 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './create-listing.scss',
 })
 export class CreateListing {
+  propertyTypes = PROPERTY_TYPES;
+  basicAmenities = BASIC_AMENITIES;
+  luxuryAmenities = LUXURY_AMENITIES;
+  safetyItems = SAFETY_ITEMS;
+
   // Signals for step management
   currentStep = signal<number>(1);
 
@@ -43,67 +54,6 @@ export class CreateListing {
     photos: [],
     pricing: {},
   });
-
-  // Property types configuration
-  propertyTypes = [
-    {
-      value: 'apartment' as PropertyType,
-      icon: '🏢',
-      label: 'Apartment',
-      description: 'A place within a multi-unit building',
-    },
-    {
-      value: 'part_apartment' as PropertyType,
-      icon: '🏠',
-      label: 'Part of apartment',
-      description: 'A room or part of an apartment',
-    },
-    {
-      value: 'whole_house' as PropertyType,
-      icon: '🏡',
-      label: 'Whole house',
-      description: 'A standalone house',
-    },
-    { value: 'room' as PropertyType, icon: '🚪', label: 'Room', description: 'A room in a house' },
-    {
-      value: 'dormitory' as PropertyType,
-      icon: '🏫',
-      label: 'Dormitory',
-      description: 'A shared living space',
-    },
-    {
-      value: 'cabin' as PropertyType,
-      icon: '🛖',
-      label: 'Cabin',
-      description: 'A small house in nature',
-    },
-  ];
-
-  // Amenities configuration
-  basicAmenities = [
-    { key: 'wifi', icon: '📶', label: 'WiFi' },
-    { key: 'tv', icon: '📺', label: 'TV' },
-    { key: 'kitchen', icon: '🍳', label: 'Kitchen' },
-    { key: 'washer', icon: '🧺', label: 'Washer' },
-    { key: 'airConditioning', icon: '❄️', label: 'Air conditioning' },
-    { key: 'parking', icon: '🅿️', label: 'Free parking' },
-  ];
-
-  luxuryAmenities = [
-    { key: 'pool', icon: '🏊', label: 'Pool' },
-    { key: 'piano', icon: '🎹', label: 'Piano' },
-    { key: 'beachAccess', icon: '🏖️', label: 'Beach access' },
-    { key: 'gym', icon: '🏋️', label: 'Gym' },
-    { key: 'billiards', icon: '🎱', label: 'Billiards table' },
-    { key: 'grill', icon: '🔥', label: 'BBQ grill' },
-  ];
-
-  safetyItems = [
-    { key: 'smokeDetector', icon: '🚨', label: 'Smoke detector' },
-    { key: 'fireExtinguisher', icon: '🧯', label: 'Fire extinguisher' },
-    { key: 'firstAidKit', icon: '⛑️', label: 'First aid kit' },
-    { key: 'securitySystem', icon: '🔒', label: 'Security system' },
-  ];
 
   // Navigation methods
   nextStep(): void {

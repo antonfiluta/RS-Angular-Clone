@@ -54,74 +54,63 @@
               {{ 'LISTING.LOCATION' | translate }}
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label for="address-country" class="block text-sm font-medium text-gray-700 mb-2">
-                  {{ 'LISTING.ADDRESS.COUNTRY' | translate }}
+              <fieldset class="fieldset w-full relative">
+                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.COUNTRY' | translate }}</legend>
+                <label class="input w-full">
+                  <i class="pi pi-globe"></i>
+                  <input
+                    type="text"
+                    class="grow"
+                    [value]="step1Data().address.country || ''"
+                    (input)="updateAddress('country', $event)"
+                    [placeholder]="'LISTING.ADDRESS.COUNTRY_PLACEHOLDER' | translate"
+                  />
                 </label>
-                <input
-                  id="address-country"
-                  type="text"
-                  [value]="step1Data().address.country || ''"
-                  (input)="updateAddress('country', $event)"
-                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-                  [placeholder]="'LISTING.ADDRESS.COUNTRY_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'address-country-help'"
-                />
-                <div id="address-country-help" class="sr-only">
-                  {{ 'LISTING.ADDRESS.COUNTRY_HELP' | translate }}
-                </div>
-              </div>
-              <div>
-                <label for="address-city" class="block text-sm font-medium text-gray-700 mb-2">
-                  {{ 'LISTING.ADDRESS.CITY' | translate }}
+              </fieldset>
+
+              <fieldset class="fieldset w-full relative">
+                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.CITY' | translate }}</legend>
+                <label class="input w-full">
+                  <i class="pi pi-map-marker"></i>
+                  <input
+                    type="text"
+                    class="grow"
+                    [value]="step1Data().address.city || ''"
+                    (input)="updateAddress('city', $event)"
+                    [placeholder]="'LISTING.ADDRESS.CITY_PLACEHOLDER' | translate"
+                  />
                 </label>
-                <input
-                  id="address-city"
-                  type="text"
-                  [value]="step1Data().address.city || ''"
-                  (input)="updateAddress('city', $event)"
-                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-                  [placeholder]="'LISTING.ADDRESS.CITY_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'address-city-help'"
-                />
-                <div id="address-city-help" class="sr-only">
-                  {{ 'LISTING.ADDRESS.CITY_HELP' | translate }}
-                </div>
-              </div>
-              <div>
-                <label for="address-street" class="block text-sm font-medium text-gray-700 mb-2">
-                  {{ 'LISTING.ADDRESS.STREET' | translate }}
+              </fieldset>
+
+              <fieldset class="fieldset w-full relative">
+                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.STREET' | translate }}</legend>
+                <label class="input w-full">
+                  <i class="pi pi-home"></i>
+                  <input
+                    type="text"
+                    class="grow"
+                    [value]="step1Data().address.street || ''"
+                    (input)="updateAddress('street', $event)"
+                    [placeholder]="'LISTING.ADDRESS.STREET_PLACEHOLDER' | translate"
+                  />
                 </label>
-                <input
-                  id="address-street"
-                  type="text"
-                  [value]="step1Data().address.street || ''"
-                  (input)="updateAddress('street', $event)"
-                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-                  [placeholder]="'LISTING.ADDRESS.STREET_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'address-street-help'"
-                />
-                <div id="address-street-help" class="sr-only">
-                  {{ 'LISTING.ADDRESS.STREET_HELP' | translate }}
-                </div>
-              </div>
-              <div>
-                <label for="address-building" class="block text-sm font-medium text-gray-700 mb-2">
+              </fieldset>
+
+              <fieldset class="fieldset w-full relative">
+                <legend class="fieldset-legend">
                   {{ 'LISTING.ADDRESS.BUILDING' | translate }}
+                </legend>
+                <label class="input w-full">
+                  <i class="pi pi-building"></i>
+                  <input
+                    type="text"
+                    class="grow"
+                    [value]="step1Data().address.building || ''"
+                    (input)="updateAddress('building', $event)"
+                    [placeholder]="'LISTING.ADDRESS.BUILDING_PLACEHOLDER' | translate"
+                  />
                 </label>
-                <input
-                  id="address-building"
-                  type="text"
-                  [value]="step1Data().address.building || ''"
-                  (input)="updateAddress('building', $event)"
-                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-                  [placeholder]="'LISTING.ADDRESS.BUILDING_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'address-building-help'"
-                />
-                <div id="address-building-help" class="sr-only">
-                  {{ 'LISTING.ADDRESS.BUILDING_HELP' | translate }}
-                </div>
-              </div>
+              </fieldset>
             </div>
           </div>
         }
@@ -130,7 +119,7 @@
         @if (step1Data().address.country) {
           <div class="space-y-4">
             <h2 class="text-2xl font-semibold text-gray-900">
-              {{ 'LISTING.CAPACITY' | translate }}
+              {{ 'LISTING.CAPACITY_LABEL' | translate }}
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div class="text-center">
@@ -473,52 +462,40 @@
 
         <!-- Title & Description -->
         <div class="space-y-6">
-          <div>
-            <label for="listing-title" class="block text-2xl font-semibold text-gray-900 mb-4">
-              {{ 'LISTING.TITLE_LABEL' | translate }}
+          <fieldset class="fieldset w-full relative">
+            <legend class="fieldset-legend">{{ 'LISTING.TITLE_LABEL' | translate }}</legend>
+            <label class="input w-full">
+              <i class="pi pi-tag"></i>
+              <input
+                type="text"
+                class="grow"
+                [value]="step3Data().title"
+                (input)="updateStep3('title', $event)"
+                maxlength="25"
+                [placeholder]="'LISTING.TITLE_PLACEHOLDER' | translate"
+              />
             </label>
-            <input
-              id="listing-title"
-              type="text"
-              [value]="step3Data().title"
-              (input)="updateStep3('title', $event)"
-              maxlength="25"
-              class="w-full p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-              [placeholder]="'LISTING.TITLE_PLACEHOLDER' | translate"
-              [attr.aria-describedby]="'listing-title-help listing-title-count'"
-            />
-            <div id="listing-title-help" class="sr-only">
-              {{ 'LISTING.TITLE_HELP' | translate }}
-            </div>
-            <div id="listing-title-count" class="text-sm text-gray-500 mt-2">
+            <div class="text-sm text-gray-500 mt-2">
               {{ step3Data().title.length }}/25 {{ 'LISTING.CHARACTERS' | translate }}
             </div>
-          </div>
+          </fieldset>
 
-          <div>
-            <label
-              for="listing-description"
-              class="block text-2xl font-semibold text-gray-900 mb-4"
-            >
-              {{ 'LISTING.DESCRIPTION_LABEL' | translate }}
+          <fieldset class="fieldset w-full relative">
+            <legend class="fieldset-legend">{{ 'LISTING.DESCRIPTION_LABEL' | translate }}</legend>
+            <label class="textarea w-full">
+              <textarea
+                class="grow"
+                [value]="step3Data().description"
+                (input)="updateStep3('description', $event)"
+                maxlength="500"
+                rows="6"
+                [placeholder]="'LISTING.DESCRIPTION_PLACEHOLDER' | translate"
+              ></textarea>
             </label>
-            <textarea
-              id="listing-description"
-              [value]="step3Data().description"
-              (input)="updateStep3('description', $event)"
-              maxlength="500"
-              rows="6"
-              class="w-full p-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-              [placeholder]="'LISTING.DESCRIPTION_PLACEHOLDER' | translate"
-              [attr.aria-describedby]="'listing-description-help listing-description-count'"
-            ></textarea>
-            <div id="listing-description-help" class="sr-only">
-              {{ 'LISTING.DESCRIPTION_HELP' | translate }}
-            </div>
-            <div id="listing-description-count" class="text-sm text-gray-500 mt-2">
+            <div class="text-sm text-gray-500 mt-2">
               {{ step3Data().description.length }}/500 {{ 'LISTING.CHARACTERS' | translate }}
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Photos -->
@@ -603,50 +580,37 @@
             {{ 'LISTING.PRICING_LABEL' | translate }}
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="weekday-price" class="block text-lg font-medium text-gray-700 mb-2">
-                {{ 'LISTING.PRICING.WEEKDAY' | translate }}
-              </label>
-              <div class="relative">
-                <span class="absolute left-3 top-4 text-gray-500" aria-hidden="true">€</span>
+            <fieldset class="fieldset w-full relative">
+              <legend class="fieldset-legend">{{ 'LISTING.PRICING.WEEKDAY' | translate }}</legend>
+              <label class="input w-full">
+                <span class="text-gray-500">€</span>
                 <input
-                  id="weekday-price"
                   type="number"
+                  class="grow"
                   min="0"
                   step="0.01"
                   [value]="step3Data().pricing.weekdayPrice || ''"
                   (input)="updatePricing('weekdayPrice', $event)"
-                  class="w-full pl-8 pr-4 py-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   [placeholder]="'LISTING.PRICING.WEEKDAY_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'weekday-price-help'"
                 />
-                <div id="weekday-price-help" class="sr-only">
-                  {{ 'LISTING.PRICING.WEEKDAY_HELP' | translate }}
-                </div>
-              </div>
-            </div>
-            <div>
-              <label for="weekend-price" class="block text-lg font-medium text-gray-700 mb-2">
-                {{ 'LISTING.PRICING.WEEKEND' | translate }}
               </label>
-              <div class="relative">
-                <span class="absolute left-3 top-4 text-gray-500" aria-hidden="true">€</span>
+            </fieldset>
+
+            <fieldset class="fieldset w-full relative">
+              <legend class="fieldset-legend">{{ 'LISTING.PRICING.WEEKEND' | translate }}</legend>
+              <label class="input w-full">
+                <span class="text-gray-500">€</span>
                 <input
-                  id="weekend-price"
                   type="number"
+                  class="grow"
                   min="0"
                   step="0.01"
                   [value]="step3Data().pricing.weekendPrice || ''"
                   (input)="updatePricing('weekendPrice', $event)"
-                  class="w-full pl-8 pr-4 py-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   [placeholder]="'LISTING.PRICING.WEEKEND_PLACEHOLDER' | translate"
-                  [attr.aria-describedby]="'weekend-price-help'"
                 />
-                <div id="weekend-price-help" class="sr-only">
-                  {{ 'LISTING.PRICING.WEEKEND_HELP' | translate }}
-                </div>
-              </div>
-            </div>
+              </label>
+            </fieldset>
           </div>
         </div>
       </div>

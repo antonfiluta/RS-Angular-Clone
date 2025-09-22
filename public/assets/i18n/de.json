@@ -475,7 +475,7 @@
 
     "PROPERTY_TYPE": "Welche dieser Optionen beschreibt Ihre Unterkunft am besten?",
     "LOCATION": "Wo befindet sich Ihre Unterkunft?",
-    "CAPACITY": "Teilen Sie einige Basisinformationen über Ihre Unterkunft",
+    "CAPACITY_LABEL": "Teilen Sie einige Basisinformationen über Ihre Unterkunft",
 
     "AMENITIES_BASIC": "Wie sieht es mit diesen Favoriten der Gäste aus?",
     "AMENITIES_LUXURY": "Haben Sie besondere Extras?",

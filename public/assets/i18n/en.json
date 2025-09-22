@@ -475,7 +475,7 @@
 
     "PROPERTY_TYPE": "Which of these best describes your place?",
     "LOCATION": "Where's your place located?",
-    "CAPACITY": "Share some basics about your place",
+    "CAPACITY_LABEL": "Share some basics about your place",
 
     "AMENITIES_BASIC": "What about these guest favorites?",
     "AMENITIES_LUXURY": "Do you have any standout amenities?",
