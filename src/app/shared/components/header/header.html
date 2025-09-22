@@ -54,6 +54,11 @@
             {{ 'MENU.AUTHENTICATION' | translate }}
           </a>
         </li>
+        <li class="dropdown__link hover:bg-gray-50">
+          <a routerLink="/listing" (click)="closeAllMenus()">
+            {{ 'MENU.HOST_MODE' | translate }}
+          </a>
+        </li>
       </ul>
     }
   </div>
