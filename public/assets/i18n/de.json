@@ -50,9 +50,13 @@
     "UNKNOWN": "Unbekannter Fehler"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Persönliche Informationen",
-    "AUTHENTICATION": "Einloggen oder registrieren",
-    "HOST_MODE": "Gastgeben-Modus"
+    "PERSONAL_INFORMATION": "Profil",
+    "AUTHENTICATION": "Anmelden",
+    "HOST_MODE": "Host-Modus",
+    "LOGOUT": "Abmelden",
+    "ABOUT": "Über",
+    "SEARCH": "Suche",
+    "LIKES": "Favoriten"
   },
   "FORM": {
     "NOT_PROVIDED": "Nicht angegeben",

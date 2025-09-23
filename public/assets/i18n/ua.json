@@ -50,9 +50,13 @@
     "UNKNOWN": "Невідома помилка"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Особиста інформація",
-    "AUTHENTICATION": "Увійти або зареєструватися",
-    "HOST_MODE": "Режим хоста"
+    "PERSONAL_INFORMATION": "Обо мне",
+    "AUTHENTICATION": "Аутенфикация",
+    "HOST_MODE": "Стать хостером",
+    "LOGOUT": "Выйти",
+    "ABOUT": "О нас",
+    "SEARCH": "Поиск",
+    "LIKES": "Избранное"
   },
   "FORM": {
     "NOT_PROVIDED": "Не надано",
