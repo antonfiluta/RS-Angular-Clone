@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import {
-  ProfileForm,
-  ProfileData,
-} from '../../../features/profile-form/components/profile-form/profile-form';
+import { Component, inject } from '@angular/core';
+import { ProfileForm } from '../../../features/profile-form/components/profile-form/profile-form';
 import { TranslateModule } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +11,5 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './profile.scss',
 })
 export class Profile {
-  onProfileSaved(profileData: ProfileData): void {
-    console.log('Profile data received in page:', profileData);
-    // TODO: Add toast notification here
-  }
+  private readonly store = inject(Store);
 }
