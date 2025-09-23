@@ -6,6 +6,8 @@ import {
   passwordStrengthValidator,
 } from '../../../../shared/utils/form-validators/form-validators';
 import { TranslateModule } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../../store/auth.actions';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,8 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './sign-up.scss',
 })
 export class SignUp {
-  private fb = inject(FormBuilder);
-  private formValidationService = inject(FormValidationService);
+  private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
+  private readonly formValidationService = inject(FormValidationService);
 
   public signUpForm = this.fb.group({
     lastname: [
@@ -56,10 +59,17 @@ export class SignUp {
     this.signUpForm.markAsUntouched();
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.signUpForm.markAsTouched();
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
+      const formValue = this.signUpForm.getRawValue();
+      const credentials = {
+        lastname: formValue.lastname ?? '',
+        firstname: formValue.firstname ?? '',
+        email: formValue.email ?? '',
+        password: formValue.password ?? '',
+      };
+      this.store.dispatch(AuthActions.registerUser({ credentials }));
     }
   }
 }

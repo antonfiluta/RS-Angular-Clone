@@ -74,6 +74,12 @@
             </a>
           </li>
           <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
+            <i class="pi pi-heart header__button__icon"></i>
+            <a routerLink="/likes" (click)="closeAllMenus()">
+              {{ 'MENU.LIKES' | translate }}
+            </a>
+          </li>
+          <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
             <i class="pi pi-verified header__button__icon"></i>
             <a routerLink="/listing" (click)="closeAllMenus()">
               {{ 'MENU.HOST_MODE' | translate }}

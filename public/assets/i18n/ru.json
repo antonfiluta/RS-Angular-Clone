@@ -55,7 +55,8 @@
     "HOST_MODE": "Стать хостером",
     "LOGOUT": "Выйти",
     "ABOUT": "О нас",
-    "SEARCH": "Поиск"
+    "SEARCH": "Поиск",
+    "LIKES": "Избранное"
   },
   "FORM": {
     "NOT_PROVIDED": "Не указано",

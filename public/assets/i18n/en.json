@@ -55,7 +55,8 @@
     "HOST_MODE": "Host mode",
     "LOGOUT": "Logout",
     "ABOUT": "About",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "LIKES": "Likes"
   },
   "FORM": {
     "NOT_PROVIDED": "Not provided",

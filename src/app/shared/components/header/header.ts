@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Language } from '../../models/shared.models';
 import { Store } from '@ngrx/store';
-import { selectIsAuthanticated } from '../../../features/auth/store/auth.selector';
+import { selectIsAuthenticated } from '../../../features/auth/store/auth.selector';
 import { AuthActions } from '../../../features/auth/store/auth.actions';
 
 @Component({
@@ -17,7 +17,7 @@ export class Header {
   private readonly translate = inject(TranslateService);
   private readonly store = inject(Store);
 
-  public readonly isAuth = this.store.selectSignal(selectIsAuthanticated);
+  public readonly isAuth = this.store.selectSignal(selectIsAuthenticated);
 
   public menuOpen = false;
   public languageMenuOpen = false;

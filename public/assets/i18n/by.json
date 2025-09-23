@@ -55,7 +55,8 @@
     "HOST_MODE": "Рэжым хаста",
     "LOGOUT": "Выхад",
     "ABOUT": "Аб Нас",
-    "SEARCH": "Пошук"
+    "SEARCH": "Пошук",
+    "LIKES": "Избранное"
   },
   "FORM": {
     "NOT_PROVIDED": "Не пададзена",
