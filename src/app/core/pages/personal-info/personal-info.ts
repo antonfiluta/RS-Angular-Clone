@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PersonalInfoForm } from '../../../features/personal-info-form/components/personal-info-form/personal-info-form';
 import { TranslateModule } from '@ngx-translate/core';
+import { PersonalInfoForm } from '../../../features/user/components/personal-info-form/components/personal-info-form/personal-info-form';
 
 @Component({
   selector: 'app-personal-info',

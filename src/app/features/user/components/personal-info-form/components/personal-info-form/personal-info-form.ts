@@ -7,18 +7,18 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { PersonalInfoRowComponent } from '../../../../shared/ui/personal-info-row/personal-info-row.component';
-import { FormValidationService } from '../../../../shared/services/form-validation-service/form-validation-service';
-import {
-  nameValidator,
-  phoneValidator,
-  minimumAgeValidator,
-  notFutureDateValidator,
-  strongEmailValidator,
-  requiredFieldValidator,
-} from '../../../../shared/utils/form-validators/form-validators';
-import { ValidationSignal } from '../../../../shared/types/validation.types';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { PersonalInfoRowComponent } from '../../../../../../shared/ui/personal-info-row/personal-info-row.component';
+import { FormValidationService } from '../../../../../../shared/services/form-validation-service/form-validation-service';
+import {
+  minimumAgeValidator,
+  nameValidator,
+  notFutureDateValidator,
+  phoneValidator,
+  requiredFieldValidator,
+  strongEmailValidator,
+} from '../../../../../../shared/utils/form-validators/form-validators';
+import { ValidationSignal } from '../../../../../../shared/types/validation.types';
 
 interface FormField {
   key: string;

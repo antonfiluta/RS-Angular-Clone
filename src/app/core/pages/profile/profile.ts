@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ProfileForm } from '../../../features/profile-form/components/profile-form/profile-form';
+import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { Store } from '@ngrx/store';
+import { ProfileForm } from '../../../features/user/components/profile-form/components/profile-form/profile-form';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +9,4 @@ import { Store } from '@ngrx/store';
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
-export class Profile {
-  private readonly store = inject(Store);
-}
+export class Profile {}
