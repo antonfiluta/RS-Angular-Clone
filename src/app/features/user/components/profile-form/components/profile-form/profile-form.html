@@ -1,7 +1,7 @@
-<div class="flex justify-between items-center mb-8 pb-4 border-b border-base-300">
-  <div class="flex items-center gap-3">
-    <h2 class="text-2xl font-bold">{{ 'PROFILE.ABOUT' | translate }}</h2>
-  </div>
+<div class="flex justify-between items-center mb-8 pb-4 border-b border-[var(--color-border)]">
+  <h2 class="text-2xl font-bold text-[var(--color-text-primary)]">
+    {{ 'PROFILE.ABOUT' | translate }}
+  </h2>
 
   <app-edit-button
     [isEditMode]="isEditMode"
@@ -14,34 +14,28 @@
 
 <form [formGroup]="form" class="space-y-6">
   <!-- Bio Section -->
-  <div class="card bg-base-100 shadow-sm">
+  <div class="card card-custom shadow-card bg-[var(--color-brand-bg-card)]">
     <div class="card-body">
       @if (!isEditMode) {
-        <div class="view-field">
+        <div>
           <h3 class="flex items-center gap-2 mb-3">
-            <i class="pi pi-file-edit text-lg text-base-content/70"></i>
+            <i class="pi pi-file-edit text-lg text-[var(--color-text-secondary)]"></i>
             <span class="text-lg font-medium">{{ 'PROFILE.BIO' | translate }}</span>
           </h3>
-
-          <p class="text-base-content/80 leading-relaxed">
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
             {{ form.get('bio')?.value || ('PROFILE.NO_BIO' | translate) }}
           </p>
         </div>
       } @else {
         <div class="edit-field">
-          <div class="flex items-start gap-2 mb-3">
-            <i class="pi pi-file-edit text-lg text-primary mt-2"></i>
-            <div class="flex-1">
-              <label class="text-lg font-medium block">
-                {{ 'PROFILE.BIO' | translate }}
-                <textarea
-                  formControlName="bio"
-                  class="textarea textarea-bordered w-full h-24 mt-1"
-                  [placeholder]="'PROFILE.BIO_PLACEHOLDER' | translate"
-                ></textarea>
-              </label>
-            </div>
-          </div>
+          <label class="flex items-start gap-2 mb-3">
+            <i class="pi pi-file-edit text-lg text-[var(--color-brand-red)] mt-2"></i>
+            <textarea
+              formControlName="bio"
+              class="textarea textarea-bordered w-full h-24 mt-1 bg-[var(--color-brand-bg-secondary)]"
+              [placeholder]="'PROFILE.BIO_PLACEHOLDER' | translate"
+            ></textarea>
+          </label>
         </div>
       }
     </div>

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../../core/services/theme-service/theme.service';
 import { Language } from '../../models/shared.models';
 import { Store } from '@ngrx/store';
 import { selectIsAuthenticated } from '../../../features/auth/store/auth.selector';
@@ -22,14 +23,23 @@ export class Header {
   public menuOpen = false;
   public languageMenuOpen = false;
   public currentLanguage = 'en';
+  currentTheme: 'light' | 'dark' = 'light';
 
-  public languages: Language[] = [
+  private theme = inject(ThemeService);
+
+  languages: Language[] = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
     { code: 'ru', name: 'Русский', flag: '🇷🇺' },
     { code: 'ua', name: 'Українська', flag: '🇺🇦' },
     { code: 'by', name: 'Беларуская', flag: '🇧🇾' },
   ];
+
+  constructor() {
+    this.currentLanguage = this.translate.getCurrentLang() || 'en';
+    this.theme.init();
+    this.currentTheme = this.theme.current;
+  }
 
   public toggleMenu() {
     this.menuOpen = !this.menuOpen;
@@ -56,12 +66,13 @@ export class Header {
     this.closeAllMenus();
   }
 
+  public toggleTheme() {
+    this.theme.toggle();
+    this.currentTheme = this.theme.current;
+  }
+
   public logout() {
     this.store.dispatch(AuthActions.logoutUser());
     this.closeAllMenus();
-  }
-
-  constructor() {
-    this.currentLanguage = this.translate.getCurrentLang() || 'en';
   }
 }

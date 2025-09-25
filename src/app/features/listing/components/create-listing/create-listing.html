@@ -1,23 +1,24 @@
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-app text-primary">
   <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-6 py-8 pb-32">
     <!-- Step 1: Basic Information -->
     @if (currentStep() === 1) {
       <div class="space-y-8">
         <div class="text-center mb-12">
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          <h1 class="text-4xl font-bold text-primary mb-4">
             {{ 'LISTING.STEP1_TITLE' | translate }}
           </h1>
-          <p class="text-xl text-gray-600">
+          <p class="text-xl text-secondary">
             {{ 'LISTING.STEP1_SUBTITLE' | translate }}
           </p>
         </div>
 
         <!-- Property Type -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900">
+          <h2 class="text-2xl font-semibold text-primary">
             {{ 'LISTING.PROPERTY_TYPE' | translate }}
           </h2>
+
           <div
             class="grid grid-cols-1 md:grid-cols-2 gap-4"
             role="radiogroup"
@@ -28,18 +29,32 @@
                 (click)="selectPropertyType(type.value)"
                 [attr.aria-pressed]="step1Data().propertyType === type.value"
                 [attr.aria-describedby]="'property-' + type.value + '-desc'"
-                class="p-6 border-2 rounded-xl text-left hover:border-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500"
-                [class]="
+                class="p-6 border-2 rounded-xl text-left transition-colors focus:outline-none focus:ring-2"
+                [class.border-base]="step1Data().propertyType !== type.value"
+                [class.bg-card]="step1Data().propertyType !== type.value"
+                [class.shadow-card]="step1Data().propertyType === type.value"
+                [ngStyle]="
                   step1Data().propertyType === type.value
-                    ? 'border-gray-900 bg-gray-50'
-                    : 'border-gray-200'
+                    ? {
+                        'border-color': 'var(--color-brand-dark)',
+                        'background-color': 'var(--color-brand-bg-hover)',
+                      }
+                    : {}
                 "
               >
-                <div class="text-3xl mb-2" aria-hidden="true">{{ type.icon }}</div>
-                <div class="font-semibold">
+                <div
+                  class="text-3xl mb-2"
+                  aria-hidden="true"
+                  [style.color]="'var(--color-brand-red)'"
+                >
+                  {{ type.icon }}
+                </div>
+
+                <div class="font-semibold text-primary">
                   {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() | translate }}
                 </div>
-                <div class="text-sm text-gray-600" [id]="'property-' + type.value + '-desc'">
+
+                <div class="text-sm text-secondary" [id]="'property-' + type.value + '-desc'">
                   {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() + '_DESC' | translate }}
                 </div>
               </button>
@@ -50,67 +65,98 @@
         <!-- Address -->
         @if (step1Data().propertyType) {
           <div class="space-y-4">
-            <h2 class="text-2xl font-semibold text-gray-900">
+            <h2 class="text-2xl font-semibold text-primary">
               {{ 'LISTING.LOCATION' | translate }}
             </h2>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <fieldset class="fieldset w-full relative">
-                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.COUNTRY' | translate }}</legend>
-                <label class="input w-full">
-                  <i class="pi pi-globe"></i>
-                  <input
-                    type="text"
-                    class="grow"
-                    [value]="step1Data().address.country || ''"
-                    (input)="updateAddress('country', $event)"
-                    [placeholder]="'LISTING.ADDRESS.COUNTRY_PLACEHOLDER' | translate"
-                  />
+              <!-- Country -->
+              <div class="w-full">
+                <label class="block">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.COUNTRY' | translate
+                  }}</span>
+                  <div
+                    class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2"
+                  >
+                    <i class="pi pi-globe text-[var(--color-text-secondary)] mr-3"></i>
+                    <input
+                      type="text"
+                      class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                      [value]="step1Data().address.country || ''"
+                      (input)="updateAddress('country', $event)"
+                      [placeholder]="'LISTING.ADDRESS.COUNTRY_PLACEHOLDER' | translate"
+                      aria-label="{{ 'LISTING.ADDRESS.COUNTRY' | translate }}"
+                    />
+                  </div>
                 </label>
-              </fieldset>
+              </div>
 
-              <fieldset class="fieldset w-full relative">
-                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.CITY' | translate }}</legend>
-                <label class="input w-full">
-                  <i class="pi pi-map-marker"></i>
-                  <input
-                    type="text"
-                    class="grow"
-                    [value]="step1Data().address.city || ''"
-                    (input)="updateAddress('city', $event)"
-                    [placeholder]="'LISTING.ADDRESS.CITY_PLACEHOLDER' | translate"
-                  />
+              <!-- City -->
+              <div class="w-full">
+                <label class="block">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.CITY' | translate
+                  }}</span>
+                  <div
+                    class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2"
+                  >
+                    <i class="pi pi-map-marker text-[var(--color-text-secondary)] mr-3"></i>
+                    <input
+                      type="text"
+                      class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                      [value]="step1Data().address.city || ''"
+                      (input)="updateAddress('city', $event)"
+                      [placeholder]="'LISTING.ADDRESS.CITY_PLACEHOLDER' | translate"
+                      aria-label="{{ 'LISTING.ADDRESS.CITY' | translate }}"
+                    />
+                  </div>
                 </label>
-              </fieldset>
+              </div>
 
-              <fieldset class="fieldset w-full relative">
-                <legend class="fieldset-legend">{{ 'LISTING.ADDRESS.STREET' | translate }}</legend>
-                <label class="input w-full">
-                  <i class="pi pi-home"></i>
-                  <input
-                    type="text"
-                    class="grow"
-                    [value]="step1Data().address.street || ''"
-                    (input)="updateAddress('street', $event)"
-                    [placeholder]="'LISTING.ADDRESS.STREET_PLACEHOLDER' | translate"
-                  />
+              <!-- Street -->
+              <div class="w-full">
+                <label class="block">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.STREET' | translate
+                  }}</span>
+                  <div
+                    class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2"
+                  >
+                    <i class="pi pi-home text-[var(--color-text-secondary)] mr-3"></i>
+                    <input
+                      type="text"
+                      class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                      [value]="step1Data().address.street || ''"
+                      (input)="updateAddress('street', $event)"
+                      [placeholder]="'LISTING.ADDRESS.STREET_PLACEHOLDER' | translate"
+                      aria-label="{{ 'LISTING.ADDRESS.STREET' | translate }}"
+                    />
+                  </div>
                 </label>
-              </fieldset>
+              </div>
 
-              <fieldset class="fieldset w-full relative">
-                <legend class="fieldset-legend">
-                  {{ 'LISTING.ADDRESS.BUILDING' | translate }}
-                </legend>
-                <label class="input w-full">
-                  <i class="pi pi-building"></i>
-                  <input
-                    type="text"
-                    class="grow"
-                    [value]="step1Data().address.building || ''"
-                    (input)="updateAddress('building', $event)"
-                    [placeholder]="'LISTING.ADDRESS.BUILDING_PLACEHOLDER' | translate"
-                  />
+              <!-- Building -->
+              <div class="w-full">
+                <label class="block">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.BUILDING' | translate
+                  }}</span>
+                  <div
+                    class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2"
+                  >
+                    <i class="pi pi-building text-[var(--color-text-secondary)] mr-3"></i>
+                    <input
+                      type="text"
+                      class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                      [value]="step1Data().address.building || ''"
+                      (input)="updateAddress('building', $event)"
+                      [placeholder]="'LISTING.ADDRESS.BUILDING_PLACEHOLDER' | translate"
+                      aria-label="{{ 'LISTING.ADDRESS.BUILDING' | translate }}"
+                    />
+                  </div>
                 </label>
-              </fieldset>
+              </div>
             </div>
           </div>
         }
@@ -118,12 +164,14 @@
         <!-- Capacity -->
         @if (step1Data().address.country) {
           <div class="space-y-4">
-            <h2 class="text-2xl font-semibold text-gray-900">
+            <h2 class="text-2xl font-semibold text-primary">
               {{ 'LISTING.CAPACITY_LABEL' | translate }}
             </h2>
+
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <!-- guests -->
               <div class="text-center">
-                <div class="font-medium text-gray-900 mb-2" id="guests-label">
+                <div class="font-medium text-primary mb-2" id="guests-label">
                   {{ 'LISTING.CAPACITY.GUESTS' | translate }}
                 </div>
                 <div
@@ -134,12 +182,13 @@
                   <button
                     type="button"
                     (click)="updateCapacity('maxGuests', -1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [disabled]="(step1Data().capacity.maxGuests || 0) <= 1"
                     [attr.aria-label]="'LISTING.CAPACITY.DECREASE_GUESTS' | translate"
                   >
                     -
                   </button>
+
                   <span
                     class="text-lg font-medium"
                     [attr.aria-label]="
@@ -150,18 +199,21 @@
                   >
                     {{ step1Data().capacity.maxGuests || 1 }}
                   </span>
+
                   <button
                     type="button"
                     (click)="updateCapacity('maxGuests', 1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [attr.aria-label]="'LISTING.CAPACITY.INCREASE_GUESTS' | translate"
                   >
                     +
                   </button>
                 </div>
               </div>
+
+              <!-- bedrooms -->
               <div class="text-center">
-                <div class="font-medium text-gray-900 mb-2" id="bedrooms-label">
+                <div class="font-medium text-primary mb-2" id="bedrooms-label">
                   {{ 'LISTING.CAPACITY.BEDROOMS' | translate }}
                 </div>
                 <div
@@ -172,12 +224,13 @@
                   <button
                     type="button"
                     (click)="updateCapacity('bedrooms', -1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [disabled]="(step1Data().capacity.bedrooms || 0) <= 0"
                     [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDROOMS' | translate"
                   >
                     -
                   </button>
+
                   <span
                     class="text-lg font-medium"
                     [attr.aria-label]="
@@ -188,18 +241,21 @@
                   >
                     {{ step1Data().capacity.bedrooms || 0 }}
                   </span>
+
                   <button
                     type="button"
                     (click)="updateCapacity('bedrooms', 1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDROOMS' | translate"
                   >
                     +
                   </button>
                 </div>
               </div>
+
+              <!-- beds -->
               <div class="text-center">
-                <div class="font-medium text-gray-900 mb-2" id="beds-label">
+                <div class="font-medium text-primary mb-2" id="beds-label">
                   {{ 'LISTING.CAPACITY.BEDS' | translate }}
                 </div>
                 <div
@@ -210,12 +266,13 @@
                   <button
                     type="button"
                     (click)="updateCapacity('beds', -1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [disabled]="(step1Data().capacity.beds || 0) <= 0"
                     [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDS' | translate"
                   >
                     -
                   </button>
+
                   <span
                     class="text-lg font-medium"
                     [attr.aria-label]="
@@ -224,18 +281,21 @@
                   >
                     {{ step1Data().capacity.beds || 0 }}
                   </span>
+
                   <button
                     type="button"
                     (click)="updateCapacity('beds', 1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDS' | translate"
                   >
                     +
                   </button>
                 </div>
               </div>
+
+              <!-- bathrooms -->
               <div class="text-center">
-                <div class="font-medium text-gray-900 mb-2" id="bathrooms-label">
+                <div class="font-medium text-primary mb-2" id="bathrooms-label">
                   {{ 'LISTING.CAPACITY.BATHROOMS' | translate }}
                 </div>
                 <div
@@ -246,12 +306,13 @@
                   <button
                     type="button"
                     (click)="updateCapacity('bathrooms', -1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [disabled]="(step1Data().capacity.bathrooms || 0) <= 0"
                     [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BATHROOMS' | translate"
                   >
                     -
                   </button>
+
                   <span
                     class="text-lg font-medium"
                     [attr.aria-label]="
@@ -262,10 +323,11 @@
                   >
                     {{ step1Data().capacity.bathrooms || 0 }}
                   </span>
+
                   <button
                     type="button"
                     (click)="updateCapacity('bathrooms', 1)"
-                    class="w-8 h-8 rounded-full border border-gray-300 hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus:outline-none focus:ring-2"
                     [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BATHROOMS' | translate"
                   >
                     +
@@ -282,19 +344,20 @@
     @if (currentStep() === 2) {
       <div class="space-y-8">
         <div class="text-center mb-12">
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          <h1 class="text-4xl font-bold text-primary mb-4">
             {{ 'LISTING.STEP2_TITLE' | translate }}
           </h1>
-          <p class="text-xl text-gray-600">
+          <p class="text-xl text-secondary">
             {{ 'LISTING.STEP2_SUBTITLE' | translate }}
           </p>
         </div>
 
         <!-- Basic Amenities -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900" id="basic-amenities-legend">
+          <h2 class="text-2xl font-semibold text-primary" id="basic-amenities-legend">
             {{ 'LISTING.AMENITIES_BASIC' | translate }}
           </h2>
+
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
             role="group"
@@ -302,9 +365,14 @@
           >
             @for (amenity of basicAmenities; track amenity.key) {
               <label
-                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
-                [class.border-gray-900]="getBasicAmenity(amenity.key)"
-                [class.bg-gray-50]="getBasicAmenity(amenity.key)"
+                class="flex items-center p-4 border rounded-xl cursor-pointer focus-within:ring-2 transition-colors"
+                [class.border-base]="!getBasicAmenity(amenity.key)"
+                [class.bg-card]="!getBasicAmenity(amenity.key)"
+                [ngClass]="
+                  getBasicAmenity(amenity.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
               >
                 <input
                   type="checkbox"
@@ -314,14 +382,18 @@
                   class="sr-only"
                   [attr.aria-describedby]="'basic-amenity-' + amenity.key + '-desc'"
                 />
+
                 <div class="flex items-center w-full">
-                  <span class="text-2xl mr-3" aria-hidden="true">{{ amenity.icon }}</span>
-                  <span class="font-medium">{{
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    amenity.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
                     'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
                   }}</span>
+
                   @if (getBasicAmenity(amenity.key)) {
                     <svg
-                      class="w-5 h-5 ml-auto text-gray-900"
+                      class="w-5 h-5 ml-auto text-primary"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -334,6 +406,7 @@
                     </svg>
                   }
                 </div>
+
                 <div [id]="'basic-amenity-' + amenity.key + '-desc'" class="sr-only">
                   {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
                 </div>
@@ -344,9 +417,10 @@
 
         <!-- Luxury Amenities -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900" id="luxury-amenities-legend">
+          <h2 class="text-2xl font-semibold text-primary" id="luxury-amenities-legend">
             {{ 'LISTING.AMENITIES_LUXURY' | translate }}
           </h2>
+
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
             role="group"
@@ -354,9 +428,14 @@
           >
             @for (amenity of luxuryAmenities; track amenity.key) {
               <label
-                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
-                [class.border-gray-900]="getLuxuryAmenity(amenity.key)"
-                [class.bg-gray-50]="getLuxuryAmenity(amenity.key)"
+                class="flex items-center p-4 border rounded-xl cursor-pointer focus-within:ring-2 transition-colors"
+                [class.border-base]="!getLuxuryAmenity(amenity.key)"
+                [class.bg-card]="!getLuxuryAmenity(amenity.key)"
+                [ngClass]="
+                  getLuxuryAmenity(amenity.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
               >
                 <input
                   type="checkbox"
@@ -366,14 +445,18 @@
                   class="sr-only"
                   [attr.aria-describedby]="'luxury-amenity-' + amenity.key + '-desc'"
                 />
+
                 <div class="flex items-center w-full">
-                  <span class="text-2xl mr-3" aria-hidden="true">{{ amenity.icon }}</span>
-                  <span class="font-medium">{{
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    amenity.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
                     'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
                   }}</span>
+
                   @if (getLuxuryAmenity(amenity.key)) {
                     <svg
-                      class="w-5 h-5 ml-auto text-gray-900"
+                      class="w-5 h-5 ml-auto text-primary"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -386,6 +469,7 @@
                     </svg>
                   }
                 </div>
+
                 <div [id]="'luxury-amenity-' + amenity.key + '-desc'" class="sr-only">
                   {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
                 </div>
@@ -396,9 +480,10 @@
 
         <!-- Safety Features -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900" id="safety-features-legend">
+          <h2 class="text-2xl font-semibold text-primary" id="safety-features-legend">
             {{ 'LISTING.SAFETY_FEATURES' | translate }}
           </h2>
+
           <div
             class="grid grid-cols-1 md:grid-cols-2 gap-4"
             role="group"
@@ -406,9 +491,14 @@
           >
             @for (safety of safetyItems; track safety.key) {
               <label
-                class="flex items-center p-4 border border-gray-200 rounded-xl hover:border-gray-900 cursor-pointer focus-within:ring-2 focus-within:ring-rose-500"
-                [class.border-gray-900]="getSafetyFeature(safety.key)"
-                [class.bg-gray-50]="getSafetyFeature(safety.key)"
+                class="flex items-center p-4 border rounded-xl cursor-pointer focus-within:ring-2 transition-colors"
+                [class.border-base]="!getSafetyFeature(safety.key)"
+                [class.bg-card]="!getSafetyFeature(safety.key)"
+                [ngClass]="
+                  getSafetyFeature(safety.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
               >
                 <input
                   type="checkbox"
@@ -418,14 +508,18 @@
                   class="sr-only"
                   [attr.aria-describedby]="'safety-feature-' + safety.key + '-desc'"
                 />
+
                 <div class="flex items-center w-full">
-                  <span class="text-2xl mr-3" aria-hidden="true">{{ safety.icon }}</span>
-                  <span class="font-medium">{{
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    safety.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
                     'LISTING.SAFETY.' + safety.key.toUpperCase() | translate
                   }}</span>
+
                   @if (getSafetyFeature(safety.key)) {
                     <svg
-                      class="w-5 h-5 ml-auto text-gray-900"
+                      class="w-5 h-5 ml-auto text-primary"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -438,6 +532,7 @@
                     </svg>
                   }
                 </div>
+
                 <div [id]="'safety-feature-' + safety.key + '-desc'" class="sr-only">
                   {{ 'LISTING.SAFETY.' + safety.key.toUpperCase() + '_DESC' | translate }}
                 </div>
@@ -452,66 +547,72 @@
     @if (currentStep() === 3) {
       <div class="space-y-8">
         <div class="text-center mb-12">
-          <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          <h1 class="text-4xl font-bold text-primary mb-4">
             {{ 'LISTING.STEP3_TITLE' | translate }}
           </h1>
-          <p class="text-xl text-gray-600">
+          <p class="text-xl text-secondary">
             {{ 'LISTING.STEP3_SUBTITLE' | translate }}
           </p>
         </div>
 
         <!-- Title & Description -->
         <div class="space-y-6">
-          <fieldset class="fieldset w-full relative">
-            <legend class="fieldset-legend">{{ 'LISTING.TITLE_LABEL' | translate }}</legend>
-            <label class="input w-full">
-              <i class="pi pi-tag"></i>
-              <input
-                type="text"
-                class="grow"
-                [value]="step3Data().title"
-                (input)="updateStep3('title', $event)"
-                maxlength="25"
-                [placeholder]="'LISTING.TITLE_PLACEHOLDER' | translate"
-              />
+          <div>
+            <label class="block">
+              <span class="text-sm font-medium text-secondary">{{
+                'LISTING.TITLE_LABEL' | translate
+              }}</span>
+              <div class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2">
+                <i class="pi pi-tag text-[var(--color-text-secondary)] mr-3"></i>
+                <input
+                  type="text"
+                  class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                  [value]="step3Data().title"
+                  (input)="updateStep3('title', $event)"
+                  maxlength="25"
+                  [placeholder]="'LISTING.TITLE_PLACEHOLDER' | translate"
+                />
+              </div>
+              <div class="text-sm text-secondary mt-2">
+                {{ step3Data().title.length }}/25 {{ 'LISTING.CHARACTERS' | translate }}
+              </div>
             </label>
-            <div class="text-sm text-gray-500 mt-2">
-              {{ step3Data().title.length }}/25 {{ 'LISTING.CHARACTERS' | translate }}
-            </div>
-          </fieldset>
+          </div>
 
-          <fieldset class="fieldset w-full relative">
-            <legend class="fieldset-legend">{{ 'LISTING.DESCRIPTION_LABEL' | translate }}</legend>
-            <label class="textarea w-full">
-              <textarea
-                class="grow"
-                [value]="step3Data().description"
-                (input)="updateStep3('description', $event)"
-                maxlength="500"
-                rows="6"
-                [placeholder]="'LISTING.DESCRIPTION_PLACEHOLDER' | translate"
-              ></textarea>
+          <div>
+            <label class="block">
+              <span class="text-sm font-medium text-secondary">{{
+                'LISTING.DESCRIPTION_LABEL' | translate
+              }}</span>
+              <div class="mt-1">
+                <textarea
+                  class="w-full min-h-[150px] rounded-md border border-base px-3 py-2 bg-card text-primary placeholder:text-muted focus:outline-none"
+                  [value]="step3Data().description"
+                  (input)="updateStep3('description', $event)"
+                  maxlength="500"
+                  rows="6"
+                  [placeholder]="'LISTING.DESCRIPTION_PLACEHOLDER' | translate"
+                ></textarea>
+              </div>
+              <div class="text-sm text-secondary mt-2">
+                {{ step3Data().description.length }}/500 {{ 'LISTING.CHARACTERS' | translate }}
+              </div>
             </label>
-            <div class="text-sm text-gray-500 mt-2">
-              {{ step3Data().description.length }}/500 {{ 'LISTING.CHARACTERS' | translate }}
-            </div>
-          </fieldset>
+          </div>
         </div>
 
         <!-- Photos -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900" id="photos-legend">
+          <h2 class="text-2xl font-semibold text-primary" id="photos-legend">
             {{ 'LISTING.PHOTOS_LABEL' | translate }}
           </h2>
+
           <div
             class="grid grid-cols-2 md:grid-cols-4 gap-4"
             [attr.aria-labelledby]="'photos-legend'"
           >
             @for (photo of step3Data().photos; track photo.id; let i = $index) {
-              <div
-                class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden"
-                [attr.aria-label]="('LISTING.PHOTO_INDEX' | translate) + ' ' + (i + 1)"
-              >
+              <div class="relative aspect-square rounded-lg overflow-hidden bg-secondary">
                 <img
                   [src]="photo.url"
                   [alt]="('LISTING.PHOTO_ALT' | translate) + ' ' + (i + 1)"
@@ -520,11 +621,11 @@
                 <button
                   type="button"
                   (click)="removePhoto(i)"
-                  class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                  class="absolute top-2 right-2 w-8 h-8 bg-card rounded-full shadow-card flex items-center justify-center hover:bg-[var(--color-brand-bg-hover)] focus:outline-none focus:ring-2"
                   [attr.aria-label]="('LISTING.REMOVE_PHOTO' | translate) + ' ' + (i + 1)"
                 >
                   <svg
-                    class="w-4 h-4"
+                    class="w-4 h-4 text-primary"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -540,12 +641,13 @@
                 </button>
               </div>
             }
+
             <label
               for="photo-upload"
-              class="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 focus-within:ring-2 focus-within:ring-rose-500"
+              class="aspect-square border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-[var(--color-border-focus)] focus-within:ring-2 transition-colors"
             >
               <svg
-                class="w-12 h-12 text-gray-400"
+                class="w-12 h-12 text-muted"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -558,7 +660,7 @@
                   d="M12 4v16m8-8H4"
                 />
               </svg>
-              <span class="text-gray-600 text-sm mt-2">{{ 'LISTING.ADD_PHOTO' | translate }}</span>
+              <span class="text-secondary text-sm mt-2">{{ 'LISTING.ADD_PHOTO' | translate }}</span>
               <input
                 id="photo-upload"
                 type="file"
@@ -576,41 +678,50 @@
 
         <!-- Pricing -->
         <div class="space-y-6">
-          <h2 class="text-2xl font-semibold text-gray-900">
+          <h2 class="text-2xl font-semibold text-primary">
             {{ 'LISTING.PRICING_LABEL' | translate }}
           </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <fieldset class="fieldset w-full relative">
-              <legend class="fieldset-legend">{{ 'LISTING.PRICING.WEEKDAY' | translate }}</legend>
-              <label class="input w-full">
-                <span class="text-gray-500">€</span>
-                <input
-                  type="number"
-                  class="grow"
-                  min="0"
-                  step="0.01"
-                  [value]="step3Data().pricing.weekdayPrice || ''"
-                  (input)="updatePricing('weekdayPrice', $event)"
-                  [placeholder]="'LISTING.PRICING.WEEKDAY_PLACEHOLDER' | translate"
-                />
-              </label>
-            </fieldset>
 
-            <fieldset class="fieldset w-full relative">
-              <legend class="fieldset-legend">{{ 'LISTING.PRICING.WEEKEND' | translate }}</legend>
-              <label class="input w-full">
-                <span class="text-gray-500">€</span>
-                <input
-                  type="number"
-                  class="grow"
-                  min="0"
-                  step="0.01"
-                  [value]="step3Data().pricing.weekendPrice || ''"
-                  (input)="updatePricing('weekendPrice', $event)"
-                  [placeholder]="'LISTING.PRICING.WEEKEND_PLACEHOLDER' | translate"
-                />
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block">
+                <span class="text-sm font-medium text-secondary">{{
+                  'LISTING.PRICING.WEEKDAY' | translate
+                }}</span>
+                <div class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2">
+                  <span class="text-secondary mr-3">€</span>
+                  <input
+                    type="number"
+                    class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                    min="0"
+                    step="0.01"
+                    [value]="step3Data().pricing.weekdayPrice || ''"
+                    (input)="updatePricing('weekdayPrice', $event)"
+                    [placeholder]="'LISTING.PRICING.WEEKDAY_PLACEHOLDER' | translate"
+                  />
+                </div>
               </label>
-            </fieldset>
+            </div>
+
+            <div>
+              <label class="block">
+                <span class="text-sm font-medium text-secondary">{{
+                  'LISTING.PRICING.WEEKEND' | translate
+                }}</span>
+                <div class="mt-1 flex items-center border border-base rounded-md bg-card px-3 py-2">
+                  <span class="text-secondary mr-3">€</span>
+                  <input
+                    type="number"
+                    class="grow bg-transparent border-0 text-primary placeholder:text-muted focus:outline-none"
+                    min="0"
+                    step="0.01"
+                    [value]="step3Data().pricing.weekendPrice || ''"
+                    (input)="updatePricing('weekendPrice', $event)"
+                    [placeholder]="'LISTING.PRICING.WEEKEND_PLACEHOLDER' | translate"
+                  />
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -618,45 +729,74 @@
   </main>
 
   <!-- Progress Bar and Navigation Footer -->
-  <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+  <footer class="fixed bottom-0 left-0 right-0 bg-card border-t border-base z-50">
     <!-- Progress Bar -->
     <div class="max-w-4xl mx-auto px-6 py-2">
       <div class="flex items-center">
-        <div class="flex items-center text-sm font-medium text-gray-900 w-full">
+        <div class="flex items-center text-sm font-medium w-full">
           <span class="flex items-center">
             <span
               class="flex items-center justify-center w-8 h-8 rounded-full"
-              [class]="currentStep() >= 1 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+              [style.background-color]="
+                currentStep() >= 1 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 1 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
             >
               1
             </span>
-            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP1_PROGRESS' | translate }}</span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP1_PROGRESS' | translate
+            }}</span>
           </span>
+
           <div
             class="flex-1 h-px mx-4"
-            [class]="currentStep() >= 2 ? 'bg-gray-900' : 'bg-gray-200'"
+            [style.background-color]="
+              currentStep() >= 2 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+            "
           ></div>
+
           <span class="flex items-center">
             <span
               class="flex items-center justify-center w-8 h-8 rounded-full"
-              [class]="currentStep() >= 2 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+              [style.background-color]="
+                currentStep() >= 2 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 2 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
             >
               2
             </span>
-            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP2_PROGRESS' | translate }}</span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP2_PROGRESS' | translate
+            }}</span>
           </span>
+
           <div
             class="flex-1 h-px mx-4"
-            [class]="currentStep() >= 3 ? 'bg-gray-900' : 'bg-gray-200'"
+            [style.background-color]="
+              currentStep() >= 3 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+            "
           ></div>
+
           <span class="flex items-center">
             <span
               class="flex items-center justify-center w-8 h-8 rounded-full"
-              [class]="currentStep() >= 3 ? 'bg-gray-900 text-white' : 'bg-gray-200'"
+              [style.background-color]="
+                currentStep() >= 3 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 3 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
             >
               3
             </span>
-            <span class="ml-2 hidden sm:block">{{ 'LISTING.STEP3_PROGRESS' | translate }}</span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP3_PROGRESS' | translate
+            }}</span>
           </span>
         </div>
       </div>
@@ -668,7 +808,7 @@
         <button
           type="button"
           (click)="previousStep()"
-          class="px-6 py-3 text-gray-700 font-semibold hover:bg-gray-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+          class="px-6 py-3 text-primary font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2"
         >
           {{ 'LISTING.BACK' | translate }}
         </button>
@@ -682,7 +822,7 @@
             type="button"
             (click)="nextStep()"
             [disabled]="!canProceed()"
-            class="px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+            class="px-8 py-3 rounded-lg font-semibold bg-[var(--color-brand-dark)] text-white dark:bg-[var(--color-brand-dark)] dark:text-black hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-border-focus)]"
           >
             {{ 'LISTING.NEXT' | translate }}
           </button>
@@ -692,7 +832,7 @@
             type="button"
             (click)="saveListing()"
             [disabled]="!canSave()"
-            class="px-8 py-3 bg-rose-500 text-white font-semibold rounded-lg hover:bg-rose-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500"
+            class="px-8 py-3 bg-[var(--color-brand-red)] text-white font-semibold rounded-lg hover:bg-[var(--color-brand-red-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2"
           >
             {{ 'LISTING.PUBLISH' | translate }}
           </button>
