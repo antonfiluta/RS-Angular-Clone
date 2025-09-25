@@ -50,13 +50,13 @@
     "UNKNOWN": "Невідома помилка"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Обо мне",
-    "AUTHENTICATION": "Аутенфикация",
-    "HOST_MODE": "Стать хостером",
-    "LOGOUT": "Выйти",
-    "ABOUT": "О нас",
-    "SEARCH": "Поиск",
-    "LIKES": "Избранное"
+    "PERSONAL_INFORMATION": "Особиста інформація",
+    "AUTHENTICATION": "Аутентифікація",
+    "HOST_MODE": "Стати хостом",
+    "LOGOUT": "Вийти",
+    "ABOUT": "Про нас",
+    "SEARCH": "Пошук",
+    "LIKES": "Вподобання"
   },
   "FORM": {
     "NOT_PROVIDED": "Не надано",
@@ -68,21 +68,21 @@
     "EMPTY": "Немає доступних пропозицій",
     "POPULAR": "Популярні домівки в",
     "TERM": "за 2 дні",
-    "FAVORITE": "Гостя вподобали",
-    "PLACE_OFFERS": "Чо гэты апартамент викачае",
+    "FAVORITE": "Уподобання гостей",
+    "PLACE_OFFERS": "Цей апартамент пропонує",
     "ACCESSIBILITY": "Доступність",
-    "AMENITIES": "Удобства",
-    "PROPERTY_TYPE": "Тып апартамента",
+    "AMENITIES": "Зручності",
+    "PROPERTY_TYPE": "Тип помешкання",
     "SAFETY_FEATURES": "Безпека",
     "BOOKING": "Бронювання",
-    "LOCATION": "Локацыя",
-    "YOU_WONT_BE_CHARGED_YET": "Не абавязакова аплачваць зараз",
-    "RESERVE": "Забраніраваць",
-    "REVIEWS": "Агляды"
+    "LOCATION": "Локація",
+    "YOU_WONT_BE_CHARGED_YET": "Ви ще не будете сплачувати",
+    "RESERVE": "Забронювати",
+    "REVIEWS": "Відгуки"
   },
   "SPECIFIC_CITY_OFFERS": {
-    "CITY_AMOUNT": "У {city} {count} дамоу",
-    "FEES": "Ціни включають усі наліги"
+    "CITY_AMOUNT": "У {city} {count} будинків",
+    "FEES": "Ціни включають усі податки"
   },
   "PROFILE": {
     "TITLE": "Профіль",
@@ -605,5 +605,22 @@
     "BACK": "Назад",
     "NEXT": "Далі",
     "PUBLISH": "Опублікувати"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Знайдіть ідеальне житло",
+    "HERO_SUBTITLE": "Пошук за містом, ціною та кількістю гостей",
+    "LABEL_CITY": "Куди",
+    "PLACEHOLDER_CITY": "Введіть напрямок",
+    "CLEAR_CITY": "Очистити пошук міста",
+    "SELECT_CITY": "Вибрати {{city}}",
+    "LABEL_GUESTS": "Гості",
+    "PLACEHOLDER_GUESTS": "Додати гостей",
+    "LABEL_PRICE": "Макс. ціна",
+    "PLACEHOLDER_PRICE": "Будь-яка ціна",
+    "BUTTON_SEARCH": "Пошук",
+    "FILTER_EUROPE": "Європа",
+    "FILTER_BUDGET": "До €100",
+    "FILTER_FAMILY": "Сімейні",
+    "FILTER_CLEAR": "Очистити всі"
   }
 }

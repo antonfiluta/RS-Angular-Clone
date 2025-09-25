@@ -606,5 +606,22 @@
     "BACK": "Назад",
     "NEXT": "Далей",
     "PUBLISH": "Апублікаваць"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Знайдзіце ідэальнае жыллё",
+    "HERO_SUBTITLE": "Пошук па горадзе, цане і колькасці гасцей",
+    "LABEL_CITY": "Куды",
+    "PLACEHOLDER_CITY": "Увядзіце напрамак",
+    "CLEAR_CITY": "Ачысціць пошук горада",
+    "SELECT_CITY": "Выбраць {{city}}",
+    "LABEL_GUESTS": "Госці",
+    "PLACEHOLDER_GUESTS": "Дадаць гасцей",
+    "LABEL_PRICE": "Макс. цана",
+    "PLACEHOLDER_PRICE": "Любая цана",
+    "BUTTON_SEARCH": "Пошук",
+    "FILTER_EUROPE": "Еўропа",
+    "FILTER_BUDGET": "Да €100",
+    "FILTER_FAMILY": "Сямейныя",
+    "FILTER_CLEAR": "Ачысціць усё"
   }
 }

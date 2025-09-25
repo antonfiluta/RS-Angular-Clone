@@ -24,7 +24,7 @@
     "GENDER_OPTIONS": {
       "MALE": "Männlich",
       "FEMALE": "Weiblich",
-      "OTHER": "Andere"
+      "OTHER": "Divers"
     },
     "ADD": "Hinzufügen",
     "EDIT": "Bearbeiten",
@@ -605,5 +605,22 @@
     "BACK": "Zurück",
     "NEXT": "Weiter",
     "PUBLISH": "Veröffentlichen"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Finde deine perfekte Unterkunft",
+    "HERO_SUBTITLE": "Suche nach Stadt, Preis und Gästeanzahl",
+    "LABEL_CITY": "Wo",
+    "PLACEHOLDER_CITY": "Reiseziel suchen",
+    "CLEAR_CITY": "Stadt-Suche löschen",
+    "SELECT_CITY": "Wähle {{city}}",
+    "LABEL_GUESTS": "Gäste",
+    "PLACEHOLDER_GUESTS": "Gäste hinzufügen",
+    "LABEL_PRICE": "Maximalpreis",
+    "PLACEHOLDER_PRICE": "Beliebiger Preis",
+    "BUTTON_SEARCH": "Suchen",
+    "FILTER_EUROPE": "Europa",
+    "FILTER_BUDGET": "Unter €100",
+    "FILTER_FAMILY": "Familienfreundlich",
+    "FILTER_CLEAR": "Alle löschen"
   }
 }
