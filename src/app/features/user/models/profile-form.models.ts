@@ -1,5 +1,4 @@
 export interface User {
-  // Обязательные поля
   id: string;
   email: string;
   password: string;
@@ -8,36 +7,30 @@ export interface User {
 
   profile: UserProfile;
 
-  // Избранное
-  favoriteApartments: string[]; // apartment IDs
+  favoriteApartments: string[];
 }
 
 export interface UserProfile {
-  // Характеристики
   characteristics: Characteristic[];
   languages: string[];
   countries: string[];
 
-  // О себе
-  aboutMe: string; // max 450 chars
+  aboutMe: string;
 
-  // Персональная информация
   gender: Gender;
   birthday: Date;
 
-  // Контактная информация
   phone: string;
 }
 
 export interface Characteristic {
-  icon: string; // Название иконки (lightbulb, headphones, heart)
-  placeholder: string; // Текст плейсхолдера
-  content: string; // Содержание
+  icon?: string;
+  placeholder?: string;
+  content: string;
 }
 
 export type Gender = 'male' | 'female' | 'other';
 
-// Начальные данные характеристик пользователя
 export const initialCharacteristics: Characteristic[] = [
   {
     icon: 'lightbulb',
