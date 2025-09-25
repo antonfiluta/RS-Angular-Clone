@@ -74,11 +74,15 @@ export class ProfileForm {
   private fillForm(): void {
     const user = this.user();
 
+    if (!user) {
+      return;
+    }
+
     this.form.patchValue({
-      bio: user?.profile?.aboutMe ?? '',
-      interests: user?.profile?.characteristics?.map((item) => item.content) ?? [],
-      languages: user?.profile?.languages ?? [],
-      countriesLived: user?.profile?.countries ?? [],
+      bio: user.profile.aboutMe ?? '',
+      interests: user.profile.characteristics?.map((item) => item.content) ?? [],
+      languages: user.profile.languages ?? [],
+      countriesLived: user.profile.countries ?? [],
     });
   }
 
