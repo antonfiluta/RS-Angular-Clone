@@ -1,4 +1,4 @@
-@for (city of citiesOffers(); track city.name) {
+@for (city of citiesOffers(); track city.name + '-' + $index) {
   <div>
     <a [routerLink]="['/offers', city.name]">
       <h2 class="font-medium text-xl tracking-wider mb-3 flex items-center">
