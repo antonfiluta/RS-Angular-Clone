@@ -114,7 +114,7 @@ export class Search implements OnInit, OnDestroy {
     this.searchFilters.page = 1;
 
     // Emit search filters
-    this.search.emit({ ...this.searchFilters });
+    this.searchListing.emit({ ...this.searchFilters });
 
     // Hide city dropdown
     this.showCityDropdown = false;
@@ -149,7 +149,7 @@ export class Search implements OnInit, OnDestroy {
     this.filteredCities = [];
 
     // Emit cleared filters
-    this.search.emit({ ...this.searchFilters });
+    this.searchListing.emit({ ...this.searchFilters });
   }
 
   onCityKeydown(event: KeyboardEvent, city: string): void {
