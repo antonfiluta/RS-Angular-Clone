@@ -8,6 +8,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { SanitizeIdPipe } from '../../pipes/sanitize-id-pipe/sanitize-id-pipe';
 
 export interface SelectOption {
   value: string;
@@ -16,7 +17,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'app-profile-row',
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, SanitizeIdPipe],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

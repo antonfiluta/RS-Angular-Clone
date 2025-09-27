@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-action-button',
@@ -8,8 +8,9 @@ import { Component, input } from '@angular/core';
   styleUrl: './action-button.scss',
 })
 export class ActionButton {
+  @Input() type: 'primary' | 'secondary' = 'primary';
+
   public isDisabled = input.required<boolean>();
-  public isDark = input.required<boolean>();
   public content = input.required<string>();
   public icon = input.required<string>();
 }

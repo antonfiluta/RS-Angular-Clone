@@ -1,10 +1,17 @@
 <button
+  type="button"
   [disabled]="isDisabled()"
   [ngClass]="{
-    'bg-gray-900 text-white': isDark(),
-    'text-brand-dark': !isDark(),
+    'bg-brand-red text-white border-brand-red hover:bg-[var(--color-brand-red-hover)] dark:bg-brand-red dark:text-white dark:border-brand-red dark:hover:bg-[var(--color-brand-red-hover)]':
+      type === 'primary',
+
+    'bg-transparent text-primary dark:text-white border-0 underline hover:text-brand-red dark:hover:text-brand-red':
+      type === 'secondary',
+
+    'disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-gray-400 disabled:border-gray-400':
+      isDisabled(),
   }"
-  class="border-2 hover:text-brand-bg border-brand-dark px-3 py-1 rounded-lg cursor-pointer flex items-center gap-2 hover:bg-gray-800 active:scale-95 transition-all duration-200 font-medium disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
+  class="flex items-center gap-2 px-3 py-1 rounded-lg border-2 font-medium transition-all duration-200 active:scale-95 focus-ring"
 >
   <i class="pi pi-{{ icon() }}"></i>
   <span>{{ content() }}</span>
