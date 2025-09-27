@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AccessibleEnvironment,
@@ -19,6 +19,7 @@ import {
 } from '../../config/listing-config';
 import { Step1Data, Step2Data, Step3Data } from '../../models/create-listing.model';
 import { TranslateModule } from '@ngx-translate/core';
+import { A11yAnnouncerService } from '../../../../core/services/a11y-announcer-service/a11y-announcer.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -31,6 +32,8 @@ export class CreateListing {
   basicAmenities = BASIC_AMENITIES;
   luxuryAmenities = LUXURY_AMENITIES;
   safetyItems = SAFETY_ITEMS;
+
+  private announcer = inject(A11yAnnouncerService);
 
   // Signals for step management
   currentStep = signal<number>(1);
@@ -241,5 +244,6 @@ export class CreateListing {
     console.log('Saving apartment:', apartment);
     // this.apartmentService.createApartment(apartment).subscribe(...)
     alert('Listing created!');
+    this.announcer.announce('Listing created successfully!');
   }
 }

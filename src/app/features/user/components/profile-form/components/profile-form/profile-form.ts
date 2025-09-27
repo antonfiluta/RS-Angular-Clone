@@ -9,6 +9,7 @@ import { User } from '../../../../models/profile-form.models';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../../../store/user.selector';
 import { UserActions } from '../../../../store/user.actions';
+import { A11yAnnouncerService } from '../../../../../../core/services/a11y-announcer-service/a11y-announcer.service';
 
 @Component({
   selector: 'app-profile-form',
@@ -33,6 +34,8 @@ export class ProfileForm {
   public interestOptions = INTEREST_OPTIONS;
   public languageOptions = LANGUAGE_OPTIONS;
   public countryOptions = COUNTRY_OPTIONS;
+
+  private announcer = inject(A11yAnnouncerService);
 
   public startEdit(): void {
     this.isEditMode = true;
@@ -66,6 +69,7 @@ export class ProfileForm {
       };
 
       this.store.dispatch(UserActions.editUser({ user: updatedUser }));
+      this.announcer.announce('Profile updated successfully!');
     } else {
       this.form.markAllAsTouched();
     }

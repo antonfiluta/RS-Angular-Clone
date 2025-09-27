@@ -36,21 +36,31 @@
       <div>
         <div class="flex items-center gap-2 mb-4">
           <i [class]="iconClass" class="text-lg text-[var(--color-brand-red)]"></i>
-          <h3 class="text-lg font-medium">{{ title | translate }}</h3>
+          <h3 class="text-lg font-medium text-[var(--color-text-primary)]">
+            {{ title | translate }}
+          </h3>
         </div>
 
         @for (control of formArray.controls; let i = $index; track i) {
           <div class="flex gap-2 mb-3">
             <select
               [formControl]="control"
-              class="select select-bordered w-full bg-[var(--color-brand-bg-secondary)]"
+              [id]="title | sanitizeId: i"
+              [name]="title | sanitizeId: i"
+              class="select select-bordered w-full bg-[var(--color-brand-bg-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg transition-shadow"
             >
               <option value="">{{ placeholder | translate }}</option>
               @for (option of options; track option.value) {
                 <option [value]="option.value">{{ option.label | translate }}</option>
               }
             </select>
-            <button type="button" (click)="removeItem(i)" class="btn btn-error btn-sm btn-square">
+
+            <button
+              type="button"
+              (click)="removeItem(i)"
+              [id]="'remove-' + (title | sanitizeId: i)"
+              class="btn btn-error btn-sm btn-square focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg"
+            >
               <i class="pi pi-times"></i>
             </button>
           </div>
@@ -59,7 +69,8 @@
         <button
           type="button"
           (click)="addItem()"
-          class="btn btn-outline btn-primary w-full"
+          [id]="'add-' + (title | sanitizeId)"
+          class="btn btn-outline btn-primary w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
           [disabled]="formArray.length >= maxItems"
         >
           <i class="pi pi-plus mr-2"></i>
