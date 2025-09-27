@@ -4,6 +4,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { sampleData } from '../../../../shared/utils/data/start-page';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { map, of } from 'rxjs';
+// import { OffersOverviewModel } from '../../models/offers-overview.models';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,11 @@ export class OffersOverviewService {
 
     return toObservable(signalForTestedFuncuanality);
   }
-  // public getOffersOverview() { //real functuanality
-  // const url = '/offers';
-  // return this.http.get<OffersOverviewModel>(url);
+  // public getOffersOverview() {
+  //   const BASE_URL = 'https://apartment-klol.onrender.com';
+  //   const url = `${BASE_URL}/offers/overview`;
+
+  //   return this.http.get<OffersOverviewModel>(url);
   // }
 
   public getSpecificCityOffers(cityId: string) {
