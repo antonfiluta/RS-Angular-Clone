@@ -21,7 +21,7 @@ export class AuthEffects {
       ofType(AuthActions.loginUser),
       switchMap(({ credentials }) =>
         this.authService.login(credentials).pipe(
-          switchMap((token) => of(AuthActions.authSuccess({ token }))),
+          switchMap((tokens) => of(AuthActions.authSuccess({ tokens }))),
           catchError((error) => of(AuthActions.loginUserFailure({ error }))),
         ),
       ),
@@ -33,7 +33,7 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       switchMap(({ credentials }) =>
         this.authService.register(credentials).pipe(
-          switchMap((token) => of(AuthActions.authSuccess({ token }))),
+          switchMap((tokens) => of(AuthActions.authSuccess({ tokens }))),
           catchError((error) => of(AuthActions.registerUserFailure({ error }))),
         ),
       ),
@@ -43,10 +43,10 @@ export class AuthEffects {
   public authSuccessEffect = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActions.authSuccess),
-      switchMap(({ token }) => {
-        this.localStorage.setItem('token', token);
+      switchMap(({ tokens }) => {
+        this.localStorage.setItem('tokens', tokens);
         this.router.navigate(['/']);
-        return of(AuthActions.initUserSession({ token }));
+        return of(AuthActions.initUserSession({ token: tokens.accessToken }));
       }),
     ),
   );

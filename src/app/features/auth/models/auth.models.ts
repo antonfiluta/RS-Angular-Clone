@@ -9,3 +9,8 @@ export interface SignUpCredentials {
   email: string;
   password: string;
 }
+
+export interface TokensModel {
+  accessToken: string;
+  refreshToken: string;
+}
