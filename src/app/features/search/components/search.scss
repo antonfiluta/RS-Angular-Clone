@@ -1,0 +1,117 @@
+.bg-app {
+  background-color: var(--color-brand-bg);
+}
+
+.bg-card {
+  background-color: var(--color-brand-bg-card);
+}
+
+.bg-secondary {
+  background-color: var(--color-brand-bg-secondary);
+}
+
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.border-base {
+  border-color: var(--color-border);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+/* Additional component-specific styles */
+.search-input {
+  font-family: var(--font-brand-primary);
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.quick-filter-btn {
+  transition: all 0.2s ease;
+  font-family: var(--font-brand-primary);
+}
+
+.quick-filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-button {
+  background: linear-gradient(135deg, var(--color-brand-red) 0%, #e31c5f 100%);
+  transition: all 0.2s ease;
+  font-family: var(--font-brand-primary);
+}
+
+.search-button:hover {
+  background: linear-gradient(135deg, var(--color-brand-red-hover) 0%, #d91355 100%);
+  transform: translateY(-1px);
+}
+
+.dropdown-item {
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-brand-bg-hover);
+}
+
+/* Dark theme specific adjustments */
+[data-theme='dark'] .search-input {
+  background-color: var(--color-brand-bg-secondary);
+}
+
+[data-theme='dark'] .search-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 107, 130, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .search-button {
+    margin-top: 1rem;
+  }
+}
+
+/* Animation for dropdown */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.city-dropdown {
+  animation: slideDown 0.2s ease-out;
+}
+
+/* Focus trap for accessibility */
+.search-form:focus-within .city-dropdown {
+  display: block;
+}

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { OffersOverviewActions } from './offers-overview.actions';
-import { catchError, of, switchMap } from 'rxjs';
+import { catchError, of, switchMap, tap } from 'rxjs';
 import { OffersOverviewService } from '../services/offers-overview.service/offers-overview.service';
 
 @Injectable()
@@ -14,6 +14,7 @@ export class OffersOverviewEffects {
       ofType(OffersOverviewActions.loadAllOffers),
       switchMap(() =>
         this.offersOverviewService.getOffersOverview().pipe(
+          tap((offers) => console.log(offers)),
           switchMap((offers) => of(OffersOverviewActions.loadAllOffersSuccess({ offers }))),
           catchError((error) => of(OffersOverviewActions.loadAllOffersFailure({ error }))),
         ),

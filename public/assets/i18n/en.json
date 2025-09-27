@@ -605,5 +605,22 @@
     "BACK": "Back",
     "NEXT": "Next",
     "PUBLISH": "Publish"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Find your perfect stay",
+    "HERO_SUBTITLE": "Search by city, price, and number of guests",
+    "LABEL_CITY": "Where",
+    "PLACEHOLDER_CITY": "Search destinations",
+    "CLEAR_CITY": "Clear city search",
+    "SELECT_CITY": "Select {{city}}",
+    "LABEL_GUESTS": "Guests",
+    "PLACEHOLDER_GUESTS": "Add guests",
+    "LABEL_PRICE": "Max Price",
+    "PLACEHOLDER_PRICE": "Any price",
+    "BUTTON_SEARCH": "Search",
+    "FILTER_EUROPE": "Europe",
+    "FILTER_BUDGET": "Under €100",
+    "FILTER_FAMILY": "Family friendly",
+    "FILTER_CLEAR": "Clear all"
   }
 }

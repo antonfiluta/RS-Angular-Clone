@@ -51,7 +51,7 @@
   },
   "MENU": {
     "PERSONAL_INFORMATION": "Обо мне",
-    "AUTHENTICATION": "Аутенфикация",
+    "AUTHENTICATION": "Аутентификация",
     "HOST_MODE": "Стать хостером",
     "LOGOUT": "Выйти",
     "ABOUT": "О нас",
@@ -69,7 +69,7 @@
     "POPULAR": "Популярные дома в",
     "TERM": "за 2 дня",
     "FAVORITE": "Популярно у гостей",
-    "PLACE_OFFERS": "Чо гэты апартамент выкачае",
+    "PLACE_OFFERS": "Предложения для этого жилья",
     "ACCESSIBILITY": "Доступность",
     "AMENITIES": "Удобства",
     "PROPERTY_TYPE": "Тип недвижимости",
@@ -81,7 +81,7 @@
     "REVIEWS": "Отзывы"
   },
   "SPECIFIC_CITY_OFFERS": {
-    "CITY_AMOUNT": "В {city} {count} дамов",
+    "CITY_AMOUNT": "В {city} {count} вариантов жилья",
     "FEES": "Цены включают все налоги"
   },
   "PROFILE": {
@@ -605,5 +605,22 @@
     "BACK": "Назад",
     "NEXT": "Далее",
     "PUBLISH": "Опубликовать"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Найдите идеальное жильё",
+    "HERO_SUBTITLE": "Поиск по городу, цене и количеству гостей",
+    "LABEL_CITY": "Куда",
+    "PLACEHOLDER_CITY": "Введите направление",
+    "CLEAR_CITY": "Очистить поиск города",
+    "SELECT_CITY": "Выбрать {{city}}",
+    "LABEL_GUESTS": "Гости",
+    "PLACEHOLDER_GUESTS": "Добавить гостей",
+    "LABEL_PRICE": "Макс. цена",
+    "PLACEHOLDER_PRICE": "Любая цена",
+    "BUTTON_SEARCH": "Поиск",
+    "FILTER_EUROPE": "Европа",
+    "FILTER_BUDGET": "До €100",
+    "FILTER_FAMILY": "Для семьи",
+    "FILTER_CLEAR": "Сбросить всё"
   }
 }
