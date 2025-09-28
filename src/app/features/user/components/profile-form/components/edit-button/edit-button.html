@@ -1,7 +1,7 @@
 @if (!isEditMode()) {
   <app-action-button
     [isDisabled]="false"
-    [isDark]="true"
+    [type]="'primary'"
     [content]="'Edit'"
     (click)="startEdit()"
     [icon]="'file-edit'"
@@ -10,7 +10,7 @@
   <div class="flex gap-2">
     <app-action-button
       [isDisabled]="false"
-      [isDark]="false"
+      [type]="'secondary'"
       [content]="'Cancel'"
       (click)="cancel()"
       [icon]="'times'"
@@ -18,7 +18,7 @@
 
     <app-action-button
       [isDisabled]="!isFormValid()"
-      [isDark]="true"
+      [type]="'primary'"
       [content]="'Save'"
       (click)="save()"
       [icon]="'save'"

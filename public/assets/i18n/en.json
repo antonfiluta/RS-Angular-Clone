@@ -51,7 +51,7 @@
   },
   "MENU": {
     "PERSONAL_INFORMATION": "Personal Info",
-    "AUTHENTICATION": "Authantication",
+    "AUTHENTICATION": "Authentication",
     "HOST_MODE": "Host mode",
     "LOGOUT": "Logout",
     "ABOUT": "About",
@@ -622,5 +622,11 @@
     "FILTER_BUDGET": "Under €100",
     "FILTER_FAMILY": "Family friendly",
     "FILTER_CLEAR": "Clear all"
+  },
+  "FOOTER": {
+    "SHOW_AUTHORS": "Show authors' GitHub profiles",
+    "HIDE_AUTHORS": "Hide authors' GitHub profiles",
+    "RS_SCHOOL_LINK": "Visit RS School Angular Course",
+    "COPYRIGHT": "Copyright"
   }
 }

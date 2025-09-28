@@ -22,6 +22,7 @@ import { PublishingService } from '../../services/publishing.service/publishing.
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../../user/store/user.selector';
 import { OfferModel } from '../../../offers-overview/models/offers-overview.models';
+import { A11yAnnouncerService } from '../../../../core/services/a11y-announcer-service/a11y-announcer.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -38,6 +39,8 @@ export class CreateListing {
   basicAmenities = BASIC_AMENITIES;
   luxuryAmenities = LUXURY_AMENITIES;
   safetyItems = SAFETY_ITEMS;
+
+  private announcer = inject(A11yAnnouncerService);
 
   // Signals for step management
   currentStep = signal<number>(1);
@@ -246,16 +249,15 @@ export class CreateListing {
       averageRating: 4,
     };
 
-    console.log('Saving apartment:', apartment);
     this.publishingService.publishApartment(apartment).subscribe({
       next: (res) => {
-        console.log(res);
-        alert('Listing created!');
+        console.log('Succes!!!');
       },
       error: (err) => {
         console.error(err);
-        alert('Error creating listing. Please try again.');
       },
     });
+
+    this.announcer.announce('Listing created successfully!');
   }
 }

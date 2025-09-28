@@ -622,5 +622,11 @@
     "FILTER_BUDGET": "До €100",
     "FILTER_FAMILY": "Сімейні",
     "FILTER_CLEAR": "Очистити всі"
+  },
+  "FOOTER": {
+    "SHOW_AUTHORS": "Показати GitHub-профілі авторів",
+    "HIDE_AUTHORS": "Сховати GitHub-профілі авторів",
+    "RS_SCHOOL_LINK": "Відвідати курс Angular в RS School",
+    "COPYRIGHT": "Авторські права"
   }
 }

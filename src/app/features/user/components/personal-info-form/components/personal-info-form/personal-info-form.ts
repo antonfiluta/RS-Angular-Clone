@@ -24,6 +24,8 @@ import { FormField } from '../../../../models/personal-info.models';
 import { selectUser } from '../../../../store/user.selector';
 import { UserActions } from '../../../../store/user.actions';
 import { User } from '../../../../../auth/models/auth.models';
+import { A11yAnnouncerService } from '../../../../../../core/services/a11y-announcer-service/a11y-announcer.service';
+
 
 @Component({
   selector: 'app-personal-info-form',
@@ -41,6 +43,7 @@ export class PersonalInfoForm {
   private originals: Record<string, string> = {};
   private validationSignals: Record<string, ValidationSignal> = {};
   public editFieldName: string | null = null;
+  private announcer = inject(A11yAnnouncerService);
 
   public form: FormGroup = this.fb.group({
     firstName: [
@@ -181,6 +184,7 @@ export class PersonalInfoForm {
       this.originals[field] = control.value ?? '';
       this.editFieldName = null;
       this.saveEdit();
+      this.announcer.announce('Field saved successfully!');
       control.markAsPristine();
       control.markAsUntouched();
     } else {

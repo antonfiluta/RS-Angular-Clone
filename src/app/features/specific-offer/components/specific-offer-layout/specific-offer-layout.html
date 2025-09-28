@@ -134,10 +134,10 @@
         <span class="tracking-wide mr-2">{{ 'OFFERS.LOCATION' | translate }}:</span>
         <span class="text-sm mt-0.5">{{ offer().address | addressFormat }}</span>
       </p>
-
       <a
         href="tel:+375 (29) 23-23-233"
-        class="block text-center w-full bg-brand-red text-white rounded-full uppercase tracking-wider font-medium py-3 mb-2"
+        class="block text-center w-full bg-brand-red text-white rounded-full uppercase tracking-wider font-medium py-3 mb-2 focus-ring"
+        [attr.aria-label]="'OFFERS.RESERVE' | translate"
       >
         {{ 'OFFERS.RESERVE' | translate }}
       </a>

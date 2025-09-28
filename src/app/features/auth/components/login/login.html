@@ -3,39 +3,52 @@
 >
   {{ 'AUTH.LOGIN' | translate }}
 </h2>
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col gap-4">
+    <!-- EMAIL FIELD -->
     <fieldset class="fieldset w-80 relative">
       <legend class="fieldset-legend">{{ 'AUTH.EMAIL_QUESTION' | translate }}</legend>
-      <label class="input w-full">
-        <i class="pi pi-envelope"></i>
+      <div class="relative">
+        <i
+          class="pi pi-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+        ></i>
         <input
+          id="email-input"
           type="email"
-          class="grow"
-          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
           formControlName="email"
+          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="formStatus.fieldsValid.isEmailInvalid() ? 'email-error' : null"
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] transition-colors"
         />
-      </label>
+      </div>
       @if (formStatus.fieldsValid.isEmailInvalid()) {
-        <p class="label text-brand-red">
+        <p id="email-error" class="label text-brand-red mt-1">
           {{ formStatus.fieldsErrors.emailError() }}
         </p>
       }
     </fieldset>
 
-    <fieldset class="fieldset w-full relative">
+    <!-- PASSWORD FIELD -->
+    <fieldset class="fieldset w-80 relative">
       <legend class="fieldset-legend">{{ 'AUTH.PASSWORD_QUESTION' | translate }}</legend>
-      <label class="input w-full">
-        <i class="pi pi-lock"></i>
+      <div class="relative">
+        <i class="pi pi-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"></i>
         <input
+          id="password-input"
           type="password"
-          class="grow"
-          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
           formControlName="password"
+          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="
+            formStatus.fieldsValid.isPasswordInvalid() ? 'password-error' : null
+          "
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] transition-colors"
         />
-      </label>
+      </div>
       @if (formStatus.fieldsValid.isPasswordInvalid()) {
-        <p class="label text-brand-red">{{ formStatus.fieldsErrors.passwordError() }}</p>
+        <p id="password-error" class="label text-brand-red mt-1">
+          {{ formStatus.fieldsErrors.passwordError() }}
+        </p>
       }
     </fieldset>
   </div>

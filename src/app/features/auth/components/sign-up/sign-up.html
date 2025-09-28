@@ -3,73 +3,98 @@
 >
   {{ 'AUTH.SIGNUP' | translate }}
 </h2>
+
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div class="flex flex-col gap-1">
-    <div class="flex gap-5">
-      <fieldset class="fieldset">
-        <legend class="fieldset-legend">{{ 'AUTH.LASTNAME_QUESTION' | translate }}</legend>
-        <label class="input w-40">
-          <i class="pi pi-user"></i>
-          <input
-            type="text"
-            class="grow"
-            [placeholder]="'AUTH.LASTNAME_PLACEHOLDER' | translate"
-            formControlName="lastname"
-          />
-        </label>
-        @if (formStatus.fieldsValid.isLastnameInvalid()) {
-          <p class="label text-brand-red">{{ formStatus.fieldsErrors.lastnameError() }}</p>
-        }
-      </fieldset>
-
-      <fieldset class="fieldset">
-        <legend class="fieldset-legend">{{ 'AUTH.FIRSTNAME_QUESTION' | translate }}</legend>
-        <label class="input w-40">
-          <i class="pi pi-user"></i>
-          <input
-            type="text"
-            class="grow"
-            [placeholder]="'AUTH.FIRSTNAME_PLACEHOLDER' | translate"
-            formControlName="firstname"
-          />
-        </label>
-        @if (formStatus.fieldsValid.isFirstnameInvalid()) {
-          <p class="label text-brand-red">{{ formStatus.fieldsErrors.firstnameError() }}</p>
-        }
-      </fieldset>
-    </div>
-
-    <fieldset class="fieldset w-full relative">
-      <legend class="fieldset-legend">{{ 'AUTH.EMAIL_QUESTION' | translate }}</legend>
-      <label class="input w-full">
-        <i class="pi pi-envelope"></i>
+  <div class="flex flex-col gap-4">
+    <!-- LASTNAME FIELD -->
+    <fieldset class="fieldset w-[320px] relative">
+      <legend class="fieldset-legend">{{ 'AUTH.LASTNAME_QUESTION' | translate }}</legend>
+      <div class="relative">
+        <i class="pi pi-user absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"></i>
         <input
-          type="email"
-          class="grow"
-          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
-          formControlName="email"
+          id="lastname-input"
+          type="text"
+          formControlName="lastname"
+          [placeholder]="'AUTH.LASTNAME_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="
+            formStatus.fieldsValid.isLastnameInvalid() ? 'lastname-error' : null
+          "
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] hover:shadow-[0_0_0_3px_rgba(255,56,92,0.1)] transition-colors"
         />
-      </label>
+      </div>
+      @if (formStatus.fieldsValid.isLastnameInvalid()) {
+        <p id="lastname-error" class="label text-brand-red mt-1">
+          {{ formStatus.fieldsErrors.lastnameError() }}
+        </p>
+      }
+    </fieldset>
+
+    <!-- FIRSTNAME FIELD -->
+    <fieldset class="fieldset w-[320px] relative">
+      <legend class="fieldset-legend">{{ 'AUTH.FIRSTNAME_QUESTION' | translate }}</legend>
+      <div class="relative">
+        <i class="pi pi-user absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"></i>
+        <input
+          id="firstname-input"
+          type="text"
+          formControlName="firstname"
+          [placeholder]="'AUTH.FIRSTNAME_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="
+            formStatus.fieldsValid.isFirstnameInvalid() ? 'firstname-error' : null
+          "
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] hover:shadow-[0_0_0_3px_rgba(255,56,92,0.1)] transition-colors"
+        />
+      </div>
+      @if (formStatus.fieldsValid.isFirstnameInvalid()) {
+        <p id="firstname-error" class="label text-brand-red mt-1">
+          {{ formStatus.fieldsErrors.firstnameError() }}
+        </p>
+      }
+    </fieldset>
+
+    <!-- EMAIL FIELD -->
+    <fieldset class="fieldset w-[320px] relative">
+      <legend class="fieldset-legend">{{ 'AUTH.EMAIL_QUESTION' | translate }}</legend>
+      <div class="relative">
+        <i
+          class="pi pi-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+        ></i>
+        <input
+          id="email-input"
+          type="email"
+          formControlName="email"
+          [placeholder]="'AUTH.EMAIL_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="formStatus.fieldsValid.isEmailInvalid() ? 'email-error' : null"
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] hover:shadow-[0_0_0_3px_rgba(255,56,92,0.1)] transition-colors"
+        />
+      </div>
       @if (formStatus.fieldsValid.isEmailInvalid()) {
-        <p class="label text-brand-red">
+        <p id="email-error" class="label text-brand-red mt-1">
           {{ formStatus.fieldsErrors.emailError() }}
         </p>
       }
     </fieldset>
 
-    <fieldset class="fieldset w-full relative">
+    <!-- PASSWORD FIELD -->
+    <fieldset class="fieldset w-[320px] relative">
       <legend class="fieldset-legend">{{ 'AUTH.PASSWORD_QUESTION' | translate }}</legend>
-      <label class="input w-full">
-        <i class="pi pi-lock"></i>
+      <div class="relative">
+        <i class="pi pi-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"></i>
         <input
+          id="password-input"
           type="password"
-          class="grow"
-          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
           formControlName="password"
+          [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
+          [attr.aria-describedby]="
+            formStatus.fieldsValid.isPasswordInvalid() ? 'password-error' : null
+          "
+          class="w-full pl-10 pr-4 py-3 rounded-lg border border-base bg-secondary text-primary placeholder-muted focus-ring hover:border-[var(--color-border-focus)] hover:bg-[var(--color-brand-bg-hover)] hover:shadow-[0_0_0_3px_rgba(255,56,92,0.1)] transition-colors"
         />
-      </label>
+      </div>
       @if (formStatus.fieldsValid.isPasswordInvalid()) {
-        <p class="label text-brand-red">{{ formStatus.fieldsErrors.passwordError() }}</p>
+        <p id="password-error" class="label text-brand-red mt-1">
+          {{ formStatus.fieldsErrors.passwordError() }}
+        </p>
       }
     </fieldset>
   </div>

@@ -17,7 +17,7 @@ import {
   PropertyType,
   SafetyFeatures,
 } from '../../../offers-overview/models/offers-overview.models';
-import { AddressFormatPipe } from '../../../../shared/pipes/address-format-pipe/address-format-pipe-pipe';
+import { AddressFormatPipe } from '../../../../shared/pipes/address-format-pipe/address-format-pipe';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({

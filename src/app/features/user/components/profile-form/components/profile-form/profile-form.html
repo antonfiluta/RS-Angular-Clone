@@ -28,11 +28,13 @@
         </div>
       } @else {
         <div class="edit-field">
-          <label class="flex items-start gap-2 mb-3">
+          <label for="bio" class="flex items-start gap-2 mb-3">
             <i class="pi pi-file-edit text-lg text-[var(--color-brand-red)] mt-2"></i>
             <textarea
+              id="bio"
+              name="bio"
               formControlName="bio"
-              class="textarea textarea-bordered w-full h-24 mt-1 bg-[var(--color-brand-bg-secondary)]"
+              class="textarea textarea-bordered w-full h-24 mt-1 bg-[var(--color-brand-bg-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg"
               [placeholder]="'PROFILE.BIO_PLACEHOLDER' | translate"
             ></textarea>
           </label>
@@ -52,6 +54,7 @@
     [maxItems]="8"
     [iconClass]="'pi pi-heart'"
     [options]="interestOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
   ></app-profile-row>
 
   <app-profile-row
@@ -64,6 +67,7 @@
     [maxItems]="6"
     [iconClass]="'pi pi-globe'"
     [options]="languageOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
   ></app-profile-row>
 
   <app-profile-row
@@ -76,5 +80,6 @@
     [maxItems]="10"
     [iconClass]="'pi pi-map-marker'"
     [options]="countryOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
   ></app-profile-row>
 </form>

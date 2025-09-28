@@ -1,9 +1,13 @@
-<div class="carousel carousel-center rounded-box w-[95vw] space-x-4 p-4">
+<div class="carousel carousel-center rounded-box w-[95vw] space-x-4 p-4" role="list">
   @for (offer of cityOffers(); track offer.id) {
-    <app-offer-card
-      [offer]="offer"
-      class="carousel-item cursor-pointer"
+    <a
       [routerLink]="['/offers', cityName(), offer.id]"
-    ></app-offer-card>
+      class="carousel-item cursor-pointer block focus-ring rounded-lg transform transition-all duration-800 hover:scale-102 hover:shadow-lg"
+      tabindex="0"
+      role="link"
+      [attr.aria-label]="offer.title || ('OFFERS.PLACE_OFFERS' | translate)"
+    >
+      <app-offer-card [offer]="offer"></app-offer-card>
+    </a>
   }
 </div>
