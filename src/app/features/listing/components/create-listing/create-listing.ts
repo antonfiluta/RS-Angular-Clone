@@ -1,10 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AccessibleEnvironment,
   Address,
   Amenities,
-  Apartment,
   ApartmentPhoto,
   CapacityInfo,
   Pricing,
@@ -19,6 +18,10 @@ import {
 } from '../../config/listing-config';
 import { Step1Data, Step2Data, Step3Data } from '../../models/create-listing.model';
 import { TranslateModule } from '@ngx-translate/core';
+import { PublishingService } from '../../services/publishing.service/publishing.service';
+import { Store } from '@ngrx/store';
+import { selectUser } from '../../../user/store/user.selector';
+import { OfferModel } from '../../../offers-overview/models/offers-overview.models';
 
 @Component({
   selector: 'app-create-listing',
@@ -27,6 +30,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './create-listing.scss',
 })
 export class CreateListing {
+  private readonly publishingService = inject(PublishingService);
+  private readonly store = inject(Store);
+  private readonly user = this.store.selectSignal(selectUser);
+
   propertyTypes = PROPERTY_TYPES;
   basicAmenities = BASIC_AMENITIES;
   luxuryAmenities = LUXURY_AMENITIES;
@@ -211,11 +218,12 @@ export class CreateListing {
 
   // Save listing
   saveListing(): void {
-    if (!this.canSave()) return;
+    const user = this.user();
+    if (!this.canSave() || !user) return;
 
-    const apartment: Partial<Apartment> = {
+    const apartment: OfferModel = {
       id: crypto.randomUUID(),
-      hostId: 'current-user-id', // Replace with actual user ID
+      hostId: user._id,
       title: this.step3Data().title,
       description: this.step3Data().description,
 
@@ -234,12 +242,20 @@ export class CreateListing {
       pricing: this.step3Data().pricing as Pricing,
 
       // Default values
-      isFavorite: false,
-      averageRating: 0,
+      isFavorite: Math.random() < 0.3,
+      averageRating: 4,
     };
 
     console.log('Saving apartment:', apartment);
-    // this.apartmentService.createApartment(apartment).subscribe(...)
-    alert('Listing created!');
+    this.publishingService.publishApartment(apartment).subscribe({
+      next: (res) => {
+        console.log(res);
+        alert('Listing created!');
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Error creating listing. Please try again.');
+      },
+    });
   }
 }

@@ -3,18 +3,26 @@ export interface RawAparment {
   userId: string;
   title: string;
   descr: string;
+
   photo: string[];
   price: number;
   propertyType: PROPERTY;
+
   country: string;
   city: string;
   street: string;
   building: string;
+
   maxGuests: number;
   bedrooms: number;
   beds: number;
   bathrooms: number;
+
   favorites: string[];
+
+  accessibleEnvironment?: AccessibleEnvironment;
+  amenities?: Amenities;
+  safetyFeatures?: SafetyFeatures;
 }
 
 export enum PROPERTY {
