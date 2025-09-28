@@ -2,7 +2,7 @@
   @for (offer of cityOffers(); track offer.id) {
     <app-offer-card
       [offer]="offer"
-      class="carousel-item"
+      class="carousel-item cursor-pointer"
       [routerLink]="['/offers', cityName(), offer.id]"
     ></app-offer-card>
   }
