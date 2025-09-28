@@ -28,8 +28,8 @@ export interface User {
   lastName: string;
   role: ROLE;
   aboutMe: string;
-  birthday?: string;
-  gender?: string;
+  birthday?: Date;
+  gender?: GENDER;
   phone: string;
   interests: string[];
   myCountries: string[];
@@ -43,4 +43,10 @@ export enum ROLE {
   MANAGER = 'MANAGER',
   WORKER = 'WORKER',
   USER = 'USER',
+}
+
+export enum GENDER {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
 }

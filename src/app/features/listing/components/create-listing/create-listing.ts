@@ -250,7 +250,7 @@ export class CreateListing {
     };
 
     this.publishingService.publishApartment(apartment).subscribe({
-      next: (res) => {
+      next: () => {
         console.log('Succes!!!');
       },
       error: (err) => {

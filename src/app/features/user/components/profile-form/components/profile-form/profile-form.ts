@@ -68,7 +68,7 @@ export class ProfileForm {
     }
   }
 
-  private fillForm(): void {
+  public fillForm(): void {
     const user = this.user();
 
     if (!user) {

@@ -23,9 +23,8 @@ import { Store } from '@ngrx/store';
 import { FormField } from '../../../../models/personal-info.models';
 import { selectUser } from '../../../../store/user.selector';
 import { UserActions } from '../../../../store/user.actions';
-import { User } from '../../../../../auth/models/auth.models';
+import { GENDER, User } from '../../../../../auth/models/auth.models';
 import { A11yAnnouncerService } from '../../../../../../core/services/a11y-announcer-service/a11y-announcer.service';
-
 
 @Component({
   selector: 'app-personal-info-form',
@@ -66,11 +65,8 @@ export class PersonalInfoForm {
     ],
     email: ['', [requiredFieldValidator('Email'), strongEmailValidator()]],
     phone: ['', [phoneValidator(), Validators.minLength(10)]],
-    dob: [
-      '',
-      [requiredFieldValidator('Date of birth'), notFutureDateValidator(), minimumAgeValidator(18)],
-    ],
-    gender: ['', [requiredFieldValidator('Gender')]],
+    dob: ['', [notFutureDateValidator(), minimumAgeValidator(18)]],
+    gender: [''],
   });
 
   public formFields: FormField[] = [
@@ -108,14 +104,17 @@ export class PersonalInfoForm {
       const formData = this.form.getRawValue();
       const user = this.user();
 
+      const gender: string = formData.gender;
+      const date = new Date(formData.dob);
+
       if (formData && user) {
         const updatedUser: User = {
           ...user,
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
-          birthday: formData.dob,
-          gender: formData.gender,
+          birthday: date,
+          gender: gender.toUpperCase() as GENDER,
           phone: formData.phone,
         };
 

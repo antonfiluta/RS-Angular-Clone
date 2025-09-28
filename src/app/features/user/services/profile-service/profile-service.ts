@@ -9,8 +9,14 @@ export class UserService {
   private readonly http = inject(HttpClient);
 
   public editUser(updateUser: User) {
-    const url = '/user';
+    const url = `/user/${updateUser._id}`;
 
-    return this.http.patch<User>(url, updateUser);
+    return this.http.patch(url, updateUser);
+  }
+
+  public loadUser(id: string) {
+    const url = `/user/${id}`;
+
+    return this.http.get<User>(url);
   }
 }

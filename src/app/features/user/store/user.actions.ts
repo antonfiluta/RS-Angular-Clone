@@ -9,5 +9,6 @@ export const UserActions = createActionGroup({
     'Load User Failure': props<{ error: HttpErrorResponse }>(),
 
     'Edit User': props<{ user: User }>(),
+    'Update User': props<{ id: string }>(),
   },
 });

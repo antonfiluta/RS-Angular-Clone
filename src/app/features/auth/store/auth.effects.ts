@@ -64,7 +64,7 @@ export class AuthEffects {
         ofType(AuthActions.logoutUser),
         tap(() => {
           this.logoutChecker.checkRoute();
-          this.localStorage.removeItem('tokens');
+          this.localStorage.removeItem('user');
         }),
       ),
     { dispatch: false },
