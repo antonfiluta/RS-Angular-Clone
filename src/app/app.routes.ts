@@ -66,12 +66,6 @@ export const routes: Routes = [
       import('./core/pages/specific-offer/specific-offer').then((c) => c.SpecificOffer),
   },
   {
-    path: 'likes',
-    title: 'Likes',
-    loadComponent: () => import('./core/pages/likes/likes').then((c) => c.Likes),
-    canActivate: [profileGuard],
-  },
-  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'offers',
