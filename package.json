@@ -11,7 +11,8 @@
     "lint": "eslint . --ext .ts,.html",
     "lint:fix": "eslint . --ext .ts,.html --fix",
     "prepare": "husky && husky install",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "deploy": "ng build --configuration production && firebase deploy"
   },
   "lint-staged": {
     "*.{ts,html}": [
