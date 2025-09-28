@@ -7,3 +7,13 @@ export const selectIsAuthenticated = createSelector(
   selectAuthState,
   (authState) => authState.isAuthenticated,
 );
+
+export const selectAccessToken = createSelector(
+  selectAuthState,
+  (authState) => authState.tokens?.accessToken,
+);
+
+export const selectRefreshToken = createSelector(
+  selectAuthState,
+  (authState) => authState.tokens?.refreshToken,
+);

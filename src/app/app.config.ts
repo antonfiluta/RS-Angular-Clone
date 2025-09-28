@@ -18,6 +18,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthEffects } from './features/auth/store/auth.effects';
 import { UserEffects } from './features/user/store/user.effects';
+import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,11 +30,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideStore({ ...AppReducer }),
-    provideEffects(OffersOverviewEffects, AuthEffects, UserEffects),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),
-    provideHttpClient(withInterceptors([])),
+    provideStore(AppReducer),
+    provideEffects(OffersOverviewEffects, AuthEffects, UserEffects),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      connectInZone: true,
+    }),
+    provideHttpClient(withInterceptors([ApiPrefixInterceptor, AuthInterceptor, ErrorInterceptor])),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {

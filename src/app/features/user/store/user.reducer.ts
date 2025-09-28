@@ -6,7 +6,7 @@ export const UserFeature = createFeature({
   name: 'user',
   reducer: createReducer(
     initialUserState,
-    on(UserActions.loadUserSuccess, (state, { user }) => ({
+    on(UserActions.loadUser, (state, { user }) => ({
       ...state,
       user,
     })),

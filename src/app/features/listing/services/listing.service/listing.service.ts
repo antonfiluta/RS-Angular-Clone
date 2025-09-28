@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Apartment } from '../../../shared/utils/apartments.models';
+import { Apartment } from '../../../../shared/utils/apartments.models';
 
 @Injectable({
   providedIn: 'root',

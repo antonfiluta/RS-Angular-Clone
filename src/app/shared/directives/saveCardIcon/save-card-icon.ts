@@ -30,7 +30,7 @@ export class AppSaveCardIconDirective implements OnChanges, OnInit {
       this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
     } else {
       this.renderer.addClass(this.el.nativeElement, this.heartIconClass);
-      this.renderer.removeStyle(this.el.nativeElement, 'color');
+      this.renderer.setStyle(this.el.nativeElement, 'color', 'white');
     }
   }
 

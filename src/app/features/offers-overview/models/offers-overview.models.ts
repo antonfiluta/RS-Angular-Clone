@@ -1,3 +1,39 @@
+export interface RawAparment {
+  _id: string;
+  userId: string;
+  title: string;
+  descr: string;
+
+  photo: string[];
+  price: number;
+  propertyType: PROPERTY;
+
+  country: string;
+  city: string;
+  street: string;
+  building: string;
+
+  maxGuests: number;
+  bedrooms: number;
+  beds: number;
+  bathrooms: number;
+
+  favorites: string[];
+
+  accessibleEnvironment?: AccessibleEnvironment;
+  amenities?: Amenities;
+  safetyFeatures?: SafetyFeatures;
+}
+
+export enum PROPERTY {
+  HOUSE = 'HOUSE',
+  APERTMENT = 'APERTMENT',
+  PART_APERTMENT = 'PART_APERTMENT',
+  ROOM = 'ROOM',
+  DORMITORY = 'DORMITORY',
+  CABIN = 'CABIN',
+}
+
 export interface OffersOverviewModel {
   cities: CityOffersModel[];
 }
@@ -8,30 +44,24 @@ export interface CityOffersModel {
 
 export interface OfferModel {
   id: string;
-  hostId: string; // ID пользователя-владельца
-  title: string; // max 25 chars
-  description: string; // max 500 chars
+  hostId: string;
+  title: string;
+  description: string;
 
-  // Основная информация
   propertyType: PropertyType;
   address: Address;
   capacity: CapacityInfo;
 
-  // Удобства и особенности
   accessibleEnvironment: AccessibleEnvironment;
   amenities: Amenities;
   safetyFeatures: SafetyFeatures;
 
-  // Фотографии
   photos: ApartmentPhoto[];
 
-  // Ценообразование
   pricing: Pricing;
 
-  // Является ли избранным
   isFavorite: boolean;
 
-  // Рейтинги
   averageRating: number;
 }
 

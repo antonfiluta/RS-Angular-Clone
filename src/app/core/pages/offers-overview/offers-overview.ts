@@ -14,11 +14,10 @@ export class OffersOverview {
   private readonly store = inject(Store);
 
   constructor() {
-    this.store.dispatch(OffersOverviewActions.loadAllOffers());
+    this.store.dispatch(OffersOverviewActions.loadAllOffers({ filters: {} }));
   }
 
-  onSearchFilters(filters: SearchFilters) {
-    console.log('Search filters:', filters);
-    // this.searchService.searchApartments(filters).subscribe(...)
+  public onSearchFilters(filters: SearchFilters) {
+    this.store.dispatch(OffersOverviewActions.loadAllOffers({ filters }));
   }
 }

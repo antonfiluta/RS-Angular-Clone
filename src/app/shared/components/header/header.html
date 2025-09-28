@@ -50,26 +50,14 @@
   }
 
   <!-- Menu Dropdown -->
-  <div class="dropdown">
-    <button class="header__button" (click)="toggleMenu()">
-      <i class="pi pi-bars header__button__icon"></i>
-    </button>
+  @if (isAuth()) {
+    <div class="dropdown">
+      <button class="header__button" (click)="toggleMenu()">
+        <i class="pi pi-bars header__button__icon"></i>
+      </button>
 
-    @if (menuOpen) {
-      <ul class="dropdown__menu">
-        <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
-          <i class="pi pi-info-circle header__button__icon"></i>
-          <a routerLink="/about" (click)="closeAllMenus()">
-            {{ 'MENU.ABOUT' | translate }}
-          </a>
-        </li>
-        <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
-          <i class="pi pi-search header__button__icon"></i>
-          <a routerLink="/search" (click)="closeAllMenus()">
-            {{ 'MENU.SEARCH' | translate }}
-          </a>
-        </li>
-        @if (isAuth()) {
+      @if (menuOpen) {
+        <ul class="dropdown__menu">
           <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
             <i class="pi pi-user header__button__icon"></i>
             <a routerLink="/personal-info" (click)="closeAllMenus()">
@@ -94,17 +82,10 @@
               {{ 'MENU.LOGOUT' | translate }}
             </button>
           </li>
-        } @else {
-          <li class="dropdown__link hover:bg-gray-50 flex items-center gap-2">
-            <i class="pi pi-sign-in header__button__icon"></i>
-            <a routerLink="/auth/login" (click)="closeAllMenus()">
-              {{ 'MENU.AUTHENTICATION' | translate }}
-            </a>
-          </li>
-        }
-      </ul>
-    }
-  </div>
+        </ul>
+      }
+    </div>
+  }
 </div>
 
 <div

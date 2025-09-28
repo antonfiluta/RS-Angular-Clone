@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginCredentials, SignUpCredentials } from '../../models/auth.models';
-import { of } from 'rxjs';
+import { AuthResponse, LoginCredentials, SignUpCredentials } from '../../models/auth.models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,20 +9,14 @@ export class AuthService {
   private http = inject(HttpClient);
 
   public login(credentials: LoginCredentials) {
-    return of('4242424234234' + credentials.password);
-  }
-  // login(credentials: LoginCredentials) {
-  //   const url = '/auth/login';
+    const url = '/auth/signin';
 
-  //   return this.http.post<string>(url, credentials);
-  // }
+    return this.http.post<AuthResponse>(url, credentials);
+  }
 
   public register(credentials: SignUpCredentials) {
-    return of('4242424234234' + credentials.password);
-  }
-  // register(credentials: SignUpCredentials) {
-  //   const url = '/auth/sign-up';
+    const url = '/auth/signup';
 
-  //   return this.http.post<string>(url, credentials);
-  // }
+    return this.http.post<AuthResponse>(url, credentials);
+  }
 }

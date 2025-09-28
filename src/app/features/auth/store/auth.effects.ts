@@ -21,7 +21,7 @@ export class AuthEffects {
       ofType(AuthActions.loginUser),
       switchMap(({ credentials }) =>
         this.authService.login(credentials).pipe(
-          switchMap((token) => of(AuthActions.authSuccess({ token }))),
+          switchMap((authResponse) => of(AuthActions.authSuccess({ authResponse }))),
           catchError((error) => of(AuthActions.loginUserFailure({ error }))),
         ),
       ),
@@ -33,7 +33,7 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       switchMap(({ credentials }) =>
         this.authService.register(credentials).pipe(
-          switchMap((token) => of(AuthActions.authSuccess({ token }))),
+          switchMap((authResponse) => of(AuthActions.authSuccess({ authResponse }))),
           catchError((error) => of(AuthActions.registerUserFailure({ error }))),
         ),
       ),
@@ -43,10 +43,10 @@ export class AuthEffects {
   public authSuccessEffect = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActions.authSuccess),
-      switchMap(({ token }) => {
-        this.localStorage.setItem('token', token);
+      switchMap(({ authResponse }) => {
+        this.localStorage.setItem('user', authResponse);
         this.router.navigate(['/']);
-        return of(AuthActions.initUserSession({ token }));
+        return of(AuthActions.initUserSession({ authResponse }));
       }),
     ),
   );
@@ -54,9 +54,7 @@ export class AuthEffects {
   public initUserSessionEffect = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActions.initUserSession),
-      switchMap(({ token }) => {
-        return of(UserActions.loadUser({ token }));
-      }),
+      switchMap(({ authResponse }) => of(UserActions.loadUser({ user: authResponse.user }))),
     ),
   );
 
@@ -66,7 +64,7 @@ export class AuthEffects {
         ofType(AuthActions.logoutUser),
         tap(() => {
           this.logoutChecker.checkRoute();
-          this.localStorage.removeItem('token');
+          this.localStorage.removeItem('tokens');
         }),
       ),
     { dispatch: false },

@@ -66,20 +66,10 @@ export const routes: Routes = [
       import('./core/pages/specific-offer/specific-offer').then((c) => c.SpecificOffer),
   },
   {
-    path: 'about',
-    title: 'About',
-    loadComponent: () => import('./core/pages/about/about').then((c) => c.About),
-  },
-  {
     path: 'likes',
     title: 'Likes',
     loadComponent: () => import('./core/pages/likes/likes').then((c) => c.Likes),
     canActivate: [profileGuard],
-  },
-  {
-    path: 'search',
-    title: 'Search',
-    loadComponent: () => import('./core/pages/search/search').then((c) => c.Search),
   },
   {
     path: '',

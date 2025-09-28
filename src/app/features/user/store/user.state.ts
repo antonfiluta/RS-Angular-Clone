@@ -1,4 +1,4 @@
-import { User } from '../models/profile-form.models';
+import { User } from '../../auth/models/auth.models';
 
 export interface UserState {
   user: User | null;

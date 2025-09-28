@@ -22,9 +22,10 @@ import { ValidationSignal } from '../../../../../../shared/types/validation.type
 import { Store } from '@ngrx/store';
 import { FormField } from '../../../../models/personal-info.models';
 import { selectUser } from '../../../../store/user.selector';
-import { User } from '../../../../models/profile-form.models';
 import { UserActions } from '../../../../store/user.actions';
+import { User } from '../../../../../auth/models/auth.models';
 import { A11yAnnouncerService } from '../../../../../../core/services/a11y-announcer-service/a11y-announcer.service';
+
 
 @Component({
   selector: 'app-personal-info-form',
@@ -110,15 +111,12 @@ export class PersonalInfoForm {
       if (formData && user) {
         const updatedUser: User = {
           ...user,
-          firstname: formData.firstName,
-          lastname: formData.lastName,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           email: formData.email,
-          profile: {
-            ...user.profile,
-            birthday: formData.dob,
-            gender: formData.gender,
-            phone: formData.phone,
-          },
+          birthday: formData.dob,
+          gender: formData.gender,
+          phone: formData.phone,
         };
 
         this.store.dispatch(UserActions.editUser({ user: updatedUser }));
@@ -132,12 +130,12 @@ export class PersonalInfoForm {
       return;
     }
     this.form.patchValue({
-      firstName: user.firstname,
-      lastName: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
-      phone: user.profile.phone,
-      dob: user.profile.birthday,
-      gender: user.profile.gender,
+      phone: user.phone,
+      dob: user.birthday,
+      gender: user.gender,
     });
   }
 
