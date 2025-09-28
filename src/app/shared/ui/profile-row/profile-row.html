@@ -1,15 +1,17 @@
-<div class="card bg-base-100 shadow-sm mb-6">
+<div class="card card-custom shadow-card mb-6 bg-[var(--color-brand-bg-card)]">
   <div class="card-body">
     <!-- View Mode -->
     @if (!isEditMode) {
-      <div class="view-mode">
+      <div>
         <div class="flex items-center gap-2 mb-4">
-          <i [class]="iconClass" class="text-lg text-base-content/70"></i>
-          <h3 class="text-lg font-medium">{{ title | translate }}</h3>
+          <i [class]="iconClass" class="text-lg text-[var(--color-text-secondary)]"></i>
+          <h3 class="text-lg font-medium text-[var(--color-text-primary)]">
+            {{ title | translate }}
+          </h3>
         </div>
 
         @if (displayItems.length === 0) {
-          <div class="text-base-content/60 italic">
+          <div class="italic text-[var(--color-text-muted)]">
             {{ emptyMessage | translate }}
           </div>
         }
@@ -17,8 +19,10 @@
         @if (displayItems.length > 0) {
           <div class="flex flex-wrap gap-2">
             @for (item of displayItems; track item) {
-              <div class="badge badge-outline badge-lg gap-2">
-                <i [class]="iconClass" class="text-sm"></i>
+              <div
+                class="badge badge-outline badge-lg gap-2 border-[var(--color-border)] text-[var(--color-text-secondary)]"
+              >
+                <i [class]="iconClass" class="text-sm text-[var(--color-brand-red)]"></i>
                 {{ getOptionLabel(item) | translate }}
               </div>
             }
@@ -29,41 +33,44 @@
 
     <!-- Edit Mode -->
     @if (isEditMode) {
-      <div class="edit-mode">
+      <div>
         <div class="flex items-center gap-2 mb-4">
-          <i [class]="iconClass" class="text-lg text-primary"></i>
-          <h3 class="text-lg font-medium">{{ title | translate }}</h3>
+          <i [class]="iconClass" class="text-lg text-[var(--color-brand-red)]"></i>
+          <h3 class="text-lg font-medium text-[var(--color-text-primary)]">
+            {{ title | translate }}
+          </h3>
         </div>
 
-        <!-- Existing Items -->
         @for (control of formArray.controls; let i = $index; track i) {
           <div class="flex gap-2 mb-3">
-            <div class="flex-1">
-              <select [formControl]="control" class="select select-bordered w-full">
-                <option value="">{{ placeholder | translate }}</option>
-                @for (option of options; track option.value) {
-                  <option [value]="option.value">
-                    {{ option.label | translate }}
-                  </option>
-                }
-              </select>
-            </div>
+            <select
+              [formControl]="control"
+              [id]="title | sanitizeId: i"
+              [name]="title | sanitizeId: i"
+              class="select select-bordered w-full bg-[var(--color-brand-bg-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg transition-shadow"
+            >
+              <option value="">{{ placeholder | translate }}</option>
+              @for (option of options; track option.value) {
+                <option [value]="option.value">{{ option.label | translate }}</option>
+              }
+            </select>
+
             <button
               type="button"
               (click)="removeItem(i)"
-              class="btn btn-error btn-sm btn-square"
-              [attr.aria-label]="'PROFILE.REMOVE_ITEM' | translate"
+              [id]="'remove-' + (title | sanitizeId: i)"
+              class="btn btn-error btn-sm btn-square focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg"
             >
               <i class="pi pi-times"></i>
             </button>
           </div>
         }
 
-        <!-- Add New Item -->
         <button
           type="button"
           (click)="addItem()"
-          class="btn btn-outline btn-primary w-full"
+          [id]="'add-' + (title | sanitizeId)"
+          class="btn btn-outline btn-primary w-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
           [disabled]="formArray.length >= maxItems"
         >
           <i class="pi pi-plus mr-2"></i>
@@ -73,9 +80,7 @@
         @if (formArray.length >= maxItems) {
           <div class="alert alert-warning mt-2">
             <i class="pi pi-exclamation-triangle"></i>
-            <span>
-              {{ 'PROFILE.MAX_ITEMS_REACHED' | translate: { max: maxItems } }}
-            </span>
+            <span>{{ 'PROFILE.MAX_ITEMS_REACHED' | translate: { max: maxItems } }}</span>
           </div>
         }
       </div>

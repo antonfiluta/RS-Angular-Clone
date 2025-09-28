@@ -1,0 +1,27 @@
+@if (!isEditMode()) {
+  <app-action-button
+    [isDisabled]="false"
+    [type]="'primary'"
+    [content]="'Edit'"
+    (click)="startEdit()"
+    [icon]="'file-edit'"
+  ></app-action-button>
+} @else {
+  <div class="flex gap-2">
+    <app-action-button
+      [isDisabled]="false"
+      [type]="'secondary'"
+      [content]="'Cancel'"
+      (click)="cancel()"
+      [icon]="'times'"
+    ></app-action-button>
+
+    <app-action-button
+      [isDisabled]="!isFormValid()"
+      [type]="'primary'"
+      [content]="'Save'"
+      (click)="save()"
+      [icon]="'save'"
+    ></app-action-button>
+  </div>
+}

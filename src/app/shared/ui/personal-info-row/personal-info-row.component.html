@@ -1,14 +1,14 @@
-<section class="flex justify-between items-start px-6 py-5 border-b border-gray-200">
+<section class="flex justify-between items-start px-6 py-5 border-b border-base">
   <div class="flex-1">
-    <div class="text-xl font-bold text-gray-900 mb-1.5">{{ title }}</div>
+    <div class="text-xl font-bold text-primary mb-1.5">{{ title }}</div>
 
     @if (sub) {
-      <div class="text-gray-500 text-sm mt-1">{{ sub }}</div>
+      <div class="text-secondary text-sm mt-1">{{ sub }}</div>
     }
 
     <!-- View mode -->
     @if (!isEditing) {
-      <div class="text-gray-900 text-base mt-1.5" [class.text-gray-400]="empty">
+      <div class="text-base mt-1.5" [class.text-muted]="empty" [class.text-primary]="!empty">
         {{ empty ? ('FORM.NOT_PROVIDED' | translate) : control.value }}
       </div>
     }
@@ -19,7 +19,7 @@
         @default {
           <input
             [type]="type"
-            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base"
+            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base bg-card text-primary border-base focus-ring"
             [class.border-red-500]="isFieldInvalid"
             [formControl]="control"
             [placeholder]="title"
@@ -28,7 +28,7 @@
         }
         @case ('select') {
           <select
-            class="select select-bordered w-full rounded-xl text-base"
+            class="select select-bordered w-full rounded-xl text-base bg-card text-primary border-base focus-ring"
             [class.border-red-500]="isFieldInvalid"
             [formControl]="control"
           >
@@ -41,7 +41,7 @@
         @case ('date') {
           <input
             type="date"
-            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base"
+            class="input input-bordered w-full rounded-xl px-4 py-3.5 text-base bg-card text-primary border-base focus-ring"
             [class.border-red-500]="isFieldInvalid"
             [formControl]="control"
             [attr.aria-label]="title"
@@ -58,7 +58,7 @@
       <div class="mt-4">
         <button
           type="button"
-          class="bg-gray-900 text-white rounded-lg px-4 py-2.5 border-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          class="px-4 py-2.5 rounded-lg font-medium cursor-pointer border bg-gray-900 text-white border-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:border-white dark:hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed focus-ring"
           [disabled]="isFieldInvalid || control.pristine"
           (click)="saveField.emit(fieldKey)"
         >
@@ -69,11 +69,11 @@
   </div>
 
   <!-- Right action buttons -->
-  <div class="ml-4 flex-none flex items-center">
+  <div class="ml-4 flex-none flex items-center gap-2">
     @if (!isEditing) {
       <button
         type="button"
-        class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
+        class="underline bg-transparent rounded border-0 cursor-pointer font-normal text-primary focus-ring"
         (click)="editField.emit(fieldKey)"
       >
         {{ actionLabel }}
@@ -82,7 +82,7 @@
     @if (isEditing) {
       <button
         type="button"
-        class="text-gray-900 underline bg-transparent border-0 cursor-pointer font-normal"
+        class="underline bg-transparent rounded border-0 cursor-pointer font-normal text-primary focus-ring"
         (click)="cancelEdit.emit(fieldKey)"
       >
         {{ 'FORM.CANCEL' | translate }}

@@ -15,5 +15,9 @@ export class OffersOverviewLayout {
   private readonly store = inject(Store);
 
   public readonly offers = this.store.selectSignal(selectAllOffers);
-  public readonly citiesOffers = computed(() => this.offers()?.cities);
+  public readonly citiesOffers = computed(() =>
+    this.offers()
+      ?.cities.slice()
+      .sort((list1, list2) => list2.offers.length - list1.offers.length),
+  );
 }

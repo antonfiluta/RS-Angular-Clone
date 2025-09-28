@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth-guard/auth-guard';
+import { profileGuard } from './core/guards/profile-guard/profile-guard';
 
 export const routes: Routes = [
   {
@@ -22,28 +24,26 @@ export const routes: Routes = [
         redirectTo: 'login',
       },
     ],
+    canActivate: [authGuard],
   },
   {
     path: 'personal-info',
     title: 'Personal Information',
     loadComponent: () =>
       import('./core/pages/personal-info/personal-info').then((c) => c.PersonalInfo),
+    canActivate: [profileGuard],
   },
-
   {
     path: 'profile',
     title: 'Profile',
     loadComponent: () => import('./core/pages/profile/profile').then((c) => c.Profile),
+    canActivate: [profileGuard],
   },
   {
-    path: 'booking',
-    title: 'Booking',
-    loadComponent: () => import('./core/pages/booking/booking').then((c) => c.Booking),
-  },
-  {
-    path: 'hosting',
-    title: 'Hosting',
-    loadComponent: () => import('./core/pages/hosting/hosting').then((c) => c.Hosting),
+    path: 'listing',
+    title: 'Listing',
+    loadComponent: () => import('./core/pages/listing/listing').then((c) => c.Listing),
+    canActivate: [profileGuard],
   },
   {
     path: 'offers',
@@ -64,11 +64,6 @@ export const routes: Routes = [
     title: 'Offer',
     loadComponent: () =>
       import('./core/pages/specific-offer/specific-offer').then((c) => c.SpecificOffer),
-  },
-  {
-    path: 'about',
-    title: 'About',
-    loadComponent: () => import('./core/pages/about/about').then((c) => c.About),
   },
   {
     path: '',

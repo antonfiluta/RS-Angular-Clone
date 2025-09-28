@@ -1,0 +1,41 @@
+<form [formGroup]="form" class="block">
+  <div class="p-0 m-0 rounded-xl max-w-full shadow-card bg-card text-primary">
+    <div class="flex items-center gap-4 px-6 py-5 border-b border-base">
+      <img
+        src="assets/images/avatar-placeholder.svg"
+        alt="Avatar"
+        class="w-20 h-20 rounded-full object-cover bg-secondary"
+      />
+      <button
+        type="button"
+        class="underline bg-transparent rounded border-0 cursor-pointer font-normal text-primary focus-ring"
+        aria-label="Change avatar"
+      >
+        {{ 'PERSONAL_INFO.CHANGE_AVATAR' | translate }}
+      </button>
+    </div>
+
+    @for (field of formFields; track field) {
+      <app-personal-info-row
+        [title]="field.title | translate"
+        [fieldKey]="field.key"
+        [control]="getControl(field.key)"
+        [empty]="isEmpty(field.key)"
+        [actionLabel]="
+          isEmpty(field.key)
+            ? ('PERSONAL_INFO.ADD' | translate)
+            : ('PERSONAL_INFO.EDIT' | translate)
+        "
+        [isEditing]="editFieldName === field.key"
+        [sub]="field.sub ? (field.sub | translate) : null"
+        [type]="field.type || 'text'"
+        [options]="getTranslatedOptions(field)"
+        [isFieldInvalid]="isFieldInvalid(field.key)"
+        [errorMessage]="getFieldError(field.key)"
+        (editField)="editField($event)"
+        (saveField)="saveField($event)"
+        (cancelEdit)="cancelEdit($event)"
+      ></app-personal-info-row>
+    }
+  </div>
+</form>

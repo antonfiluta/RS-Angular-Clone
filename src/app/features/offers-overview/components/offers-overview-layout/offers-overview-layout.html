@@ -1,6 +1,11 @@
-@for (city of citiesOffers(); track city.name) {
+@for (city of citiesOffers(); track city.name + '-' + $index) {
   <div>
-    <a [routerLink]="['/offers', city.name]">
+    <a
+      [routerLink]="['/offers', city.name]"
+      class="focus-ring block rounded"
+      tabindex="0"
+      [attr.aria-label]="'OFFERS.POPULAR ' + city.name"
+    >
       <h2 class="font-medium text-xl tracking-wider mb-3 flex items-center">
         <span> {{ 'OFFERS.POPULAR' | translate }} {{ city.name }} </span>
         <i class="pi pi-angle-right pt-[3px]" style="font-size: 18px"></i>

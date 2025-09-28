@@ -1,30 +1,43 @@
 <img
-  [src]="offer().img"
-  [alt]="offer().name"
-  class="size-[55vw] sm:size-[35vw] md:size-[25vw] lg:size-[20vw] xl:size-[15vw] object-cover rounded-2xl"
+  [src]="offer().photos[0].url"
+  [alt]="offer().photos[0].id"
+  class="size-[55vw] sm:size-[35vw] md:size-[25vw] lg:size-[20vw] xl:size-[15vw] w-full object-cover rounded-2xl bg-secondary shadow-card"
 />
 
-<div class="flex flex-col px-1">
-  <h3 class="text-[13px] font-medium">{{ offer().name }}</h3>
-  <p class="text-[12px] text-brand-gray">{{ offer().location }} / {{ offer().description }}</p>
-  <div class="text-brand-gray text-[12px] tracking-wide flex items-center gap-1">
-    <span>{{ offer().cost }}$ {{ 'OFFERS.TERM' | translate }}</span>
-    <span class="text-[9px]">•</span>
-    <span>
-      <i class="pi pi-star-fill" style="font-size: 12px"></i>
-      {{ offer().rate }}
+<div class="flex flex-col px-1 mt-3">
+  <h3 class="text-[13px] font-medium text-primary">{{ offer().title }}</h3>
+
+  <p class="text-[12px] text-secondary mt-1">
+    {{ offer().address | addressFormat }} / {{ offer().description }}
+  </p>
+
+  <div class="text-[12px] tracking-wide flex items-center justify-between gap-1 mt-1">
+    <span class="text-primary">
+      {{ offer().pricing.weekdayPrice }}$
+      <span class="text-secondary"> {{ 'OFFERS.TERM' | translate }}</span>
+    </span>
+
+    <span class="flex items-center gap-1 text-secondary">
+      <i
+        class="pi pi-star-fill"
+        aria-hidden="true"
+        style="font-size: 12px; color: var(--color-brand-red)"
+      ></i>
+      <span class="text-primary">{{ offer().averageRating }}</span>
     </span>
   </div>
 </div>
 
 @if (offer().isFavorite) {
-  <span class="absolute top-2 left-2 bg-brand-light-gray text-[12px] px-2 py-1 rounded-xl">
+  <span
+    class="absolute top-2 left-2 px-2 py-1 rounded-xl text-[12px] font-medium bg-card border border-base text-primary shadow-sm"
+    role="status"
+    aria-label="{{ 'OFFERS.FAVORITE' | translate }}"
+  >
     {{ 'OFFERS.FAVORITE' | translate }}
   </span>
 }
 
-<div
-  class="absolute top-2 right-4 drop-shadow-[1px_1px_3px_white,-1px_-1px_2px_white] hover:scale-110 duration-200"
->
-  <span class="mask mask-heart bg-black/65 w-5 h-5" [class.bg-brand-red]="offer().isLiked"></span>
+<div class="absolute top-2 right-4 transform transition-transform duration-200">
+  <span class="mask mask-heart w-5 h-5 block"></span>
 </div>

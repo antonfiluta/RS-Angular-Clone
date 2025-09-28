@@ -3,6 +3,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidationService } from '../../../../shared/services/form-validation-service/form-validation-service';
 import { passwordStrengthValidator } from '../../../../shared/utils/form-validators/form-validators';
 import { TranslateModule } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../../store/auth.actions';
+import { LoginCredentials } from '../../models/auth.models';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './login.scss',
 })
 export class Login {
-  private fb = inject(FormBuilder);
-  private formValidationService = inject(FormValidationService);
+  private readonly store = inject(Store);
+  private readonly fb = inject(FormBuilder);
+  private readonly formValidationService = inject(FormValidationService);
 
   public loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -39,10 +43,17 @@ export class Login {
     this.loginForm.markAsUntouched();
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.loginForm.markAsTouched();
+
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      const { email, password } = this.loginForm.getRawValue();
+      const credentials: LoginCredentials = {
+        email: email ?? '',
+        password: password ?? '',
+      };
+
+      this.store.dispatch(AuthActions.loginUser({ credentials }));
     }
   }
 }

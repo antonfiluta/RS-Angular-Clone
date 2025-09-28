@@ -24,7 +24,7 @@
     "GENDER_OPTIONS": {
       "MALE": "Männlich",
       "FEMALE": "Weiblich",
-      "OTHER": "Andere"
+      "OTHER": "Divers"
     },
     "ADD": "Hinzufügen",
     "EDIT": "Bearbeiten",
@@ -50,8 +50,13 @@
     "UNKNOWN": "Unbekannter Fehler"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Persönliche Informationen",
-    "AUTHENTICATION": "Einloggen oder registrieren"
+    "PERSONAL_INFORMATION": "Profil",
+    "AUTHENTICATION": "Anmelden",
+    "HOST_MODE": "Host-Modus",
+    "LOGOUT": "Abmelden",
+    "ABOUT": "Über",
+    "SEARCH": "Suche",
+    "LIKES": "Favoriten"
   },
   "FORM": {
     "NOT_PROVIDED": "Nicht angegeben",
@@ -63,7 +68,17 @@
     "EMPTY": "Keine Angebote verfügbar",
     "POPULAR": "Beliebtehäuser in",
     "TERM": "für 2 Tage",
-    "FAVORITE": "Gastfavorit"
+    "FAVORITE": "Gastfavorit",
+    "PLACE_OFFERS": "Was bietet dieser Platz?",
+    "ACCESSIBILITY": "Zugänglichkeit",
+    "AMENITIES": "Annehmlichkeiten",
+    "PROPERTY_TYPE": "Eigenschaftstyp",
+    "SAFETY_FEATURES": "Sicherheitsfunktionen",
+    "BOOKING": "Buchung",
+    "LOCATION": "Ort",
+    "YOU_WONT_BE_CHARGED_YET": "Du wirst noch nicht für diesen Platz bezahlt",
+    "RESERVE": "Buchen",
+    "REVIEWS": "Bewertungen"
   },
   "SPECIFIC_CITY_OFFERS": {
     "CITY_AMOUNT": "In {city} gibt es {count} Angebote für dich",
@@ -459,5 +474,159 @@
     "PAGE_NOT_FOUND_DESCRIPTION": "Die gesuchte Seite konnte nicht gefunden werden.",
     "GO_BACK": "Zurück",
     "GO_HOME": "Zur Startseite"
+  },
+  "LISTING": {
+    "CREATE_TITLE": "Unterkunft erstellen",
+    "STEP1_TITLE": "Erzählen Sie uns von Ihrer Unterkunft",
+    "STEP1_SUBTITLE": "In diesem Schritt fragen wir, welche Art von Unterkunft Sie haben und ob Gäste das gesamte Objekt oder nur ein Zimmer buchen.",
+    "STEP1_PROGRESS": "Über Ihre Unterkunft",
+    "STEP2_TITLE": "Teilen Sie Gästen mit, was Ihre Unterkunft bietet",
+    "STEP2_SUBTITLE": "Sie können nach der Veröffentlichung weitere Annehmlichkeiten hinzufügen.",
+    "STEP2_PROGRESS": "Ausstattung",
+    "STEP3_TITLE": "Abschließen und veröffentlichen",
+    "STEP3_SUBTITLE": "Zum Schluss wählen Sie die Buchungseinstellungen, legen Preise fest und veröffentlichen Ihre Unterkunft.",
+    "STEP3_PROGRESS": "Details",
+
+    "PROPERTY_TYPE": "Welche dieser Optionen beschreibt Ihre Unterkunft am besten?",
+    "LOCATION": "Wo befindet sich Ihre Unterkunft?",
+    "CAPACITY_LABEL": "Teilen Sie einige Basisinformationen über Ihre Unterkunft",
+
+    "AMENITIES_BASIC": "Wie sieht es mit diesen Favoriten der Gäste aus?",
+    "AMENITIES_LUXURY": "Haben Sie besondere Extras?",
+    "SAFETY_FEATURES": "Haben Sie diese Sicherheitsausstattungen?",
+
+    "TITLE_LABEL": "Titel erstellen",
+    "TITLE_PLACEHOLDER": "Schöne Wohnung im Stadtzentrum",
+    "TITLE_HELP": "Wählen Sie einen ansprechenden Titel, der Ihre Unterkunft beschreibt",
+    "DESCRIPTION_LABEL": "Beschreibung erstellen",
+    "DESCRIPTION_PLACEHOLDER": "Teilen Sie, was Ihre Unterkunft besonders macht …",
+    "DESCRIPTION_HELP": "Beschreiben Sie Ihre Unterkunft ausführlich",
+    "PHOTOS_LABEL": "Fügen Sie Fotos Ihrer Unterkunft hinzu",
+    "PHOTO_ALT": "Foto",
+    "PHOTO_INDEX": "Foto",
+    "ADD_PHOTO": "Foto hinzufügen",
+    "REMOVE_PHOTO": "Foto entfernen",
+    "PHOTO_UPLOAD_HELP": "Laden Sie hochwertige Fotos Ihrer Unterkunft hoch",
+    "PRICING_LABEL": "Legen Sie jetzt Ihren Preis fest",
+    "CHARACTERS": "Zeichen",
+
+    "ADDRESS": {
+      "COUNTRY": "Land",
+      "COUNTRY_PLACEHOLDER": "Deutschland",
+      "COUNTRY_HELP": "Geben Sie das Land ein, in dem sich Ihre Unterkunft befindet",
+      "CITY": "Stadt",
+      "CITY_PLACEHOLDER": "Berlin",
+      "CITY_HELP": "Geben Sie die Stadt ein, in der sich Ihre Unterkunft befindet",
+      "STREET": "Straße",
+      "STREET_PLACEHOLDER": "Alexanderplatz",
+      "STREET_HELP": "Geben Sie die Straßenadresse ein",
+      "BUILDING": "Hausnummer",
+      "BUILDING_PLACEHOLDER": "1",
+      "BUILDING_HELP": "Geben Sie die Hausnummer ein"
+    },
+
+    "CAPACITY": {
+      "GUESTS": "Gäste",
+      "BEDROOMS": "Schlafzimmer",
+      "BEDS": "Betten",
+      "BATHROOMS": "Badezimmer",
+      "INCREASE_GUESTS": "Anzahl der Gäste erhöhen",
+      "DECREASE_GUESTS": "Anzahl der Gäste verringern",
+      "INCREASE_BEDROOMS": "Anzahl der Schlafzimmer erhöhen",
+      "DECREASE_BEDROOMS": "Anzahl der Schlafzimmer verringern",
+      "INCREASE_BEDS": "Anzahl der Betten erhöhen",
+      "DECREASE_BEDS": "Anzahl der Betten verringern",
+      "INCREASE_BATHROOMS": "Anzahl der Badezimmer erhöhen",
+      "DECREASE_BATHROOMS": "Anzahl der Badezimmer verringern"
+    },
+
+    "PRICING": {
+      "WEEKDAY": "Preis unter der Woche (pro Nacht)",
+      "WEEKDAY_PLACEHOLDER": "50",
+      "WEEKDAY_HELP": "Legen Sie Ihren Preis für Montag bis Donnerstag fest",
+      "WEEKEND": "Preis am Wochenende (pro Nacht)",
+      "WEEKEND_PLACEHOLDER": "75",
+      "WEEKEND_HELP": "Legen Sie Ihren Preis für Freitag bis Sonntag fest"
+    },
+
+    "AMENITIES": {
+      "WIFI": "WLAN",
+      "WIFI_DESC": "Hochgeschwindigkeits-Internetverbindung",
+      "TV": "Fernseher",
+      "TV_DESC": "Fernseher mit Kabel/Streaming",
+      "KITCHEN": "Küche",
+      "KITCHEN_DESC": "Voll ausgestattete Küche",
+      "WASHER": "Waschmaschine",
+      "WASHER_DESC": "Waschmaschine vorhanden",
+      "AIRCONDITIONING": "Klimaanlage",
+      "AIRCONDITIONING_DESC": "Klimatisierung",
+      "PARKING": "Kostenloses Parken",
+      "PARKING_DESC": "Kostenloser Parkplatz verfügbar",
+      "POOL": "Pool",
+      "POOL_DESC": "Zugang zum Pool",
+      "PIANO": "Klavier",
+      "PIANO_DESC": "Klavier zur Verfügung",
+      "BEACHACCESS": "Strandzugang",
+      "BEACHACCESS_DESC": "Direkter Zugang zum Strand",
+      "GYM": "Fitnessraum",
+      "GYM_DESC": "Zugang zum Fitnesscenter",
+      "BILLIARDS": "Billardtisch",
+      "BILLIARDS_DESC": "Billard-/Pooltisch verfügbar",
+      "GRILL": "Grill",
+      "GRILL_DESC": "Grill für das Kochen im Freien"
+    },
+
+    "SAFETY": {
+      "SMOKEDETECTOR": "Rauchmelder",
+      "SMOKEDETECTOR_DESC": "Funktionierendes Rauchmeldesystem",
+      "FIREEXTINGUISHER": "Feuerlöscher",
+      "FIREEXTINGUISHER_DESC": "Brandschutzausrüstung verfügbar",
+      "FIRSTAIDKIT": "Erste-Hilfe-Set",
+      "FIRSTAIDKIT_DESC": "Medizinische Notfallausrüstung",
+      "SECURITYSYSTEM": "Sicherheitssystem",
+      "SECURITYSYSTEM_DESC": "Alarm- oder Sicherheitsüberwachung"
+    },
+
+    "PROPERTY_TYPES": {
+      "APARTMENT": "Wohnung",
+      "APARTMENT_DESC": "Eine Unterkunft in einem Mehrfamilienhaus",
+      "PART_APARTMENT": "Teil einer Wohnung",
+      "PART_APARTMENT_DESC": "Ein Zimmer oder Teil einer Wohnung",
+      "WHOLE_HOUSE": "Ganzes Haus",
+      "WHOLE_HOUSE_DESC": "Eigenständiges Haus",
+      "ROOM": "Zimmer",
+      "ROOM_DESC": "Ein Zimmer in einem Haus",
+      "DORMITORY": "Schlafsaal",
+      "DORMITORY_DESC": "Gemeinschaftsunterkunft",
+      "CABIN": "Hütte",
+      "CABIN_DESC": "Kleines Haus in der Natur"
+    },
+
+    "BACK": "Zurück",
+    "NEXT": "Weiter",
+    "PUBLISH": "Veröffentlichen"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Finde deine perfekte Unterkunft",
+    "HERO_SUBTITLE": "Suche nach Stadt, Preis und Gästeanzahl",
+    "LABEL_CITY": "Wo",
+    "PLACEHOLDER_CITY": "Reiseziel suchen",
+    "CLEAR_CITY": "Stadt-Suche löschen",
+    "SELECT_CITY": "Wähle {{city}}",
+    "LABEL_GUESTS": "Gäste",
+    "PLACEHOLDER_GUESTS": "Gäste hinzufügen",
+    "LABEL_PRICE": "Maximalpreis",
+    "PLACEHOLDER_PRICE": "Beliebiger Preis",
+    "BUTTON_SEARCH": "Suchen",
+    "FILTER_EUROPE": "Europa",
+    "FILTER_BUDGET": "Unter €100",
+    "FILTER_FAMILY": "Familienfreundlich",
+    "FILTER_CLEAR": "Alle löschen"
+  },
+  "FOOTER": {
+    "SHOW_AUTHORS": "GitHub-Profile der Autoren anzeigen",
+    "HIDE_AUTHORS": "GitHub-Profile der Autoren ausblenden",
+    "RS_SCHOOL_LINK": "Besuchen Sie den RS School Angular-Kurs",
+    "COPYRIGHT": "Urheberrecht"
   }
 }

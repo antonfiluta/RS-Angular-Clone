@@ -50,8 +50,13 @@
     "UNKNOWN": "Неизвестная ошибка"
   },
   "MENU": {
-    "PERSONAL_INFORMATION": "Персональная информация",
-    "AUTHENTICATION": "Войти или зарегистрироваться"
+    "PERSONAL_INFORMATION": "Обо мне",
+    "AUTHENTICATION": "Аутентификация",
+    "HOST_MODE": "Стать хостером",
+    "LOGOUT": "Выйти",
+    "ABOUT": "О нас",
+    "SEARCH": "Поиск",
+    "LIKES": "Избранное"
   },
   "FORM": {
     "NOT_PROVIDED": "Не указано",
@@ -63,10 +68,20 @@
     "EMPTY": "Нет доступных предложений",
     "POPULAR": "Популярные дома в",
     "TERM": "за 2 дня",
-    "FAVORITE": "Популярно у гостей"
+    "FAVORITE": "Популярно у гостей",
+    "PLACE_OFFERS": "Предложения для этого жилья",
+    "ACCESSIBILITY": "Доступность",
+    "AMENITIES": "Удобства",
+    "PROPERTY_TYPE": "Тип недвижимости",
+    "SAFETY_FEATURES": "Безопасность",
+    "BOOKING": "Бронирование",
+    "LOCATION": "Локация",
+    "YOU_WONT_BE_CHARGED_YET": "Вы не будете оплачивать пока не забронируете",
+    "RESERVE": "Бронирование",
+    "REVIEWS": "Отзывы"
   },
   "SPECIFIC_CITY_OFFERS": {
-    "CITY_AMOUNT": "В {city} {count} дамов",
+    "CITY_AMOUNT": "В {city} {count} вариантов жилья",
     "FEES": "Цены включают все налоги"
   },
   "PROFILE": {
@@ -459,5 +474,159 @@
     "PAGE_NOT_FOUND_DESCRIPTION": "Не удаётся найти страницу, которую вы ищете.",
     "GO_BACK": "Вернуться назад",
     "GO_HOME": "Перейти на главную"
+  },
+  "LISTING": {
+    "CREATE_TITLE": "Создать объявление",
+    "STEP1_TITLE": "Расскажите нам о вашем жилье",
+    "STEP1_SUBTITLE": "На этом этапе мы спросим, какой у вас тип жилья и будут ли гости бронировать весь объект или только комнату.",
+    "STEP1_PROGRESS": "О жилье",
+    "STEP2_TITLE": "Расскажите гостям, что предлагает ваше жильё",
+    "STEP2_SUBTITLE": "Вы сможете добавить больше удобств после публикации объявления.",
+    "STEP2_PROGRESS": "Особенности",
+    "STEP3_TITLE": "Завершите и опубликуйте",
+    "STEP3_SUBTITLE": "Наконец, выберите параметры бронирования, установите цену и опубликуйте ваше объявление.",
+    "STEP3_PROGRESS": "Детали",
+
+    "PROPERTY_TYPE": "Что из этого лучше всего описывает ваше жильё?",
+    "LOCATION": "Где находится ваше жильё?",
+    "CAPACITY_LABEL": "Поделитесь основной информацией о жилье",
+
+    "AMENITIES_BASIC": "А как насчёт этих популярных удобств?",
+    "AMENITIES_LUXURY": "Есть ли у вас особые удобства?",
+    "SAFETY_FEATURES": "Есть ли у вас эти средства безопасности?",
+
+    "TITLE_LABEL": "Создайте заголовок",
+    "TITLE_PLACEHOLDER": "Красивая квартира в центре города",
+    "TITLE_HELP": "Выберите привлекательный заголовок, который описывает жильё",
+    "DESCRIPTION_LABEL": "Создайте описание",
+    "DESCRIPTION_PLACEHOLDER": "Расскажите, что делает ваше жильё особенным...",
+    "DESCRIPTION_HELP": "Подробно опишите ваше жильё",
+    "PHOTOS_LABEL": "Добавьте несколько фото жилья",
+    "PHOTO_ALT": "Фото",
+    "PHOTO_INDEX": "Фото",
+    "ADD_PHOTO": "Добавить фото",
+    "REMOVE_PHOTO": "Удалить фото",
+    "PHOTO_UPLOAD_HELP": "Загрузите качественные фото вашего жилья",
+    "PRICING_LABEL": "Теперь установите цену",
+    "CHARACTERS": "символов",
+
+    "ADDRESS": {
+      "COUNTRY": "Страна",
+      "COUNTRY_PLACEHOLDER": "Германия",
+      "COUNTRY_HELP": "Укажите страну, где находится ваше жильё",
+      "CITY": "Город",
+      "CITY_PLACEHOLDER": "Берлин",
+      "CITY_HELP": "Укажите город, где находится ваше жильё",
+      "STREET": "Улица",
+      "STREET_PLACEHOLDER": "Alexanderplatz",
+      "STREET_HELP": "Укажите название улицы",
+      "BUILDING": "Дом",
+      "BUILDING_PLACEHOLDER": "1",
+      "BUILDING_HELP": "Укажите номер дома"
+    },
+
+    "CAPACITY": {
+      "GUESTS": "Гости",
+      "BEDROOMS": "Спальни",
+      "BEDS": "Кровати",
+      "BATHROOMS": "Ванные комнаты",
+      "INCREASE_GUESTS": "Увеличить количество гостей",
+      "DECREASE_GUESTS": "Уменьшить количество гостей",
+      "INCREASE_BEDROOMS": "Увеличить количество спален",
+      "DECREASE_BEDROOMS": "Уменьшить количество спален",
+      "INCREASE_BEDS": "Увеличить количество кроватей",
+      "DECREASE_BEDS": "Уменьшить количество кроватей",
+      "INCREASE_BATHROOMS": "Увеличить количество ванных комнат",
+      "DECREASE_BATHROOMS": "Уменьшить количество ванных комнат"
+    },
+
+    "PRICING": {
+      "WEEKDAY": "Цена в будни (за ночь)",
+      "WEEKDAY_PLACEHOLDER": "50",
+      "WEEKDAY_HELP": "Установите цену с понедельника по четверг",
+      "WEEKEND": "Цена в выходные (за ночь)",
+      "WEEKEND_PLACEHOLDER": "75",
+      "WEEKEND_HELP": "Установите цену с пятницы по воскресенье"
+    },
+
+    "AMENITIES": {
+      "WIFI": "Wi-Fi",
+      "WIFI_DESC": "Высокоскоростное подключение к интернету",
+      "TV": "Телевизор",
+      "TV_DESC": "Телевизор с кабельным или стриминговым сервисом",
+      "KITCHEN": "Кухня",
+      "KITCHEN_DESC": "Полноценная кухня с техникой",
+      "WASHER": "Стиральная машина",
+      "WASHER_DESC": "Доступна стиральная машина",
+      "AIRCONDITIONING": "Кондиционер",
+      "AIRCONDITIONING_DESC": "Система климат-контроля",
+      "PARKING": "Бесплатная парковка",
+      "PARKING_DESC": "Есть бесплатное парковочное место",
+      "POOL": "Бассейн",
+      "POOL_DESC": "Доступ к бассейну",
+      "PIANO": "Пианино",
+      "PIANO_DESC": "Пианино доступно для использования",
+      "BEACHACCESS": "Выход к пляжу",
+      "BEACHACCESS_DESC": "Прямой доступ к пляжу",
+      "GYM": "Тренажёрный зал",
+      "GYM_DESC": "Доступ к фитнес-центру",
+      "BILLIARDS": "Бильярдный стол",
+      "BILLIARDS_DESC": "Доступен бильярдный стол",
+      "GRILL": "Барбекю-гриль",
+      "GRILL_DESC": "Гриль для приготовления на открытом воздухе"
+    },
+
+    "SAFETY": {
+      "SMOKEDETECTOR": "Датчик дыма",
+      "SMOKEDETECTOR_DESC": "Рабочая система обнаружения дыма",
+      "FIREEXTINGUISHER": "Огнетушитель",
+      "FIREEXTINGUISHER_DESC": "Доступное противопожарное оборудование",
+      "FIRSTAIDKIT": "Аптечка",
+      "FIRSTAIDKIT_DESC": "Набор для оказания первой помощи",
+      "SECURITYSYSTEM": "Охранная система",
+      "SECURITYSYSTEM_DESC": "Сигнализация или система безопасности"
+    },
+
+    "PROPERTY_TYPES": {
+      "APARTMENT": "Квартира",
+      "APARTMENT_DESC": "Жильё в многоквартирном доме",
+      "PART_APARTMENT": "Часть квартиры",
+      "PART_APARTMENT_DESC": "Комната или часть квартиры",
+      "WHOLE_HOUSE": "Дом целиком",
+      "WHOLE_HOUSE_DESC": "Отдельный дом",
+      "ROOM": "Комната",
+      "ROOM_DESC": "Комната в доме",
+      "DORMITORY": "Общежитие",
+      "DORMITORY_DESC": "Общее жилое помещение",
+      "CABIN": "Домик",
+      "CABIN_DESC": "Небольшой домик на природе"
+    },
+
+    "BACK": "Назад",
+    "NEXT": "Далее",
+    "PUBLISH": "Опубликовать"
+  },
+  "SEARCH": {
+    "HERO_TITLE": "Найдите идеальное жильё",
+    "HERO_SUBTITLE": "Поиск по городу, цене и количеству гостей",
+    "LABEL_CITY": "Куда",
+    "PLACEHOLDER_CITY": "Введите направление",
+    "CLEAR_CITY": "Очистить поиск города",
+    "SELECT_CITY": "Выбрать {{city}}",
+    "LABEL_GUESTS": "Гости",
+    "PLACEHOLDER_GUESTS": "Добавить гостей",
+    "LABEL_PRICE": "Макс. цена",
+    "PLACEHOLDER_PRICE": "Любая цена",
+    "BUTTON_SEARCH": "Поиск",
+    "FILTER_EUROPE": "Европа",
+    "FILTER_BUDGET": "До €100",
+    "FILTER_FAMILY": "Для семьи",
+    "FILTER_CLEAR": "Сбросить всё"
+  },
+  "FOOTER": {
+    "SHOW_AUTHORS": "Показать GitHub-профили авторов",
+    "HIDE_AUTHORS": "Скрыть GitHub-профили авторов",
+    "RS_SCHOOL_LINK": "Посетить курс Angular в RS School",
+    "COPYRIGHT": "Авторские права"
   }
 }

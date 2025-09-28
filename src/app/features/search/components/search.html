@@ -1,0 +1,192 @@
+<div class="w-full max-w-4xl mx-auto px-4 py-8">
+  <!-- Hero Section -->
+  <div class="text-center mb-8">
+    <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">
+      {{ 'SEARCH.HERO_TITLE' | translate }}
+    </h1>
+    <p class="text-xl text-secondary mb-8">
+      {{ 'SEARCH.HERO_SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <!-- Search Form -->
+  <div class="bg-card shadow-card rounded-2xl border border-base p-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 search-grid">
+      <!-- City Input -->
+      <div class="relative">
+        <label for="city" class="block text-sm font-semibold text-primary mb-2">
+          {{ 'SEARCH.LABEL_CITY' | translate }}
+        </label>
+        <div class="relative">
+          <i
+            class="pi pi-map-marker absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+          ></i>
+          <input
+            id="city"
+            type="text"
+            [(ngModel)]="searchFilters.city"
+            name="city"
+            [placeholder]="'SEARCH.PLACEHOLDER_CITY' | translate"
+            (input)="onCityInput($event)"
+            (focus)="showCityDropdown = searchFilters.city.length > 0"
+            class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder-muted search-input focus-ring"
+          />
+          <!-- Clear button -->
+          @if (searchFilters.city) {
+            <button
+              type="button"
+              (click)="clearField('city')"
+              (keydown)="onClearKeydown($event, 'city')"
+              [attr.aria-label]="'SEARCH.CLEAR_CITY' | translate"
+              class="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-muted hover:text-secondary transition-colors focus-ring rounded"
+            >
+              <i class="pi pi-times"></i>
+            </button>
+          }
+        </div>
+
+        <!-- City Dropdown -->
+        @if (showCityDropdown && filteredCities.length > 0) {
+          <div
+            class="absolute top-full left-0 right-0 mt-2 bg-card rounded-lg shadow-lg border border-base z-50 max-h-60 overflow-y-auto city-dropdown"
+          >
+            @for (city of filteredCities; track city) {
+              <button
+                type="button"
+                (click)="selectCity(city)"
+                (keydown)="onCityKeydown($event, city)"
+                [attr.aria-label]="'SEARCH.SELECT_CITY' | translate: { city: city }"
+                class="w-full cursor-pointer text-left px-4 py-3 hover:bg-secondary text-sm text-primary border-b border-base last:border-0 transition-colors dropdown-item focus-ring"
+              >
+                <div class="flex items-center gap-3">
+                  <i class="pi pi-map-marker text-secondary"></i>
+                  {{ city }}
+                </div>
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Min Guests Input -->
+      <div>
+        <label for="minGuests" class="block text-sm font-semibold text-primary mb-2">
+          {{ 'SEARCH.LABEL_GUESTS' | translate }}
+        </label>
+        <div class="relative">
+          <i
+            class="pi pi-users absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+          ></i>
+          <input
+            id="minGuests"
+            type="number"
+            [(ngModel)]="searchFilters.minGuests"
+            name="minGuests"
+            [placeholder]="'SEARCH.PLACEHOLDER_GUESTS' | translate"
+            min="1"
+            max="16"
+            class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder-muted search-input focus-ring"
+          />
+          @if (searchFilters.minGuests) {
+            <button
+              type="button"
+              (click)="clearField('minGuests')"
+              (keydown)="onClearKeydown($event, 'minGuests')"
+              [attr.aria-label]="'Clear guests filter'"
+              class="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-muted hover:text-secondary transition-colors focus-ring rounded"
+            >
+              <i class="pi pi-times"></i>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Max Price Input -->
+      <div>
+        <label for="maxPrice" class="block text-sm font-semibold text-primary mb-2">
+          {{ 'SEARCH.LABEL_PRICE' | translate }}
+        </label>
+        <div class="relative">
+          <i
+            class="pi pi-euro absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+          ></i>
+          <input
+            id="maxPrice"
+            type="number"
+            [(ngModel)]="searchFilters.maxPrice"
+            name="maxPrice"
+            [placeholder]="'SEARCH.PLACEHOLDER_PRICE' | translate"
+            min="0"
+            step="10"
+            class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder-muted search-input focus-ring"
+          />
+          @if (searchFilters.maxPrice) {
+            <button
+              type="button"
+              (click)="clearField('maxPrice')"
+              (keydown)="onClearKeydown($event, 'maxPrice')"
+              [attr.aria-label]="'Clear price filter'"
+              class="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 text-muted hover:text-secondary transition-colors focus-ring rounded"
+            >
+              <i class="pi pi-times"></i>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Search Button -->
+      <div class="flex items-end">
+        <button
+          type="button"
+          (click)="onSearch()"
+          (keydown)="onSearchKeydown($event)"
+          [attr.aria-label]="'SEARCH.BUTTON_SEARCH' | translate"
+          class="w-full cursor-pointer bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 justify-center search-button focus-ring"
+        >
+          <i class="pi pi-search"></i>
+          {{ 'SEARCH.BUTTON_SEARCH' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Filters -->
+    <div class="flex flex-wrap gap-3 mt-6 justify-center">
+      <button
+        type="button"
+        (click)="applyQuickFilter('europe')"
+        (keydown)="onQuickFilterKeydown($event, 'europe')"
+        [attr.aria-label]="'SEARCH.FILTER_EUROPE' | translate"
+        class="px-4 cursor-pointer py-2 bg-secondary hover:bg-app rounded-full text-sm font-medium text-primary border border-base hover:border-red-500 transition-all duration-200 quick-filter-btn focus-ring"
+      >
+        {{ 'SEARCH.FILTER_EUROPE' | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="applyQuickFilter('budget')"
+        (keydown)="onQuickFilterKeydown($event, 'budget')"
+        [attr.aria-label]="'SEARCH.FILTER_BUDGET' | translate"
+        class="px-4 cursor-pointer py-2 bg-secondary hover:bg-app rounded-full text-sm font-medium text-primary border border-base hover:border-red-500 transition-all duration-200 quick-filter-btn focus-ring"
+      >
+        {{ 'SEARCH.FILTER_BUDGET' | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="applyQuickFilter('family')"
+        (keydown)="onQuickFilterKeydown($event, 'family')"
+        [attr.aria-label]="'SEARCH.FILTER_FAMILY' | translate"
+        class="px-4 py-2 cursor-pointer bg-secondary hover:bg-app rounded-full text-sm font-medium text-primary border border-base hover:border-red-500 transition-all duration-200 quick-filter-btn focus-ring"
+      >
+        {{ 'SEARCH.FILTER_FAMILY' | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="clearAllFilters()"
+        (keydown)="onQuickFilterKeydown($event, 'clear')"
+        [attr.aria-label]="'SEARCH.FILTER_CLEAR' | translate"
+        class="px-4 py-2 cursor-pointer bg-secondary hover:bg-app rounded-full text-sm font-medium text-primary border border-base hover:border-red-500 transition-all duration-200 quick-filter-btn focus-ring"
+      >
+        {{ 'SEARCH.FILTER_CLEAR' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

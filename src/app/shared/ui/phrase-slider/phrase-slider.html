@@ -1,4 +1,6 @@
-<button class="flex text-sm gap-1 items-center overflow-hidden">
+<button
+  class="flex text-sm gap-1 items-center overflow-hidden px-3 py-2 hover:bg-gray-100 rounded-full transition-colors"
+>
   @if (!dependancy()) {
     <i class="pi pi-{{ content().icon1 }}"></i>
   } @else {
