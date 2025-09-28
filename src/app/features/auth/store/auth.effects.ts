@@ -6,7 +6,6 @@ import { AuthActions } from './auth.actions';
 import { LocalStorage } from '../../../core/services/local-storage-service/local-storage';
 import { Router } from '@angular/router';
 import { LogoutChecker } from '../services/logout-checker/logout-checker';
-import { UserActions } from '../../user/store/user.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -51,14 +50,14 @@ export class AuthEffects {
     ),
   );
 
-  public initUserSessionEffect = createEffect(() =>
-    this.action$.pipe(
-      ofType(AuthActions.initUserSession),
-      switchMap(({ token }) => {
-        return of(UserActions.loadUser({ token }));
-      }),
-    ),
-  );
+  // public initUserSessionEffect = createEffect(() =>
+  //   this.action$.pipe(
+  //     ofType(AuthActions.initUserSession),
+  //     switchMap(() => {
+  //       return of(UserActions.loadUser());
+  //     }),
+  //   ),
+  // );
 
   public logoutEffect = createEffect(
     () =>
@@ -66,7 +65,7 @@ export class AuthEffects {
         ofType(AuthActions.logoutUser),
         tap(() => {
           this.logoutChecker.checkRoute();
-          this.localStorage.removeItem('token');
+          this.localStorage.removeItem('tokens');
         }),
       ),
     { dispatch: false },

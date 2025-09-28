@@ -1,35 +1,40 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { OffersOverviewActions } from './offers-overview.actions';
-import { catchError, of, switchMap, tap } from 'rxjs';
+import { catchError, of, switchMap } from 'rxjs';
 import { OffersOverviewService } from '../services/offers-overview.service/offers-overview.service';
+import { OffersTransformerService } from '../services/offers-transformer.service/offers-transformer-service';
 
 @Injectable()
 export class OffersOverviewEffects {
   private readonly action$ = inject(Actions);
   private readonly offersOverviewService = inject(OffersOverviewService);
+  private readonly offersTransformerService = inject(OffersTransformerService);
 
   public setAllOffersOverview = createEffect(() =>
     this.action$.pipe(
       ofType(OffersOverviewActions.loadAllOffers),
-      switchMap(() =>
-        this.offersOverviewService.getOffersOverview().pipe(
-          tap((offers) => console.log(offers)),
-          switchMap((offers) => of(OffersOverviewActions.loadAllOffersSuccess({ offers }))),
+      switchMap(({ filters }) =>
+        this.offersOverviewService.getRawOffers(filters).pipe(
+          switchMap((rawOffers) => {
+            const offers = this.offersTransformerService.getOfferOverview(rawOffers);
+            return of(OffersOverviewActions.loadAllOffersSuccess({ offers }));
+          }),
           catchError((error) => of(OffersOverviewActions.loadAllOffersFailure({ error }))),
         ),
       ),
     ),
   );
 
-  public setSpecificCityOffers = createEffect(() =>
+  public setSpecificFilterOffers = createEffect(() =>
     this.action$.pipe(
       ofType(OffersOverviewActions.loadSpecificCityOffers),
-      switchMap(({ cityId }) =>
-        this.offersOverviewService.getSpecificCityOffers(cityId).pipe(
-          switchMap((response) =>
-            of(OffersOverviewActions.loadSpecificCityOffersSuccess({ response })),
-          ),
+      switchMap(({ filters }) =>
+        this.offersOverviewService.getRawOffers(filters).pipe(
+          switchMap((rawOffers) => {
+            const offers = this.offersTransformerService.getOfferOverview(rawOffers).cities[0];
+            return of(OffersOverviewActions.loadSpecificCityOffersSuccess({ response: offers }));
+          }),
           catchError((error) => of(OffersOverviewActions.loadSpecificCityOffersFailure({ error }))),
         ),
       ),
@@ -39,9 +44,12 @@ export class OffersOverviewEffects {
   public loadSpecificOffer = createEffect(() =>
     this.action$.pipe(
       ofType(OffersOverviewActions.loadSpecificOffer),
-      switchMap(({ cityId, offerId }) =>
-        this.offersOverviewService.getSpecificOffer(cityId, offerId).pipe(
-          switchMap((offer) => of(OffersOverviewActions.loadSpecificOfferSuccess({ offer }))),
+      switchMap(({ offerId }) =>
+        this.offersOverviewService.getSpecificOffer(offerId).pipe(
+          switchMap((rawOffer) => {
+            const offer = this.offersTransformerService.transformApartmentToOffer(rawOffer);
+            return of(OffersOverviewActions.loadSpecificOfferSuccess({ offer }));
+          }),
           catchError((error) => of(OffersOverviewActions.loadSpecificOfferFailure({ error }))),
         ),
       ),

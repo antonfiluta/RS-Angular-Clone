@@ -1,64 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-// import { OffersOverviewModel } from '../../models/offers-overview.models';
+import { inject, Injectable } from '@angular/core';
 import { sampleData } from '../../../../shared/utils/data/start-page';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { map, of } from 'rxjs';
-// import { OffersOverviewModel } from '../../models/offers-overview.models';
+import { RawAparment } from '../../models/offers-overview.models';
+import { SearchFilters } from '../../../search/components/search';
+import { FiltersTransformService } from '../filters-transform.service/filters-transform.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OffersOverviewService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
+  private readonly filtersTransformService = inject(FiltersTransformService);
 
-  public getOffersOverview() {
-    const signalForTestedFuncuanality = signal(sampleData);
+  public getRawOffers(filters: Partial<SearchFilters>) {
+    const filtersString = this.filtersTransformService.buildQueryParams(filters);
+    const url = `/apartment${filtersString}`;
 
-    return toObservable(signalForTestedFuncuanality);
+    return this.http.get<RawAparment[]>(url);
   }
-  // public getOffersOverview() {
-  //   const BASE_URL = 'https://apartment-klol.onrender.com';
-  //   const url = `${BASE_URL}/offers/overview`;
 
-  //   return this.http.get<OffersOverviewModel>(url);
-  // }
+  public getSpecificOffer(offerId: string) {
+    const url = `/apartment/${offerId}`;
 
-  public getSpecificCityOffers(cityId: string) {
-    return of(null).pipe(
-      map(() => {
-        const city = sampleData.cities.find((city) => city.name === cityId);
-        return {
-          name: city?.name ?? '',
-          offers: city?.offers ?? [],
-        };
-      }),
-    );
+    return this.http.get<RawAparment>(url);
   }
-  // public getSpecificCityOffers(cityId: string) {
-  //   const url = `/offers/${cityId}`;
-
-  //   return this.http.get<SpecificCityState>(url);
-  // }
-
-  public getSpecificOffer(cityId: string, offerId: string) {
-    return of(null).pipe(
-      map(() => {
-        const city = sampleData.cities.find((city) => city.name === cityId);
-        if (!city) throw new Error('City not found');
-
-        const offer = city.offers.find((offer) => offer.id === offerId);
-        if (!offer) throw new Error('Offer not found');
-
-        return offer;
-      }),
-    );
-  }
-  // public getSpecificOffer(cityId: string, offerId: string) {
-  //   const url = `/offers/${cityId}/${offerId}`;
-
-  //   return this.http.get<SpecificCityState>(url);
-  // }
 
   public toggleOfferLike(cityId: string, offerId: string, isLiked: boolean) {
     return of(null).pipe(

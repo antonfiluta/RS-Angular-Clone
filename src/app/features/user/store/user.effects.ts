@@ -13,8 +13,8 @@ export class UserEffects {
   public loadUserEffect = createEffect(() =>
     this.action$.pipe(
       ofType(UserActions.loadUser),
-      switchMap(({ token }) =>
-        this.userService.loadUser(token).pipe(
+      switchMap(() =>
+        this.userService.loadUser().pipe(
           switchMap((user: User) => of(UserActions.loadUserSuccess({ user }))),
           catchError((error) => of(UserActions.loadUserFailure({ error }))),
         ),

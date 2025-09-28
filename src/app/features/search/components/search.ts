@@ -118,8 +118,6 @@ export class Search implements OnInit, OnDestroy {
 
     // Hide city dropdown
     this.showCityDropdown = false;
-
-    console.log('Searching with filters:', this.searchFilters);
   }
 
   applyQuickFilter(filterType: string): void {

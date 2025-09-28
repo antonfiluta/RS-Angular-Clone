@@ -64,8 +64,8 @@ export class SignUp {
     if (this.signUpForm.valid) {
       const formValue = this.signUpForm.getRawValue();
       const credentials = {
-        lastname: formValue.lastname ?? '',
-        firstname: formValue.firstname ?? '',
+        lastName: formValue.lastname ?? '',
+        firstName: formValue.firstname ?? '',
         email: formValue.email ?? '',
         password: formValue.password ?? '',
       };
