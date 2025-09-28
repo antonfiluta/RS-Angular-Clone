@@ -27,6 +27,6 @@
   </span>
 }
 
-<div class="absolute top-2 right-4 transform transition-transform duration-200">
-  <span class="mask mask-heart w-5 h-5 block" [class.border-brand]="!isLiked()"></span>
-</div>
+<button (click)="toggleLike($event)" class="absolute top-2 right-3 z-10">
+  <i class="pi" [appSaveCardIcon]="isLiked()" style="font-size: 22px"></i>
+</button>

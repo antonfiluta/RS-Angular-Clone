@@ -1,8 +1,8 @@
-import { SaveCardIcon } from './save-card-icon';
+import { AppSaveCardIconDirective } from './save-card-icon';
 
 describe('SaveCardIcon', () => {
   it('should create an instance', () => {
-    const directive = new SaveCardIcon();
+    const directive = new AppSaveCardIconDirective();
     expect(directive).toBeTruthy();
   });
 });
