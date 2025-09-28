@@ -10,7 +10,8 @@
     "format": "prettier --write \"src/**/*.{ts,js,json,scss,css,html}\"",
     "lint": "eslint . --ext .ts,.html",
     "lint:fix": "eslint . --ext .ts,.html --fix",
-    "prepare": "husky && husky install"
+    "prepare": "husky && husky install",
+    "e2e": "cypress open"
   },
   "lint-staged": {
     "*.{ts,html}": [
@@ -66,6 +67,7 @@
     "@angular/compiler-cli": "^20.2.0",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "20.2.0",
+    "cypress": "^15.3.0",
     "daisyui": "^5.0.0-beta.9",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
