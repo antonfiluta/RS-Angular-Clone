@@ -5,7 +5,7 @@ import { LocalStorage } from './core/services/local-storage-service/local-storag
 import { Store } from '@ngrx/store';
 import { AuthActions } from './features/auth/store/auth.actions';
 import { ThemeService } from './core/services/theme-service/theme.service';
-import { TokensModel } from './features/auth/models/auth.models';
+import { AuthResponse } from './features/auth/models/auth.models';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +25,9 @@ export class App {
     this.translate.use('en');
     this.theme.init();
 
-    const tokens = this.localStorage.getItem<TokensModel>('tokens');
-    if (tokens) {
-      this.store.dispatch(AuthActions.initUserSession({ token: tokens.accessToken }));
+    const authData = this.localStorage.getItem<AuthResponse>('user');
+    if (authData) {
+      this.store.dispatch(AuthActions.initUserSession({ authResponse: authData }));
     }
   }
 

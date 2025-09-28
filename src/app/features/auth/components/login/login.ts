@@ -43,7 +43,7 @@ export class Login {
     this.loginForm.markAsUntouched();
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.loginForm.markAsTouched();
 
     if (this.loginForm.valid) {

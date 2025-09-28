@@ -24,12 +24,9 @@ export const AuthFeature = createFeature({
       error,
     })),
 
-    on(AuthActions.authSuccess, (state, { tokens }) => ({
+    on(AuthActions.initUserSession, (state, { authResponse }) => ({
       ...state,
-      tokens,
-    })),
-    on(AuthActions.initUserSession, (state) => ({
-      ...state,
+      tokens: authResponse.tokens,
       isAuthenticated: true,
       error: null,
     })),

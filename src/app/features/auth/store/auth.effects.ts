@@ -6,6 +6,7 @@ import { AuthActions } from './auth.actions';
 import { LocalStorage } from '../../../core/services/local-storage-service/local-storage';
 import { Router } from '@angular/router';
 import { LogoutChecker } from '../services/logout-checker/logout-checker';
+import { UserActions } from '../../user/store/user.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -20,7 +21,7 @@ export class AuthEffects {
       ofType(AuthActions.loginUser),
       switchMap(({ credentials }) =>
         this.authService.login(credentials).pipe(
-          switchMap((tokens) => of(AuthActions.authSuccess({ tokens }))),
+          switchMap((authResponse) => of(AuthActions.authSuccess({ authResponse }))),
           catchError((error) => of(AuthActions.loginUserFailure({ error }))),
         ),
       ),
@@ -32,7 +33,7 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       switchMap(({ credentials }) =>
         this.authService.register(credentials).pipe(
-          switchMap((tokens) => of(AuthActions.authSuccess({ tokens }))),
+          switchMap((authResponse) => of(AuthActions.authSuccess({ authResponse }))),
           catchError((error) => of(AuthActions.registerUserFailure({ error }))),
         ),
       ),
@@ -42,22 +43,20 @@ export class AuthEffects {
   public authSuccessEffect = createEffect(() =>
     this.action$.pipe(
       ofType(AuthActions.authSuccess),
-      switchMap(({ tokens }) => {
-        this.localStorage.setItem('tokens', tokens);
+      switchMap(({ authResponse }) => {
+        this.localStorage.setItem('user', authResponse);
         this.router.navigate(['/']);
-        return of(AuthActions.initUserSession({ token: tokens.accessToken }));
+        return of(AuthActions.initUserSession({ authResponse }));
       }),
     ),
   );
 
-  // public initUserSessionEffect = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(AuthActions.initUserSession),
-  //     switchMap(() => {
-  //       return of(UserActions.loadUser());
-  //     }),
-  //   ),
-  // );
+  public initUserSessionEffect = createEffect(() =>
+    this.action$.pipe(
+      ofType(AuthActions.initUserSession),
+      switchMap(({ authResponse }) => of(UserActions.loadUser({ user: authResponse.user }))),
+    ),
+  );
 
   public logoutEffect = createEffect(
     () =>

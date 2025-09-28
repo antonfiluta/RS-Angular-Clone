@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { INTEREST_OPTIONS, LANGUAGE_OPTIONS, COUNTRY_OPTIONS } from '../../utils/profile-options';
 import { EditButton } from '../edit-button/edit-button';
 import { ProfileRow } from '../../../../../../shared/ui/profile-row/profile-row';
-import { User } from '../../../../models/profile-form.models';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../../../store/user.selector';
 import { UserActions } from '../../../../store/user.actions';
+import { User } from '../../../../../auth/models/auth.models';
 
 @Component({
   selector: 'app-profile-form',
@@ -52,17 +52,10 @@ export class ProfileForm {
 
       const updatedUser: User = {
         ...user,
-        profile: {
-          ...user.profile,
-          aboutMe: profileData.bio,
-          characteristics: profileData.interests.map((interest: string) => ({
-            icon: 'heart',
-            content: interest,
-            placeholder: '',
-          })),
-          languages: profileData.languages,
-          countries: profileData.countriesLived,
-        },
+        aboutMe: profileData.bio,
+        interests: profileData.interests,
+        myCountries: profileData.countriesLived,
+        myLanguages: profileData.languages,
       };
 
       this.store.dispatch(UserActions.editUser({ user: updatedUser }));
@@ -79,10 +72,10 @@ export class ProfileForm {
     }
 
     this.form.patchValue({
-      bio: user.profile.aboutMe ?? '',
-      interests: user.profile.characteristics?.map((item) => item.content) ?? [],
-      languages: user.profile.languages ?? [],
-      countriesLived: user.profile.countries ?? [],
+      bio: user.aboutMe,
+      interests: user.interests,
+      languages: user.myLanguages,
+      countriesLived: user.myCountries,
     });
   }
 
