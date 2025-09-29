@@ -79,11 +79,6 @@
 
 - [ ] **Two languages** using Angular i18n (20 pts)
 
-## 13) Testing – 40/40 pts
-
-- [ ] **E2E tests** for critical user flows
-- [ ] **Unit tests** for signals/store
-- [ ] **Component integration tests**
 
 ---
 
@@ -103,8 +98,7 @@
 | **Accessibility**             | 40 pts   | 40 pts  | 100%       |
 | **DevOps & Docs**             | 50 pts   | 60 pts  | 83%        |
 | **Internationalization**      | 20 pts   | 20 pts  | 100%       |
-| **Testing**                   | 40 pts   | 40 pts  | 100%       |
 
-## 🎯 Total Score: **720/850 points** (85%)
+## 🎯 Total Score: **680/810 points** (85%)
 
 ---
