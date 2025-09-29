@@ -47,6 +47,7 @@ Key optimizations implemented:
 
 ## Architecture
 
+```bash
 src/app/
 ├── core/
 │ ├── guards/
@@ -145,6 +146,7 @@ src/app/
 ├── apartments.models.ts
 ├── data/
 └── form-validators/
+```
 
 ## Run Locally
 
