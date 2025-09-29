@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { LoginSignUpSwitcher } from './login-sign-up-switcher';
 
 describe('LoginSignUpSwitcher', () => {
@@ -8,7 +9,8 @@ describe('LoginSignUpSwitcher', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginSignUpSwitcher],
+      imports: [LoginSignUpSwitcher, TranslateModule.forRoot()],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginSignUpSwitcher);
