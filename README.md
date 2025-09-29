@@ -6,6 +6,111 @@ This project is the [final task](https://github.com/rolling-scopes-school/tasks/
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
+## Technical Approach: Signals vs. RxJS
+
+In this project, we strategically combined Angular Signals and RxJS based on their strengths. Signals are used for UI state management and component-level reactivity (like in offer-card.ts and specific-city-layout.ts) due to their simplicity and performance benefits. We leverage `store.selectSignal()` to efficiently connect NgRx state to components. RxJS is reserved for complex asynchronous operations in NgRx effects and HTTP services where its powerful operators excel at handling side effects. This hybrid approach provides optimal clarity in component code while maintaining robust state management.
+
+## Architecture
+
+src/app/
+├── core/
+│ ├── guards/
+│ │ ├── auth-guard/
+│ │ │ ├── auth-guard.spec.ts
+│ │ │ └── auth-guard.ts
+│ │ └── profile-guard/
+│ │ ├── profile-guard.spec.ts
+│ │ └── profile-guard.ts
+│ ├── interceptors/
+│ │ ├── api-prefix.interceptor.ts
+│ │ ├── auth.interceptor.ts
+│ │ └── error.interceptor.ts
+│ ├── pages/
+│ │ ├── auth/
+│ │ ├── listing/
+│ │ ├── not-found/
+│ │ ├── offers-overview/
+│ │ ├── personal-info/
+│ │ ├── profile/
+│ │ ├── specific-city-offers/
+│ │ └── specific-offer/
+│ ├── services/
+│ │ ├── a11y-announcer-service/
+│ │ ├── local-storage-service/
+│ │ └── theme-service/
+│ └── store/
+│ └── index.ts
+│
+├── features/
+│ ├── auth/
+│ │ ├── components/
+│ │ ├── models/
+│ │ ├── services/
+│ │ └── store/
+│ ├── listing/
+│ │ ├── components/
+│ │ ├── config/
+│ │ ├── models/
+│ │ ├── services/
+│ │ └── store/
+│ ├── not-found/
+│ │ ├── components/
+│ │ ├── models/
+│ │ ├── services/
+│ │ └── store/
+│ ├── offers-overview/
+│ │ ├── components/
+│ │ ├── models/
+│ │ ├── services/
+│ │ └── store/
+│ ├── search/
+│ │ ├── components/
+│ │ └── models/
+│ ├── specific-city-offers/
+│ │ ├── components/
+│ │ ├── models/
+│ │ ├── services/
+│ │ └── store/
+│ ├── specific-offer/
+│ │ ├── components/
+│ │ ├── models/
+│ │ ├── services/
+│ │ ├── store/
+│ │ └── utils/
+│ └── user/
+│ ├── components/
+│ ├── models/
+│ ├── services/
+│ └── store/
+│
+└── shared/
+├── components/
+│ ├── footer/
+│ ├── header/
+│ └── layout/
+├── directives/
+│ └── saveCardIcon/
+├── models/
+│ └── shared.models.ts
+├── pipes/
+│ ├── address-format-pipe/
+│ ├── sanitize-id-pipe/
+│ └── template-pipe/
+├── services/
+│ └── form-validation-service/
+├── types/
+│ └── validation.types.ts
+├── ui/
+│ ├── action-button/
+│ ├── link-saver/
+│ ├── personal-info-row/
+│ ├── phrase-slider/
+│ └── profile-row/
+└── utils/
+├── apartments.models.ts
+├── data/
+└── form-validators/
+
 ## Run Locally
 
 Install dependencies
