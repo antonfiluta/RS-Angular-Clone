@@ -1,4 +1,4 @@
-import { Component, computed, inject, Input } from '@angular/core';
+import { Component, computed, inject, Input, untracked } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SpecificCityCard } from '../specific-city-card/specific-city-card';
@@ -21,8 +21,9 @@ export class SpecificCityLayout {
   @Input() cityId!: string;
   private readonly store = inject(Store);
 
-  public readonly cityName = this.store.selectSignal(selectCityName);
-  public readonly offers = this.store.selectSignal(selectSpecificCityOffers);
+  public readonly cityName = untracked(() => this.store.selectSignal(selectCityName));
+  public readonly offers = untracked(() => this.store.selectSignal(selectSpecificCityOffers));
+  //сигналы используются только для отображения данных, но не влияют на логику компонента
 
   public offersAmount = computed(() => (this.offers()?.length ?? 0).toString());
 }
