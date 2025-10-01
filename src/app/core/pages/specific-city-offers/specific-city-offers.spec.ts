@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideRouter } from '@angular/router';
 import { SpecificCityOffers } from './specific-city-offers';
 import { OffersOverviewActions } from '../../../features/offers-overview/store/offers-overview.actions';
 import { OffersOverviewState } from '../../../features/offers-overview/store/offers-overview.state';
@@ -21,7 +22,7 @@ describe('SpecificCityOffers', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SpecificCityOffers, TranslateModule.forRoot()],
-      providers: [provideMockStore({ initialState })],
+      providers: [provideMockStore({ initialState }), provideRouter([])],
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
