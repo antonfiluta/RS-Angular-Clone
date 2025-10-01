@@ -1,0 +1,85 @@
+<div class="flex justify-between items-center mb-8 pb-4 border-b border-[var(--color-border)]">
+  <h2 class="text-2xl font-bold text-[var(--color-text-primary)]">
+    {{ 'PROFILE.ABOUT' | translate }}
+  </h2>
+
+  <app-edit-button
+    [isEditMode]="isEditMode"
+    [isFormValid]="form.valid"
+    (edit)="startEdit()"
+    (cancelEdit)="cancelEdit()"
+    (saveEdit)="saveEdit()"
+  ></app-edit-button>
+</div>
+
+<form [formGroup]="form" class="space-y-6">
+  <!-- Bio Section -->
+  <div class="card card-custom shadow-card bg-[var(--color-brand-bg-card)]">
+    <div class="card-body">
+      @if (!isEditMode) {
+        <div>
+          <h3 class="flex items-center gap-2 mb-3">
+            <i class="pi pi-file-edit text-lg text-[var(--color-text-secondary)]"></i>
+            <span class="text-lg font-medium">{{ 'PROFILE.BIO' | translate }}</span>
+          </h3>
+          <p class="text-[var(--color-text-secondary)] leading-relaxed">
+            {{ form.get('bio')?.value || ('PROFILE.NO_BIO' | translate) }}
+          </p>
+        </div>
+      } @else {
+        <div class="edit-field">
+          <label for="bio" class="flex items-start gap-2 mb-3">
+            <i class="pi pi-file-edit text-lg text-[var(--color-brand-red)] mt-2"></i>
+            <textarea
+              id="bio"
+              name="bio"
+              formControlName="bio"
+              class="textarea textarea-bordered w-full h-24 mt-1 bg-[var(--color-brand-bg-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-red)] focus:ring-offset-2 rounded-lg"
+              [placeholder]="'PROFILE.BIO_PLACEHOLDER' | translate"
+            ></textarea>
+          </label>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Dynamic Sections using ProfileRow -->
+  <app-profile-row
+    formControlName="interests"
+    [title]="'PROFILE.INTERESTS'"
+    [placeholder]="'PROFILE.SELECT_INTEREST'"
+    [addButtonText]="'PROFILE.ADD_INTEREST'"
+    [emptyMessage]="'PROFILE.NO_INTERESTS'"
+    [isEditMode]="isEditMode"
+    [maxItems]="8"
+    [iconClass]="'pi pi-heart'"
+    [options]="interestOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
+  ></app-profile-row>
+
+  <app-profile-row
+    formControlName="languages"
+    [title]="'PROFILE.LANGUAGES'"
+    [placeholder]="'PROFILE.SELECT_LANGUAGE'"
+    [addButtonText]="'PROFILE.ADD_LANGUAGE'"
+    [emptyMessage]="'PROFILE.NO_LANGUAGES'"
+    [isEditMode]="isEditMode"
+    [maxItems]="6"
+    [iconClass]="'pi pi-globe'"
+    [options]="languageOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
+  ></app-profile-row>
+
+  <app-profile-row
+    formControlName="countriesLived"
+    [title]="'PROFILE.COUNTRIES_LIVED'"
+    [placeholder]="'PROFILE.SELECT_COUNTRY'"
+    [addButtonText]="'PROFILE.ADD_COUNTRY'"
+    [emptyMessage]="'PROFILE.NO_COUNTRIES'"
+    [isEditMode]="isEditMode"
+    [maxItems]="10"
+    [iconClass]="'pi pi-map-marker'"
+    [options]="countryOptions"
+    class="focus-within:ring-2 focus-within:ring-[var(--color-brand-red)] focus-within:ring-offset-2 rounded-lg"
+  ></app-profile-row>
+</form>

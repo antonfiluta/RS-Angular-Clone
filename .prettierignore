@@ -40,9 +40,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-
-# Firebase cache
-.firebase/
-
-# CI
-rs-angular-clone-firebase-adminsdk-fbsvc-e1b993bd61.json

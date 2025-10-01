@@ -1,0 +1,153 @@
+:host {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  background: var(--color-brand-bg);
+  box-shadow: var(--shadow-sm);
+  z-index: 50;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.header__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-brand-red);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header__title__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--color-brand-red);
+  border-radius: 6px;
+}
+
+.header__title__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+}
+
+/* Button styles adaptive to theme */
+.header__button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  background: var(--color-brand-bg-card);
+  color: var(--color-text-primary);
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.header__button:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.header__button--link {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 100%;
+}
+
+.header__button__icon {
+  font-size: 1rem;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  background: var(--color-brand-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 180px;
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.dropdown__link {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.dropdown__link a,
+.dropdown__link button {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown__link:hover {
+  background-color: var(--color-brand-bg-hover);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 5;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Focus outline */
+.header__button:focus-visible,
+.header__button--link:focus-visible,
+.header__title__link:focus-visible,
+.dropdown__link a:focus-visible,
+.dropdown__link button:focus-visible {
+  outline: 2px solid var(--color-brand-red);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+}

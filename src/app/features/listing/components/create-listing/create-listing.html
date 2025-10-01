@@ -1,0 +1,855 @@
+<div class="min-h-screen bg-app text-primary">
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-6 py-8 pb-32">
+    <!-- Step 1: Basic Information -->
+    @if (currentStep() === 1) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-primary mb-4">
+            {{ 'LISTING.STEP1_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-secondary">
+            {{ 'LISTING.STEP1_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Property Type -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary">
+            {{ 'LISTING.PROPERTY_TYPE' | translate }}
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            role="radiogroup"
+            [attr.aria-labelledby]="'property-type-legend'"
+          >
+            @for (type of propertyTypes; track type.value) {
+              <button
+                (click)="selectPropertyType(type.value)"
+                [attr.aria-pressed]="step1Data().propertyType === type.value"
+                [attr.aria-describedby]="'property-' + type.value + '-desc'"
+                class="p-6 border-2 rounded-xl text-left transition-colors focus-ring"
+                [class.border-base]="step1Data().propertyType !== type.value"
+                [class.bg-card]="step1Data().propertyType !== type.value"
+                [class.shadow-card]="step1Data().propertyType === type.value"
+                [ngStyle]="
+                  step1Data().propertyType === type.value
+                    ? {
+                        'border-color': 'var(--color-brand-dark)',
+                        'background-color': 'var(--color-brand-bg-hover)',
+                      }
+                    : {}
+                "
+              >
+                <div
+                  class="text-3xl mb-2"
+                  aria-hidden="true"
+                  [style.color]="'var(--color-brand-red)'"
+                >
+                  {{ type.icon }}
+                </div>
+
+                <div class="font-semibold text-primary">
+                  {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() | translate }}
+                </div>
+
+                <div class="text-sm text-secondary" [id]="'property-' + type.value + '-desc'">
+                  {{ 'LISTING.PROPERTY_TYPES.' + type.value.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Address -->
+        @if (step1Data().propertyType) {
+          <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-primary">
+              {{ 'LISTING.LOCATION' | translate }}
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Country -->
+              <div class="w-full">
+                <label class="block" for="address-country">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.COUNTRY' | translate
+                  }}</span>
+
+                  <!-- make wrapper relative and move icon absolute (same structure as search component) -->
+                  <div class="relative mt-1">
+                    <i
+                      class="pi pi-globe absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    ></i>
+                    <input
+                      id="address-country"
+                      type="text"
+                      class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                      [value]="step1Data().address.country || ''"
+                      (input)="updateAddress('country', $event)"
+                      aria-label="{{ 'LISTING.ADDRESS.COUNTRY' | translate }}"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <!-- City -->
+              <div class="w-full">
+                <label class="block" for="address-city">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.CITY' | translate
+                  }}</span>
+
+                  <div class="relative mt-1">
+                    <i
+                      class="pi pi-map-marker absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    ></i>
+                    <input
+                      id="address-city"
+                      type="text"
+                      class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                      [value]="step1Data().address.city || ''"
+                      (input)="updateAddress('city', $event)"
+                      aria-label="{{ 'LISTING.ADDRESS.CITY' | translate }}"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <!-- Street -->
+              <div class="w-full">
+                <label class="block" for="address-street">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.STREET' | translate
+                  }}</span>
+
+                  <div class="relative mt-1">
+                    <i
+                      class="pi pi-home absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    ></i>
+                    <input
+                      id="address-street"
+                      type="text"
+                      class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                      [value]="step1Data().address.street || ''"
+                      (input)="updateAddress('street', $event)"
+                      aria-label="{{ 'LISTING.ADDRESS.STREET' | translate }}"
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <!-- Building -->
+              <div class="w-full">
+                <label class="block" for="address-building">
+                  <span class="text-sm font-medium text-secondary">{{
+                    'LISTING.ADDRESS.BUILDING' | translate
+                  }}</span>
+
+                  <div class="relative mt-1">
+                    <i
+                      class="pi pi-building absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    ></i>
+                    <input
+                      id="address-building"
+                      type="text"
+                      class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                      [value]="step1Data().address.building || ''"
+                      (input)="updateAddress('building', $event)"
+                      aria-label="{{ 'LISTING.ADDRESS.BUILDING' | translate }}"
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Capacity -->
+        @if (step1Data().address.country) {
+          <div class="space-y-4">
+            <h2 class="text-2xl font-semibold text-primary">
+              {{ 'LISTING.CAPACITY_LABEL' | translate }}
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <!-- guests -->
+              <div class="text-center">
+                <div class="font-medium text-primary mb-2" id="guests-label">
+                  {{ 'LISTING.CAPACITY.GUESTS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'guests-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('maxGuests', -1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [disabled]="(step1Data().capacity.maxGuests || 0) <= 1"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_GUESTS' | translate"
+                  >
+                    -
+                  </button>
+
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.maxGuests || 1) +
+                      ' ' +
+                      ('LISTING.CAPACITY.GUESTS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.maxGuests || 1 }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="updateCapacity('maxGuests', 1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_GUESTS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <!-- bedrooms -->
+              <div class="text-center">
+                <div class="font-medium text-primary mb-2" id="bedrooms-label">
+                  {{ 'LISTING.CAPACITY.BEDROOMS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'bedrooms-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bedrooms', -1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [disabled]="(step1Data().capacity.bedrooms || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDROOMS' | translate"
+                  >
+                    -
+                  </button>
+
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.bedrooms || 0) +
+                      ' ' +
+                      ('LISTING.CAPACITY.BEDROOMS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.bedrooms || 0 }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bedrooms', 1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDROOMS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <!-- beds -->
+              <div class="text-center">
+                <div class="font-medium text-primary mb-2" id="beds-label">
+                  {{ 'LISTING.CAPACITY.BEDS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'beds-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('beds', -1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [disabled]="(step1Data().capacity.beds || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BEDS' | translate"
+                  >
+                    -
+                  </button>
+
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.beds || 0) + ' ' + ('LISTING.CAPACITY.BEDS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.beds || 0 }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="updateCapacity('beds', 1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BEDS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <!-- bathrooms -->
+              <div class="text-center">
+                <div class="font-medium text-primary mb-2" id="bathrooms-label">
+                  {{ 'LISTING.CAPACITY.BATHROOMS' | translate }}
+                </div>
+                <div
+                  class="flex items-center justify-center space-x-3"
+                  role="group"
+                  [attr.aria-labelledby]="'bathrooms-label'"
+                >
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bathrooms', -1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [disabled]="(step1Data().capacity.bathrooms || 0) <= 0"
+                    [attr.aria-label]="'LISTING.CAPACITY.DECREASE_BATHROOMS' | translate"
+                  >
+                    -
+                  </button>
+
+                  <span
+                    class="text-lg font-medium"
+                    [attr.aria-label]="
+                      (step1Data().capacity.bathrooms || 0) +
+                      ' ' +
+                      ('LISTING.CAPACITY.BATHROOMS' | translate)
+                    "
+                  >
+                    {{ step1Data().capacity.bathrooms || 0 }}
+                  </span>
+
+                  <button
+                    type="button"
+                    (click)="updateCapacity('bathrooms', 1)"
+                    class="w-8 h-8 rounded-full border border-base bg-card text-primary hover:border-[var(--color-border-focus)] focus-ring"
+                    [attr.aria-label]="'LISTING.CAPACITY.INCREASE_BATHROOMS' | translate"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Step 2: Features & Amenities -->
+    @if (currentStep() === 2) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-primary mb-4">
+            {{ 'LISTING.STEP2_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-secondary">
+            {{ 'LISTING.STEP2_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Basic Amenities -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary" id="basic-amenities-legend">
+            {{ 'LISTING.AMENITIES_BASIC' | translate }}
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'basic-amenities-legend'"
+          >
+            @for (amenity of basicAmenities; track amenity.key) {
+              <label
+                class="flex items-center p-4 border rounded-xl cursor-pointer transition-colors focus-within:focus-ring"
+                [class.border-base]="!getBasicAmenity(amenity.key)"
+                [class.bg-card]="!getBasicAmenity(amenity.key)"
+                [ngClass]="
+                  getBasicAmenity(amenity.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
+                for="{{ 'basic-amenity-' + amenity.key }}"
+              >
+                <input
+                  type="checkbox"
+                  [id]="'basic-amenity-' + amenity.key"
+                  [checked]="getBasicAmenity(amenity.key)"
+                  (change)="toggleBasicAmenity(amenity.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'basic-amenity-' + amenity.key + '-desc'"
+                />
+
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    amenity.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
+                    'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
+                  }}</span>
+
+                  @if (getBasicAmenity(amenity.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-primary"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+
+                <div [id]="'basic-amenity-' + amenity.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+
+        <!-- Luxury Amenities -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary" id="luxury-amenities-legend">
+            {{ 'LISTING.AMENITIES_LUXURY' | translate }}
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'luxury-amenities-legend'"
+          >
+            @for (amenity of luxuryAmenities; track amenity.key) {
+              <label
+                class="flex items-center p-4 border rounded-xl cursor-pointer transition-colors focus-within:focus-ring"
+                [class.border-base]="!getLuxuryAmenity(amenity.key)"
+                [class.bg-card]="!getLuxuryAmenity(amenity.key)"
+                [ngClass]="
+                  getLuxuryAmenity(amenity.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
+              >
+                <input
+                  type="checkbox"
+                  [id]="'luxury-amenity-' + amenity.key"
+                  [checked]="getLuxuryAmenity(amenity.key)"
+                  (change)="toggleLuxuryAmenity(amenity.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'luxury-amenity-' + amenity.key + '-desc'"
+                />
+
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    amenity.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
+                    'LISTING.AMENITIES.' + amenity.key.toUpperCase() | translate
+                  }}</span>
+
+                  @if (getLuxuryAmenity(amenity.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-primary"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+
+                <div [id]="'luxury-amenity-' + amenity.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.AMENITIES.' + amenity.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+
+        <!-- Safety Features -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary" id="safety-features-legend">
+            {{ 'LISTING.SAFETY_FEATURES' | translate }}
+          </h2>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            role="group"
+            [attr.aria-labelledby]="'safety-features-legend'"
+          >
+            @for (safety of safetyItems; track safety.key) {
+              <label
+                class="flex items-center p-4 border rounded-xl cursor-pointer transition-colors focus-within:focus-ring"
+                [class.border-base]="!getSafetyFeature(safety.key)"
+                [class.bg-card]="!getSafetyFeature(safety.key)"
+                [ngClass]="
+                  getSafetyFeature(safety.key)
+                    ? 'border-[var(--color-brand-dark)] bg-[var(--color-brand-bg-hover)] shadow-card'
+                    : ''
+                "
+              >
+                <input
+                  type="checkbox"
+                  [id]="'safety-feature-' + safety.key"
+                  [checked]="getSafetyFeature(safety.key)"
+                  (change)="toggleSafetyFeature(safety.key)"
+                  class="sr-only"
+                  [attr.aria-describedby]="'safety-feature-' + safety.key + '-desc'"
+                />
+
+                <div class="flex items-center w-full">
+                  <span class="text-2xl mr-3 text-[var(--color-brand-red)]" aria-hidden="true">{{
+                    safety.icon
+                  }}</span>
+                  <span class="font-medium text-primary">{{
+                    'LISTING.SAFETY.' + safety.key.toUpperCase() | translate
+                  }}</span>
+
+                  @if (getSafetyFeature(safety.key)) {
+                    <svg
+                      class="w-5 h-5 ml-auto text-primary"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  }
+                </div>
+
+                <div [id]="'safety-feature-' + safety.key + '-desc'" class="sr-only">
+                  {{ 'LISTING.SAFETY.' + safety.key.toUpperCase() + '_DESC' | translate }}
+                </div>
+              </label>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Step 3: Details & Pricing -->
+    @if (currentStep() === 3) {
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-primary mb-4">
+            {{ 'LISTING.STEP3_TITLE' | translate }}
+          </h1>
+          <p class="text-xl text-secondary">
+            {{ 'LISTING.STEP3_SUBTITLE' | translate }}
+          </p>
+        </div>
+
+        <!-- Title & Description -->
+        <div class="space-y-6">
+          <div>
+            <label class="block" for="listing-title">
+              <span class="text-sm font-medium text-secondary">{{
+                'LISTING.TITLE_LABEL' | translate
+              }}</span>
+              <div class="relative mt-1">
+                <i
+                  class="pi pi-tag absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary mr-0"
+                ></i>
+                <input
+                  id="listing-title"
+                  type="text"
+                  class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                  [value]="step3Data().title"
+                  (input)="updateStep3('title', $event)"
+                  maxlength="25"
+                />
+              </div>
+              <div class="text-sm text-secondary mt-2">
+                {{ step3Data().title.length }}/25 {{ 'LISTING.CHARACTERS' | translate }}
+              </div>
+            </label>
+          </div>
+
+          <div>
+            <label class="block" for="listing-description">
+              <span class="text-sm font-medium text-secondary">{{
+                'LISTING.DESCRIPTION_LABEL' | translate
+              }}</span>
+              <div class="mt-1">
+                <textarea
+                  id="listing-description"
+                  class="w-full min-h-[150px] rounded-lg border border-base px-3 py-3 bg-secondary text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                  [value]="step3Data().description"
+                  (input)="updateStep3('description', $event)"
+                  maxlength="500"
+                  rows="6"
+                ></textarea>
+              </div>
+              <div class="text-sm text-secondary mt-2">
+                {{ step3Data().description.length }}/500 {{ 'LISTING.CHARACTERS' | translate }}
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Photos -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary" id="photos-legend">
+            {{ 'LISTING.PHOTOS_LABEL' | translate }}
+          </h2>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-4"
+            [attr.aria-labelledby]="'photos-legend'"
+          >
+            @for (photo of step3Data().photos; track photo.id; let i = $index) {
+              <div class="relative aspect-square rounded-lg overflow-hidden bg-secondary">
+                <img
+                  [src]="photo.url"
+                  [alt]="('LISTING.PHOTO_ALT' | translate) + ' ' + (i + 1)"
+                  class="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  (click)="removePhoto(i)"
+                  class="absolute top-2 right-2 w-8 h-8 bg-card rounded-full shadow-card flex items-center justify-center hover:bg-[var(--color-brand-bg-hover)] focus-ring"
+                  [attr.aria-label]="('LISTING.REMOVE_PHOTO' | translate) + ' ' + (i + 1)"
+                >
+                  <svg
+                    class="w-4 h-4 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            }
+
+            <label
+              for="photo-upload"
+              class="aspect-square border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-[var(--color-border-focus)] focus-within:focus-ring transition-colors"
+            >
+              <svg
+                class="w-12 h-12 text-muted"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              <span class="text-secondary text-sm mt-2">{{ 'LISTING.ADD_PHOTO' | translate }}</span>
+              <input
+                id="photo-upload"
+                type="file"
+                accept="image/*"
+                (change)="addPhoto($event)"
+                class="sr-only"
+                [attr.aria-describedby]="'photo-upload-help'"
+              />
+              <div id="photo-upload-help" class="sr-only">
+                {{ 'LISTING.PHOTO_UPLOAD_HELP' | translate }}
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-semibold text-primary">
+            {{ 'LISTING.PRICING_LABEL' | translate }}
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block" for="pricing-weekday">
+                <span class="text-sm font-medium text-secondary">{{
+                  'LISTING.PRICING.WEEKDAY' | translate
+                }}</span>
+                <div class="relative mt-1">
+                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    >€</span
+                  >
+                  <input
+                    id="pricing-weekday"
+                    type="number"
+                    class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                    min="0"
+                    step="0.01"
+                    [value]="step3Data().pricing.weekdayPrice || ''"
+                    (input)="updatePricing('weekdayPrice', $event)"
+                  />
+                </div>
+              </label>
+            </div>
+
+            <div>
+              <label class="block" for="pricing-weekend">
+                <span class="text-sm font-medium text-secondary">{{
+                  'LISTING.PRICING.WEEKEND' | translate
+                }}</span>
+                <div class="relative mt-1">
+                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary"
+                    >€</span
+                  >
+                  <input
+                    id="pricing-weekend"
+                    type="number"
+                    class="w-full pl-10 pr-4 py-3 bg-secondary rounded-lg border border-base text-primary placeholder:text-muted focus-ring transition-all duration-200"
+                    min="0"
+                    step="0.01"
+                    [value]="step3Data().pricing.weekendPrice || ''"
+                    (input)="updatePricing('weekendPrice', $event)"
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </main>
+
+  <!-- Progress Bar and Navigation Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-card border-t border-base z-50">
+    <!-- Progress Bar -->
+    <div class="max-w-4xl mx-auto px-6 py-2">
+      <div class="flex items-center">
+        <div class="flex items-center text-sm font-medium w-full">
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [style.background-color]="
+                currentStep() >= 1 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 1 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
+            >
+              1
+            </span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP1_PROGRESS' | translate
+            }}</span>
+          </span>
+
+          <div
+            class="flex-1 h-px mx-4"
+            [style.background-color]="
+              currentStep() >= 2 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+            "
+          ></div>
+
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [style.background-color]="
+                currentStep() >= 2 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 2 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
+            >
+              2
+            </span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP2_PROGRESS' | translate
+            }}</span>
+          </span>
+
+          <div
+            class="flex-1 h-px mx-4"
+            [style.background-color]="
+              currentStep() >= 3 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+            "
+          ></div>
+
+          <span class="flex items-center">
+            <span
+              class="flex items-center justify-center w-8 h-8 rounded-full"
+              [style.background-color]="
+                currentStep() >= 3 ? 'var(--color-brand-dark)' : 'var(--color-brand-lightest)'
+              "
+              [style.color]="
+                currentStep() >= 3 ? 'var(--color-brand-red)' : 'var(--color-text-primary)'
+              "
+            >
+              3
+            </span>
+            <span class="ml-2 hidden sm:block text-secondary">{{
+              'LISTING.STEP3_PROGRESS' | translate
+            }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      @if (currentStep() > 1) {
+        <button
+          type="button"
+          (click)="previousStep()"
+          class="px-6 py-3 text-primary font-semibold rounded-lg transition-colors focus-ring border border-base bg-card hover:bg-[var(--color-brand-bg-hover)]"
+        >
+          {{ 'LISTING.BACK' | translate }}
+        </button>
+      } @else {
+        <div></div>
+      }
+
+      <div class="flex items-center space-x-4">
+        @if (currentStep() < 3) {
+          <button
+            type="button"
+            (click)="nextStep()"
+            [disabled]="!canProceed()"
+            class="px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 justify-center focus-ring disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {{ 'LISTING.NEXT' | translate }}
+          </button>
+        }
+        @if (currentStep() === 3) {
+          <button
+            type="button"
+            (click)="saveListing()"
+            [disabled]="!canSave()"
+            class="px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 justify-center focus-ring disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {{ 'LISTING.PUBLISH' | translate }}
+          </button>
+        }
+      </div>
+    </div>
+  </footer>
+</div>

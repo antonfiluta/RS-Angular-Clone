@@ -1,0 +1,32 @@
+<img
+  [src]="offer().photos[0].url"
+  [alt]="offer().photos[0].id"
+  class="h-[15vw] object-cover rounded-2xl bg-secondary shadow-card w-full"
+/>
+
+<div class="flex flex-col px-1 mt-3">
+  <h3 class="text-[13px] font-medium text-primary leading-tight">{{ offerName() }}</h3>
+
+  <div class="text-[12px] tracking-wide flex justify-between items-center gap-1 text-secondary">
+    <span class="text-primary">
+      {{ offerCost() }}$ <span class="text-secondary"> {{ 'OFFERS.TERM' | translate }}</span>
+    </span>
+
+    <span class="flex items-center gap-1">
+      <i class="pi pi-star-fill" style="font-size: 12px; color: var(--color-brand-red)"></i>
+      <span class="text-primary">{{ offerRate() }}</span>
+    </span>
+  </div>
+</div>
+
+@if (isFavorite()) {
+  <span
+    class="absolute top-2 left-2 px-2 py-1 rounded-xl text-[12px] font-medium bg-card border border-base text-primary shadow-sm"
+  >
+    {{ 'OFFERS.FAVORITE' | translate }}
+  </span>
+}
+
+<button (click)="toggleLike($event)" class="absolute top-2 right-3 z-10">
+  <i class="pi" [appSaveCardIcon]="isLiked()" style="font-size: 22px"></i>
+</button>
