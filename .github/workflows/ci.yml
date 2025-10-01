@@ -48,24 +48,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
       - name: Run unit tests
-        run: npm run test -- --no-watch --code-coverage --browsers=ChromeHeadless
+        run: npm run test
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        if: always()
-        with:
-          file: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-        continue-on-error: true
-
-      - name: Archive coverage results
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: coverage-report
-          path: coverage/
+          name: test-results
+          path: test-results/
           retention-days: 7
 
   build:
@@ -92,7 +86,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: dist/RS-Angular-Clone/browser/
           retention-days: 7
 
   preview:
@@ -108,14 +102,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: dist/RS-Angular-Clone/browser/
 
       - name: Deploy to Firebase Preview Channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+          projectId: 'RS-Angular-Clone'
           expires: 7d
           channelId: pr-${{ github.event.pull_request.number }}
         env:
@@ -128,7 +122,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: production
-      url: https://${{ secrets.FIREBASE_PROJECT_ID }}.web.app
+      url: https://rs-angular-clone.web.app
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -137,14 +131,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: dist/RS-Angular-Clone/browser/
 
       - name: Deploy to Firebase Production
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+          projectId: 'RS-Angular-Clone'
           channelId: live
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
