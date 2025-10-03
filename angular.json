@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "RS-Angular-Clone": {
+    "rs-angular-clone": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -57,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "RS-Angular-Clone:build:production"
+              "buildTarget": "rs-angular-clone:build:production"
             },
             "development": {
-              "buildTarget": "RS-Angular-Clone:build:development"
+              "buildTarget": "rs-angular-clone:build:development"
             }
           },
           "defaultConfiguration": "development"
