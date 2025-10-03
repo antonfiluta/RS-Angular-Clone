@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/RS-Angular-Clone/browser",
+    "public": "dist/rs-angular-clone/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
