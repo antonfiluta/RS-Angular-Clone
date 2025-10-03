@@ -84,12 +84,18 @@ jobs:
       - name: Build for production
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          echo "Build output structure:"
+          ls -R dist/
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist/rs-angular-clone/browser/
+          path: dist/rs-angular-clone/browser
           retention-days: 7
+          if-no-files-found: error
 
   preview:
     name: Firebase Preview Deploy
@@ -104,7 +110,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/rs-angular-clone/browser/
+          path: dist/rs-angular-clone/browser
+
+      - name: Verify downloaded artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          ls -la dist/rs-angular-clone/browser/
 
       - name: Deploy to Firebase Preview Channel
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -133,7 +144,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/rs-angular-clone/browser/
+          path: dist/rs-angular-clone/browser
+
+      - name: Verify downloaded artifacts
+        run: |
+          echo "Downloaded artifacts:"
+          ls -la dist/rs-angular-clone/browser/
 
       - name: Deploy to Firebase Production
         uses: FirebaseExtended/action-hosting-deploy@v0
